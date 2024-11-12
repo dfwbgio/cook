@@ -1,0 +1,67 @@
+@charset "UTF-8";
+:root {/*기본 색상 지정*/
+  --point-color: #6FADCF;
+  --second-color: #3d7797;
+  --md-blue: #c2e0f1;
+  --lite-blue: #f4fbff;
+  --all-white: #ffffff;
+  --bg-white: #f9f9f9;
+  --lt-gray: #eeeeee;
+  --md-gray: #cccccc;
+  --dp-gray: #999999;
+  --ddp-gray: #666666;
+  --all-black: #000000;
+  --lite-black: #111111;
+  --bg-black: #333333;
+  --red-color: #bb0000;
+  --red-point: #830202;
+  --bg-none: transparent;
+}
+@font-face {
+    font-family: 'SUITE-Regular';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+}
+/* reset */
+body{
+    -ms-overflow-style: none;
+    width: 100%;
+    height: auto;
+    margin: 0;
+    background-color: var(--lite-blue);
+}
+body::-webkit-scrollbar{
+    display: none;
+}
+*{
+    margin: 0;
+	padding: 0;
+    border: 0;
+	cursor: url('../../image/icon/common/cursor-default.png'), default!important;
+    list-style: none;
+    font-family: 'SUITE-Regular';
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 400;
+    color: var(--lite-black);
+    font-style: normal;
+    text-decoration: none;
+    outline: 0;
+    word-break: keep-all;
+    background-color: var(--bg-none);
+}
+img{
+    border: 0;
+}
+select,
+button,
+button *,
+a,
+a *{
+	cursor: url('../../image/icon/common/cursor-pointer.png'), pointer!important;
+}
+input,
+textarea{
+	cursor: url('../../image/icon/common/cursor-text.png'), text!important;
+}

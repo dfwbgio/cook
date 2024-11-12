@@ -1,0 +1,18 @@
+@charset "UTF-8";
+.header_logo{
+    display: none;
+}
+.header_back{
+    display: block;
+}
+.footer_section{
+    display: none;
+}
+@media (min-width: 1024px){
+    .header_logo{
+        display: block;
+    }
+    .header_back{
+        display: none;
+    }
+}

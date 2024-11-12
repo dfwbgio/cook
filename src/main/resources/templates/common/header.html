@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" th:fragment="header">
+<meta charset="UTF-8">
+    <header class="header_section">
+        <div class="w_display_flex flex_end flex_align_e">
+            <div class="header_top">
+                <div class="display_flex flex_between flex_align_c">
+                    <button type="button" onclick="goHome()" class="header_logo">
+                        <img src="/image/logo/logo.png">
+                    </button>
+                    <div class="header_back">
+                        <div class="display_flex flex_start flex_align_c">
+                            <button type="button" onclick="history.back(-1)">
+                                <img src="/image/icon/common/arrow-prev-lt.png">
+                            </button>
+                            <p th:text="${pageTitle}">페이지제목</p>
+                        </div>
+                    </div>
+                    <button type="button" onclick="goMenu()" class="header_hamburger">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+            </div>
+            <aside class="header_side">
+                <div class="display_flex flex_start flex_align_c">
+                    <!--로그인 전(로그인 구현 후 수정)-->
+                    <a href="/login" id="header_login">로그인</a>
+                    <a href="/signup" id="header_signup">회원가입</a>
+                    <!--로그인 후(로그인 구현 후 수정)-->
+                    <a href="/mypage" id="header_mypage">마이페이지</a>
+                </div>
+                <nav class="header_a">
+                    <a href="/member/list" id="header_member" class="header_link">회원 관리</a>
+                    <a href="/recipe/list" id="header_recipe" class="header_link">레시피</a>
+                    <a href="/community/list" id="header_community" class="header_link">커뮤니티</a>
+                    <a href="/random/list" id="header_random" class="header_link">뭐 먹지?</a>
+                    <a href="/info/list" id="header_info" class="header_link">설정</a>
+                </nav>
+                <p class="header_copyright">ⓒmbc academy - 요리이름몰라</p>
+            </aside>
+        </div>
+    </header>
+</html>

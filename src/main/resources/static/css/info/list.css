@@ -1,0 +1,40 @@
+@charset "UTF-8";
+.info_whole{
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+}
+.info_inner{
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+}
+.info_inner a{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: calc(100% - 20px);
+    height: auto;
+    padding: 10px;
+    background-color: var(--all-white);
+    border: 1px solid var(--lt-gray);
+    border-radius: 10px;
+}
+.info_inner a:first-child{
+    margin-top: 20px;
+}
+.info_inner a + a{
+    margin-top: 10px;
+}
+.info_inner a:hover{
+    border-color: var(--point-color);
+    background-color: var(--md-blue);
+}
+.info_img{
+    display: block;
+    min-width: 20px;
+    width: 20px;
+    height: 20px;
+    background: url('/image/icon/common/arrow-next.png') no-repeat;
+    background-size: contain;
+}
