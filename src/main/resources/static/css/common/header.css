@@ -150,7 +150,9 @@
     background-color: var(--md-blue);
 }
 a.header_link{
-    display: block;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     height: 28px;
     line-height: 28px;
     padding-bottom: 10px;
@@ -163,6 +165,61 @@ a.header_link:hover{
 }
 a.header_link + a.header_link{
     margin-top: 20px;
+}
+a.header_link span{
+    display: block;
+    min-width: 40px;
+    width: 40px;
+    height: 40px;
+    margin-left: 5px;
+}
+a.header_link#header_recipe:hover span{
+    min-width: 30px;
+    width: 30px;
+    height: 30px;
+    background: url('/image/icon/common/link-hover1.png') no-repeat;
+    background-size: contain;
+}
+a.header_link#header_community:hover span{
+    background: url('/image/icon/common/link-hover2.png') no-repeat;
+    background-size: contain;
+}
+a.header_link#header_random:hover span{
+    background: url('/image/icon/common/link-hover3.png') no-repeat;
+    background-size: contain;
+}
+a.header_link#header_info:hover span{
+    min-width: 30px;
+    width: 30px;
+    height: 30px;
+    background: url('/image/icon/common/link-hover4.png') no-repeat;
+    background-size: contain;
+}
+a.link_on#header_recipe span,
+a.link_on#header_recipe:hover span{
+    min-width: 30px;
+    width: 30px;
+    height: 30px;
+    background: url('/image/icon/common/link-icon1.png') no-repeat;
+    background-size: contain;
+}
+a.link_on#header_community span,
+a.link_on#header_community:hover span{
+    background: url('/image/icon/common/link-icon2.png') no-repeat;
+    background-size: contain;
+}
+a.link_on#header_random span,
+a.link_on#header_random:hover span{
+    background: url('/image/icon/common/link-icon3.png') no-repeat;
+    background-size: contain;
+}
+a.link_on#header_info span,
+a.link_on#header_info:hover span{
+    min-width: 30px;
+    width: 30px;
+    height: 30px;
+    background: url('/image/icon/common/link-icon4.png') no-repeat;
+    background-size: contain;
 }
 a.link_on{
     color: var(--point-color)!important;
@@ -228,9 +285,13 @@ p.header_copyright{
     a.header_link{
         min-width: max-content;
         color: var(--md-blue);
+        padding: 0 25px 10px 25px;
     }
     a.header_link + a.header_link{
-        margin: 0 0 0 20px;
+        margin: 0;
+    }
+    a.header_link span{
+        display: none;
     }
     a.link_on{
         color: var(--all-white)!important;
