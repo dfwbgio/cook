@@ -43,7 +43,7 @@
     width: 100%;
     max-width: 120px;
     height: auto;
-    max-height: 300px;
+    max-height: 120px;
     object-fit: cover;
     margin: 0 auto;
 }
