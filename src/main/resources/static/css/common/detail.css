@@ -8,6 +8,10 @@
 .footer_section{
     display: none;
 }
+.main_whole{
+    min-height: calc(100vh - 50px);
+    padding-bottom: 0;
+}
 @media (min-width: 1024px){
     .header_logo{
         display: block;

@@ -3,4 +3,51 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{common/layout}"
       layout:fragment="content">
+    <div class="info_whole">
+        <h1>Recipe</h1>
+        <div class="info_inner">
+            <div class="info_row info_title">
+                <p class="info_txt info_border">[Recipe]에 대한 설명</p>
+            </div>
+            <div class="info_row info_project">
+                <p>프로젝트 인원 소개</p>
+                <div class="info_border">
+                    <div class="display_flex flex_wrap flex_start flex_align_c">
+                        <div class="info_member">
+                            <img th:src="@{/image/icon/info/profile-default.png}" alt="프로필 이미지">
+                            <p>이름</p>
+                            <p>역할</p>
+                        </div>
+                        <div class="info_member">
+                            <img th:src="@{/image/icon/info/profile-default.png}" alt="프로필 이미지">
+                            <p>이름</p>
+                            <p>역할</p>
+                        </div>
+                        <div class="info_member">
+                            <img th:src="@{/image/icon/info/profile-default.png}" alt="프로필 이미지">
+                            <p>이름</p>
+                            <p>역할</p>
+                        </div>
+                        <div class="info_member">
+                            <img th:src="@{/image/icon/info/profile-default.png}" alt="프로필 이미지">
+                            <p>이름</p>
+                            <p>역할</p>
+                        </div>
+                        <div class="info_member">
+                            <img th:src="@{/image/icon/info/profile-default.png}" alt="프로필 이미지">
+                            <p>이름</p>
+                            <p>역할</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="info_row info_project">
+                <p>프로젝트 개발 기간</p>
+                <div class="info_txt info_border">
+                    <p>2024.11.11 ~ 2024.11.29(예상)</p>
+                </div>
+            </div>
+            <p class="info_copyright">ⓒMBC ACADEMY</p>
+        </div>
+    </div>
 </html>

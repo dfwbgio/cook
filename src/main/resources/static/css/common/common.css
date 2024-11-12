@@ -5,6 +5,9 @@
 .display_flex{
     display: flex;
 }
+.flex_wrap{
+    flex-wrap: wrap;
+}
 .flex_start{
     justify-content: flex-start;
 }
@@ -35,7 +38,7 @@
 }
 .main_inner{
     width: calc(100% - 40px);
-    max-width: 1000px;
+    max-width: 1200px;
     height: auto;
     margin: 30px auto 50px auto;
 }
