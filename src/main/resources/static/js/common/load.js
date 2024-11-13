@@ -12,7 +12,7 @@ $(document).ready(function(){
     || win_href.includes('/category')
     || win_href.includes('/cart')
     ){
-        $('head').append('<link rel="stylesheet" href="/css/common/detail.css">');
+        $('head').prepend('<link rel="stylesheet" href="/css/common/detail.css">');
     }
     //페이지별 로드 시키기
     if(win_href.includes('/login')

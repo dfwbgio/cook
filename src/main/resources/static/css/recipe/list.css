@@ -1,1 +1,10 @@
 @charset "UTF-8";
+.list_search{
+    position: fixed;
+    width: 100vw;
+    height: auto;
+    z-index: 1;
+    left: 0;
+    top: 120px;
+    background-color: var(--lite-blue);
+}

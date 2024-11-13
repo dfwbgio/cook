@@ -12,5 +12,29 @@
                 <h1>카테고리 관리</h1>
             </div>
         </div>
+        <div class="category_inner">
+            <button type="button" class="category_register" onclick="location.href='/info/register?num=0&info=register'">등록 +</button>
+            <table class="category_table">
+                <thead>
+                    <tr>
+                        <th class="table_num">번호</th>
+                        <th>메인 카테고리</th>
+                        <th>서브 카테고리</th>
+                        <th class="table_etc">비고</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="category:${categoryList}">
+                        <td class="table_num" th:text="${category.categorynum}">번호</td>
+                        <td th:text="${category.maincategory}">메인카테고리</td>
+                        <td th:text="${category.subcategory}">서브카테고리</td>
+                        <td class="table_etc">
+                           <a th:href="@{/info/register(num=${category.categorynum},info='update')}">수정</a>
+                           <a th:href="@{/info/register(num=${category.categorynum},info='delete')}">삭제</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </html>

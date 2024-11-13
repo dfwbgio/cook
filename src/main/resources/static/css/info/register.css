@@ -1,0 +1,20 @@
+@charset "UTF-8";
+.category_whole{
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    margin: 0 auto;
+}
+.category_write{
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+}
+.category_row{
+    width: 100%;
+    height: auto;
+    margin: 20px auto 0 auto;
+}
+.category_row + .category_row{
+    margin-top: 40px;
+}

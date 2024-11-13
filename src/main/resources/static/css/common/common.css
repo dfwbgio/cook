@@ -66,16 +66,19 @@ select{
 }
 select:focus{
     border-color: var(--point-color);
-    background: url('/image/icon/common/select-up.png') no-repeat calc(100% - 10px) 50%/20px auto;
+    background: url('/image/icon/common/select-up.png') no-repeat var(--all-white) calc(100% - 10px) 50%/20px auto;
     transition: 0.5s;
 }
-input{
-    width: 100%;
-    height: 38px;
+input[type="text"],
+input[type="password"]{
+    width: calc(100% - 22px);
+    min-height: 26px;
+    height: 26px;
     border: 1px solid var(--lt-gray);
     border-radius: 5px;
     padding: 6px 10px;
     outline: none;
+    background-color: var(--all-white);
 }
 input,
 textarea{
@@ -85,15 +88,96 @@ input:focus{
     border-color: var(--point-color);
     outline: none;
 }
+select:disabled{
+    cursor: default!important;
+}
 input:read-only,
 textarea:read-only{
-    background-color: var(--bg-white);
-    cursor: default;
+    opacity: 0.7;
+    cursor: default!important;
 }
 input:read-only:focus,
 textarea:read-only:focus{
     border-color: var(--lt-gray);
     cursor: default;
+}
+/*테이블 공통*/
+.main_inner table{
+    table-layout: fixed;
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+    border-spacing: 0;
+}
+.main_inner table th{
+    height: 40px;
+    background-color: var(--md-blue);
+    text-align: center;
+}
+.main_inner table td{
+    height: 40px;
+    background-color: var(--all-white);
+    text-align: center;
+    border-bottom: 1px solid var(--lite-gray);
+}
+.main_inner table th.table_num,
+.main_inner table td.table_num{
+    min-width: 50px;
+    width: 50px;
+    max-width: 50px;
+}
+.main_inner table th.table_etc,
+.main_inner table td.table_etc{
+    min-width: 80px;
+    width: 80px;
+    max-width: 80px;
+}
+.main_inner table td.table_etc a{
+    color: var(--point-color);
+    padding-bottom: 4px;
+    border-bottom: 1px solid var(--point-color);
+}
+.main_inner table td.table_etc a + a{
+    color: var(--red-color);
+    border-color: var(--red-color);
+    margin-left: 10px;
+}
+.main_inner table td.table_etc a:hover{
+    font-weight: bold;
+}
+.btn_flex{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px auto 0 auto;
+}
+.btn_flex button{
+    display: block;
+    width: 100%;
+    max-width: 150px;
+    height: 40px;
+    border: 1px solid var(--bg-none);
+    border-radius: 5px;
+    background-color: var(--all-white);
+}
+.btn_flex button + button{
+    margin-left: 10px;
+}
+.btn_flex button.btn_prev{
+    color: var(--point-color);
+    border-color: var(--point-color);
+}
+.btn_flex button.btn_prev:hover{
+    color: var(--second-color);
+    border-color: var(--second-color);
+    background-color: var(--lt-blue);
+}
+.btn_flex button.btn_submit{
+    color: var(--all-white);
+    background-color: var(--point-color);
+}
+.btn_flex button.btn_submit:hover{
+    background-color: var(--second-color);
 }
 @media (min-width: 1024px){
     .w_display_flex{

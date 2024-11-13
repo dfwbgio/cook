@@ -1,11 +1,23 @@
 package com.mbc.cook.controller;
 
+import com.mbc.cook.dto.info.CategoryDTO;
+import com.mbc.cook.entity.info.CategoryEntity;
+import com.mbc.cook.service.info.InfoInterface;
+import com.mbc.cook.service.info.InfoService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.List;
 
 @Controller
 public class InfoController {
+    @Autowired
+    InfoService infoService;
+
     @GetMapping(value = "/info/list")
     public String infoList(Model model) {
         model.addAttribute("cssPath", "/info/list");//css 패스 경로(바꾸지X)
@@ -20,6 +32,27 @@ public class InfoController {
     }
     @GetMapping(value = "/info/category")
     public String infoCategory(Model model) {
+        List<CategoryEntity> list = infoService.getCategory();
+        model.addAttribute("cssPath", "/info/category");//css 패스 경로(바꾸지X)
+        model.addAttribute("pageTitle", "카테고리 관리");//타이틀 제목
+        model.addAttribute("categoryList", list);
+        return "info/category";
+    }
+    @GetMapping(value = "/info/register")
+    public String infoRegister(@RequestParam(value = "num") long num, @RequestParam(value = "info") String info, Model model) {
+        model.addAttribute("cssPath", "/info/register");//css 패스 경로(바꾸지X)
+        model.addAttribute("pageTitle", "카테고리 관리");//타이틀 제목
+        model.addAttribute("info", info);
+        if(info.equals("register")){
+        }
+        else{
+            CategoryEntity dto = infoService.getCategoryList(num);
+            model.addAttribute("Categorydto", dto);
+        }
+        return "info/register";
+    }
+    @PostMapping(value = "/categorySave")
+    public String categorySave(Model model) {
         model.addAttribute("cssPath", "/info/category");//css 패스 경로(바꾸지X)
         model.addAttribute("pageTitle", "카테고리 관리");//타이틀 제목
         return "info/category";

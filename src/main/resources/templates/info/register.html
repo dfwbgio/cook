@@ -1,0 +1,80 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{common/layout}"
+      layout:fragment="content">
+    <div class="category_whole">
+        <div class="detail_title">
+            <div class="display_flex flex_align_c">
+                <button type="button" onclick="history.back(-1)">
+                    <img src="/image/icon/common/arrow-sm-prev.svg">
+                </button>
+                <h1 th:if="${info == 'register'}">카테고리 등록</h1>
+                <h1 th:if="${info == 'update'}">카테고리 수정</h1>
+                <h1 th:if="${info == 'delete'}">카테고리 삭제</h1>
+            </div>
+        </div>
+        <div class="category_write">
+            <form action="categoryRegister" th:if="${info == 'register'}">
+                <!--등록-->
+                <div class="category_row">
+                    <p>메인 카테고리</p>
+                    <select name="maincategory">
+                        <option value="한식">한식</option>
+                        <option value="일식">일식</option>
+                        <option value="중식">중식</option>
+                        <option value="양식">양식</option>
+                    </select>
+                </div>
+                <div class="category_row">
+                    <p>서브 카테고리</p>
+                    <input type="text" name="subcategory" placeholder="서브 메뉴 입력">
+                </div>
+                <div class="btn_flex">
+                    <button type="button" class="btn_prev" onclick="history.go(-1)">이전</button>
+                    <button type="submit" class="btn_submit">등록</button>
+                </div>
+            </form>
+            <form action="categoryUpdate" th:if="${info == 'update'}">
+                <!--수정-->
+                <div class="category_row">
+                    <p>메인 카테고리</p>
+                    <select name="maincategory">
+                        <option value="한식" th:if="${Categorydto.maincategory eq '한식' ? 'selected' : ''}">한식</option>
+                        <option value="일식" th:if="${Categorydto.maincategory eq '일식' ? 'selected' : ''}">일식</option>
+                        <option value="중식" th:if="${Categorydto.maincategory eq '중식' ? 'selected' : ''}">중식</option>
+                        <option value="양식" th:if="${Categorydto.maincategory eq '양식' ? 'selected' : ''}">양식</option>
+                    </select>
+                </div>
+                <div class="category_row">
+                    <p>서브 카테고리</p>
+                    <input type="text" name="subcategory" th:value="${Categorydto.subcategory}" placeholder="서브 메뉴 입력">
+                </div>
+                <div class="btn_flex">
+                    <button type="button" onclick="history.go(-1)" class="btn_prev">이전</button>
+                    <button type="submit" class="btn_submit">수정</button>
+                </div>
+            </form>
+            <form action="categoryDelete" th:if="${info == 'delete'}">
+                <!--삭제-->
+                <div class="category_row">
+                    <p>메인 카테고리</p>
+                    <select name="maincategory" disabled>
+                        <option value="한식" th:if="${Categorydto.maincategory eq '한식' ? 'selected' : ''}">한식</option>
+                        <option value="일식" th:if="${Categorydto.maincategory eq '일식' ? 'selected' : ''}">일식</option>
+                        <option value="중식" th:if="${Categorydto.maincategory eq '중식' ? 'selected' : ''}">중식</option>
+                        <option value="양식" th:if="${Categorydto.maincategory eq '양식' ? 'selected' : ''}">양식</option>
+                    </select>
+                </div>
+                <div class="category_row">
+                    <p>서브 카테고리</p>
+                    <input type="text" name="subcategory" th:value="${Categorydto.subcategory}" placeholder="서브 메뉴 입력" disabled>
+                </div>
+                <div class="btn_flex">
+                    <button type="button" onclick="history.go(-1)" class="btn_prev">이전</button>
+                    <button type="submit" class="btn_submit">삭제</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</html>

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class RecipeController2 {
     @GetMapping(value = "/recipe/list")
     public String recipeList(Model model) {
+
         model.addAttribute("cssPath", "/recipe/list");//css 패스 경로(바꾸지X)
         model.addAttribute("pageTitle", "레시피");//타이틀 제목
         return "recipe/list";
