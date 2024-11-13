@@ -12,11 +12,31 @@
     min-height: calc(100vh - 50px);
     padding-bottom: 0;
 }
+.detail_title button{
+    display: none;
+    min-width: 20px;
+    width: 20px;
+    height: 20px;
+    background-size: contain;
+    margin-right: 5px;
+}
+.detail_title button img{
+    display: block;
+    width: 100%;
+    height: auto;
+    background-size: contain;
+}
 @media (min-width: 1024px){
     .header_logo{
         display: block;
     }
     .header_back{
         display: none;
+    }
+    .detail_title button{
+        display: block;
+    }
+    .detail_title button img{
+        display: block;
     }
 }

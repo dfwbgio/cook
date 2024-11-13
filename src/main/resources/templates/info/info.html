@@ -4,7 +4,14 @@
       layout:decorate="~{common/layout}"
       layout:fragment="content">
     <div class="info_whole">
-        <h1>Recipe</h1>
+        <div class="detail_title">
+            <div class="display_flex flex_align_c">
+                <button type="button" onclick="history.back(-1)">
+                    <img src="/image/icon/common/arrow-prev.png">
+                </button>
+                <h1>Recipe</h1>
+            </div>
+        </div>
         <div class="info_inner">
             <div class="info_row info_title">
                 <p class="info_txt info_border">[Recipe]에 대한 설명</p>
@@ -47,7 +54,7 @@
                     <p>2024.11.11 ~ 2024.11.29(예상)</p>
                 </div>
             </div>
-            <p class="info_copyright">ⓒMBC ACADEMY</p>
+            <p class="info_copyright">ⓒMBC ACADEMY - 요리이름몰라</p>
         </div>
     </div>
 </html>

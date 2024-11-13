@@ -226,14 +226,6 @@ a.link_on{
     border-color: var(--point-color)!important;
 	cursor: url('../../image/icon/common/cursor-default.png'), default!important;
 }
-/*카피라이터*/
-p.header_copyright{
-    font-size: 14px;
-    line-height: 20px;
-    font-weight: 500;
-    color: var(--dp-gray);
-    text-align: center;
-}
 @media(min-width: 1024px){
     .header_top{
         width: max-content;
@@ -296,9 +288,5 @@ p.header_copyright{
     a.link_on{
         color: var(--all-white)!important;
         border-color: var(--lite-blue)!important;
-    }
-    /*카피라이터*/
-    p.header_copyright{
-        display: none;
     }
 }

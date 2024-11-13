@@ -6,6 +6,7 @@ $(document).ready(function(){
     || win_href.includes('/update')
     || win_href.includes('/mypage')
     || win_href.includes('/signup')
+    || win_href.includes('/login')
     || win_href.includes('/faq')
     || win_href.includes('/info/info')
     || win_href.includes('/category')
