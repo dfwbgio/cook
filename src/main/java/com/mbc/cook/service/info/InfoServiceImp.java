@@ -21,4 +21,19 @@ public class InfoServiceImp implements InfoService {
     public CategoryEntity getCategoryList(long num) {
         return infoRepository.findById(num).orElse(null);
     }
+
+    @Override
+    public void categorySave(CategoryEntity categoryEntity) {
+        infoRepository.save(categoryEntity);
+    }
+
+    @Override
+    public void categoryupdate(CategoryEntity categoryEntity) {
+        infoRepository.save(categoryEntity);
+    }
+
+    @Override
+    public void categorydelete(long num) {
+        infoRepository.deleteById(num);
+    }
 }

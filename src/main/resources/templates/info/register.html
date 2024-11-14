@@ -15,11 +15,11 @@
             </div>
         </div>
         <div class="category_write">
-            <form action="categoryRegister" th:if="${info == 'register'}">
+            <form action="/categoryRegister" method="post" th:if="${info == 'register'}">
                 <!--등록-->
                 <div class="category_row">
                     <p>메인 카테고리</p>
-                    <select name="maincategory">
+                    <select name="maincategory" required>
                         <option value="한식">한식</option>
                         <option value="일식">일식</option>
                         <option value="중식">중식</option>
@@ -28,47 +28,54 @@
                 </div>
                 <div class="category_row">
                     <p>서브 카테고리</p>
-                    <input type="text" name="subcategory" placeholder="서브 메뉴 입력">
+                    <input type="text" name="subcategory" placeholder="서브 카테고리 입력" required>
                 </div>
                 <div class="btn_flex">
                     <button type="button" class="btn_prev" onclick="history.go(-1)">이전</button>
                     <button type="submit" class="btn_submit">등록</button>
                 </div>
             </form>
-            <form action="categoryUpdate" th:if="${info == 'update'}">
+            <form action="/categoryUpdate" method="post" th:if="${info == 'update'}">
                 <!--수정-->
+                <input type="hidden" name="categorynum" th:value="${categoryDto.categorynum}">
                 <div class="category_row">
                     <p>메인 카테고리</p>
-                    <select name="maincategory">
-                        <option value="한식" th:if="${Categorydto.maincategory eq '한식' ? 'selected' : ''}">한식</option>
-                        <option value="일식" th:if="${Categorydto.maincategory eq '일식' ? 'selected' : ''}">일식</option>
-                        <option value="중식" th:if="${Categorydto.maincategory eq '중식' ? 'selected' : ''}">중식</option>
-                        <option value="양식" th:if="${Categorydto.maincategory eq '양식' ? 'selected' : ''}">양식</option>
+                    <select name="maincategory" required>
+                        <option value="한식" th:if="${categoryDto.maincategory eq '한식' ? 'selected' : ''}">한식</option>
+                        <option value="일식" th:if="${categoryDto.maincategory eq '일식' ? 'selected' : ''}">일식</option>
+                        <option value="중식" th:if="${categoryDto.maincategory eq '중식' ? 'selected' : ''}">중식</option>
+                        <option value="양식" th:if="${categoryDto.maincategory eq '양식' ? 'selected' : ''}">양식</option>
                     </select>
                 </div>
                 <div class="category_row">
                     <p>서브 카테고리</p>
-                    <input type="text" name="subcategory" th:value="${Categorydto.subcategory}" placeholder="서브 메뉴 입력">
+                    <input type="text" name="subcategory" th:value="${categoryDto.subcategory}" placeholder="서브 메뉴 입력">
                 </div>
                 <div class="btn_flex">
                     <button type="button" onclick="history.go(-1)" class="btn_prev">이전</button>
                     <button type="submit" class="btn_submit">수정</button>
                 </div>
             </form>
-            <form action="categoryDelete" th:if="${info == 'delete'}">
+            <form action="/categoryDelete" method="post" th:if="${info == 'delete'}">
+                <input type="hidden" name="categorynum" th:value="${categoryDto.categorynum}">
                 <!--삭제-->
+                <h2>
+                    하단의 정보를 정말 삭제하시겠습니까?
+                    <br/>
+                    삭제하시면 되돌릴 수 없습니다.
+                </h2>
                 <div class="category_row">
                     <p>메인 카테고리</p>
                     <select name="maincategory" disabled>
-                        <option value="한식" th:if="${Categorydto.maincategory eq '한식' ? 'selected' : ''}">한식</option>
-                        <option value="일식" th:if="${Categorydto.maincategory eq '일식' ? 'selected' : ''}">일식</option>
-                        <option value="중식" th:if="${Categorydto.maincategory eq '중식' ? 'selected' : ''}">중식</option>
-                        <option value="양식" th:if="${Categorydto.maincategory eq '양식' ? 'selected' : ''}">양식</option>
+                        <option value="한식" th:if="${categoryDto.maincategory eq '한식' ? 'selected' : ''}">한식</option>
+                        <option value="일식" th:if="${categoryDto.maincategory eq '일식' ? 'selected' : ''}">일식</option>
+                        <option value="중식" th:if="${categoryDto.maincategory eq '중식' ? 'selected' : ''}">중식</option>
+                        <option value="양식" th:if="${categoryDto.maincategory eq '양식' ? 'selected' : ''}">양식</option>
                     </select>
                 </div>
                 <div class="category_row">
                     <p>서브 카테고리</p>
-                    <input type="text" name="subcategory" th:value="${Categorydto.subcategory}" placeholder="서브 메뉴 입력" disabled>
+                    <input type="text" name="subcategory" th:value="${categoryDto.subcategory}" placeholder="서브 메뉴 입력" disabled>
                 </div>
                 <div class="btn_flex">
                     <button type="button" onclick="history.go(-1)" class="btn_prev">이전</button>

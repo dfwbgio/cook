@@ -2,7 +2,6 @@ package com.mbc.cook.controller;
 
 import com.mbc.cook.dto.info.CategoryDTO;
 import com.mbc.cook.entity.info.CategoryEntity;
-import com.mbc.cook.service.info.InfoInterface;
 import com.mbc.cook.service.info.InfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,7 +9,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Controller
@@ -46,15 +47,26 @@ public class InfoController {
         if(info.equals("register")){
         }
         else{
-            CategoryEntity dto = infoService.getCategoryList(num);
-            model.addAttribute("Categorydto", dto);
+            CategoryEntity findDTO = infoService.getCategoryList(num);
+            model.addAttribute("categoryDto", findDTO);
         }
         return "info/register";
     }
-    @PostMapping(value = "/categorySave")
-    public String categorySave(Model model) {
-        model.addAttribute("cssPath", "/info/category");//css 패스 경로(바꾸지X)
-        model.addAttribute("pageTitle", "카테고리 관리");//타이틀 제목
-        return "info/category";
+    @PostMapping(value = "/categoryRegister")
+    public String categoryRegister(CategoryDTO categoryDTO) {
+        CategoryEntity categoryEntity = categoryDTO.categoryEntity();
+        infoService.categorySave(categoryEntity);
+        return "redirect:/info/category";
+    }
+    @PostMapping(value = "/categoryUpdate")
+    public String categoryUpdate(CategoryDTO categoryDTO) {
+        CategoryEntity categoryEntity = categoryDTO.categoryEntity();
+        infoService.categoryupdate(categoryEntity);
+        return "redirect:/info/category";
+    }
+    @PostMapping(value = "/categoryDelete")
+    public String categoryDelete(@RequestParam(value = "categorynum") long num) {
+        infoService.categorydelete(num);
+        return "redirect:/info/category";
     }
 }

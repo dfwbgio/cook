@@ -33,6 +33,9 @@
                            <a th:href="@{/info/register(num=${category.categorynum},info='delete')}">삭제</a>
                         </td>
                     </tr>
+                    <tr>
+                        <td colspan="4" th:if="${categoryList == null} or ${categoryList.size() == 0}" class="no_data_txt">등록된 카테고리가 없습니다.</td>
+                    </tr>
                 </tbody>
             </table>
         </div>
