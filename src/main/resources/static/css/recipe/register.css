@@ -1,1 +1,49 @@
 @charset "UTF-8";
+.register_inner{
+    width: 100%;
+    height: auto;
+    margin: 40px auto;
+}
+.register_row{
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+}
+.register_row + .register_row{
+    margin-top: 40px;
+}
+.register_category{
+    width: 100%;
+    height: auto;
+    margin: 5px auto 0 auto;
+}
+.register_row label,
+.register_row label *{
+	cursor: url('../../image/icon/common/cursor-pointer.png'), pointer!important;
+}
+.register_row label + label{
+    margin-left: 10px;
+}
+.register_row input[type="radio"] + span{
+    display: block;
+    width: calc(100% - 40px);
+    max-width: 100px;
+    height: 20px;
+    line-height: 20px;
+    padding: 10px 20px;
+    background-color: #ebf8ff;
+    border: 1px solid var(--point-color);
+    border-radius: 5px;
+}
+.register_row input[type="radio"] + span:hover{
+    color: var(--second-color);
+    font-weight: bold;
+}
+.register_row input[type="radio"]:checked + span{
+    color: var(--all-white);
+    background-color: var(--second-color);
+    border-color: var(--point-color);
+}
+.register_row input[type="radio"]:checked + span:hover{
+    font-weight: 400;
+}

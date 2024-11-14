@@ -29,6 +29,9 @@
 .flex_align_e{
     align-items: end;
 }
+.flex_align_str{
+    align-items: stretch;
+}
 /*전체 페이지 공통*/
 .main_whole{
     width: 100vw;
