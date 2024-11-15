@@ -1,21 +1,79 @@
 @charset "UTF-8";
+.register_whole{
+    width: 100%;
+    max-width: 1000px;
+    height: auto;
+}
 .register_inner{
     width: 100%;
     height: auto;
     margin: 40px auto;
 }
-.register_row{
+/*컨텐츠 시작*/
+.register_flex{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: start;
     width: 100%;
     height: auto;
     margin: 0 auto;
 }
-.register_row + .register_row{
-    margin-top: 40px;
+/*각 섹션 제목*/
+p.register_subtitle{
+    width: 100%;
+    height: auto;
+    margin: 0 auto 5px auto;
+}
+/*이미지*/
+.register_img{
+    width: 100%;
+    max-width: 300px;
+    min-height: 300px;
+    height: auto;
+    max-height: 300px;
+    margin: 0 auto;
+    border-radius: 5px;
+    overflow: hidden;
+}
+.register_img label{
+    display: block;
+    width: 100%;
+    height: 300px;
+    background-color: var(--all-white);
+}
+.register_img label,
+.register_img label *{
+	cursor: url('../../image/icon/common/cursor-pointer.png'), pointer!important;
+}
+input[name="image"] + img{
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+/*공통*/
+.register_content{
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+}
+.register_row{
+    /*position: absolute;*/
+    width: 100%;
+    height: auto;
+    margin: 40px auto 0 auto;
+    /*transition: 1s;
+    opacity: 0;*/
+}
+.register_row.move_dw{
+    position: unset;
+    transition: 1s;
+    opacity: 1;
 }
 .register_category{
     width: 100%;
     height: auto;
-    margin: 5px auto 0 auto;
+    margin: 0 auto;
 }
 .register_row label,
 .register_row label *{
@@ -46,4 +104,22 @@
 }
 .register_row input[type="radio"]:checked + span:hover{
     font-weight: 400;
+}
+/*방법*/
+.register_make div{
+    display: flex;
+}
+.register_make button{
+    display: block;
+    min-width: 100px;
+    width: 100px;
+    max-width: 100px;
+    height: 40px;
+    margin-left: 10px;
+    border-radius: 5px;
+    color: var(--all-white);
+    background-color: var(--point-color);
+}
+.register_make button:hover{
+    background-color: var(--second-color);
 }

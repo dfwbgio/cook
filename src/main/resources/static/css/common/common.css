@@ -93,17 +93,17 @@ input:focus{
     outline: none;
 }
 select:disabled{
-    cursor: default!important;
+    cursor: url('../../image/icon/common/cursor-default.png'), default!important;
 }
 input:read-only,
 textarea:read-only{
     opacity: 0.7;
-    cursor: default!important;
+    cursor: url('../../image/icon/common/cursor-default.png'), default!important;
 }
 input:read-only:focus,
 textarea:read-only:focus{
     border-color: var(--lt-gray);
-    cursor: default;
+    cursor: url('../../image/icon/common/cursor-default.png'), default!important;
 }
 /*테이블 공통*/
 .main_inner table{

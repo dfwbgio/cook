@@ -13,48 +13,57 @@
             </div>
         </div>
         <div class="register_inner">
-            <div class="register_row">
-                <p>레시피 카테고리</p>
-                <div class="register_category display_flex flex_align_c">
-                    <label for="recipe_category1_1">
-                        <input type="radio" onclick="recipeCategoryClick()" id="recipe_category1_1" name="recipe_category1" value="한식" hidden>
-                        <span>한식</span>
-                    </label>
-                    <label for="recipe_category1_2">
-                        <input type="radio" onclick="recipeCategoryClick()" id="recipe_category1_2" name="recipe_category1" value="중식" hidden>
-                        <span>중식</span>
-                    </label>
-                    <label for="recipe_category1_3">
-                        <input type="radio" onclick="recipeCategoryClick()" id="recipe_category1_3" name="recipe_category1" value="일식" hidden>
-                        <span>일식</span>
-                    </label>
-                    <label for="recipe_category1_4">
-                        <input type="radio" onclick="recipeCategoryClick()" id="recipe_category1_4" name="recipe_category1" value="양식" hidden>
-                        <span>양식</span>
+            <div class="register_flex">
+                <div class="register_img">
+                    <p class="register_subtitle">음식 이미지</p>
+                    <label for="recipeimg">
+                        <input type="file" accept="image/*" onchange="recipeImgChange(event);inputShow(this)" data-number="0" name="image" id="recipeimg" hidden="hidden">
+                        <img src="" id="recipePreviewImg" alt="음식 이미지" onerror="this.src='/image/icon/info/profile-default.png'">
                     </label>
                 </div>
-            </div>
-            <div class="register_row">
-                <p>레시피 소분류</p>
-                <div class="register_category display_flex flex_align_c">
-                    <label for="recipe_category2_1">
-                        <input type="radio" id="recipe_category2_1" name="recipe_category2" value="한식" hidden>
-                        <span>한식</span>
-                    </label>
-                    <label for="recipe_category2_2">
-                        <input type="radio" id="recipe_category2_2" name="recipe_category2" value="중식" hidden>
-                        <span>중식</span>
-                    </label>
-                    <label for="recipe_category2_3">
-                        <input type="radio" id="recipe_category2_3" name="recipe_category2" value="일식" hidden>
-                        <span>일식</span>
-                    </label>
-                    <label for="recipe_category2_4">
-                        <input type="radio" id="recipe_category2_4" name="recipe_category2" value="양식" hidden>
-                        <span>양식</span>
-                    </label>
+                <div class="register_content">
+                    <div class="register_row" id="recipe_div1">
+                        <p class="register_subtitle">음식명</p>
+                        <input type="text" id="food" name="food" placeholder="음식명 입력" data-number="1" onkeyup="inputShow(this)">
+                    </div>
+                    <div class="register_row" id="recipe_div2">
+                        <p class="register_subtitle">레시피 카테고리</p>
+                        <div class="register_category display_flex flex_align_c">
+                            <label for="recipe_category1_1">
+                                <input type="radio" onclick="recipeCategoryClick();inputShow(this)" id="recipe_category1_1" name="recipe_category1" data-number="2" value="한식" hidden>
+                                <span>한식</span>
+                            </label>
+                            <label for="recipe_category1_2">
+                                <input type="radio" onclick="recipeCategoryClick();inputShow(this)" id="recipe_category1_2" name="recipe_category1" data-number="2" value="중식" hidden>
+                                <span>중식</span>
+                            </label>
+                            <label for="recipe_category1_3">
+                                <input type="radio" onclick="recipeCategoryClick();inputShow(this)" id="recipe_category1_3" name="recipe_category1" data-number="2" value="일식" hidden>
+                                <span>일식</span>
+                            </label>
+                            <label for="recipe_category1_4">
+                                <input type="radio" onclick="recipeCategoryClick();inputShow(this)" id="recipe_category1_4" name="recipe_category1" data-number="2" value="양식" hidden>
+                                <span>양식</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="register_row" id="recipe_div3"></div><!--소분류 카테고리-->
+                    <div class="register_row" id="recipe_div4">
+                        <p class="register_subtitle">재료</p>
+                        <input type="text" id="ingredient" name="ingredient" placeholder="재료 입력" data-number="4" onkeyup="inputShow(this)">
+                    </div>
+                    <div class="register_row" id="recipe_div5">
+                        <p class="register_subtitle">만드는 방법</p>
+                        <div id="register_make" class="register_make">
+                            <div>
+                                <input type="text" data-id="recipemake1" name="recipemake" placeholder="요리 방법 입력" data-number="5" onkeyup="inputShow(this)">
+                                <button type="button" onclick="recipeMake()">방법 +</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+        <input type="hidden" id="recipe_method" value="1">
     </div>
 </html>

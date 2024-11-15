@@ -12,8 +12,4 @@ import java.util.List;
 
 @Repository
 public interface RecipeRepository2 extends JpaRepository<CategoryEntity, String> {
-    @Transactional
-    @Modifying
-    @Query(value = "select subcategory from recipecategory where maincategory=:category", nativeQuery = true)
-    List<CategoryEntity> getCategoryList(String category);
 }

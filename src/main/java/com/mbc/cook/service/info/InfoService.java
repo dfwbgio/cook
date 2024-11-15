@@ -17,4 +17,6 @@ public interface InfoService {
     void categoryupdate(CategoryEntity categoryEntity);
 
     void categorydelete(long num);
+
+    List<CategoryEntity> getSubCategoryList(String category);
 }

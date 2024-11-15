@@ -36,4 +36,9 @@ public class InfoServiceImp implements InfoService {
     public void categorydelete(long num) {
         infoRepository.deleteById(num);
     }
+
+    @Override
+    public List<CategoryEntity> getSubCategoryList(String category) {
+        return infoRepository.getSubCategoryList(category);
+    }
 }

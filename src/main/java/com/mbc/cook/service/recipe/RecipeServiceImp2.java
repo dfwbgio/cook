@@ -10,9 +10,4 @@ import java.util.List;
 public class RecipeServiceImp2 implements RecipeService2 {
     @Autowired
     RecipeRepository2 RecipeRepository2;
-
-    @Override
-    public List<CategoryEntity> getCategoryList(String category) {
-        return RecipeRepository2.getCategoryList(category);
-    }
 }

@@ -1,9 +1,6 @@
 package com.mbc.cook.entity.recipe;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,9 +9,16 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 @Table(name = "recipe")
+@SequenceGenerator(
+    name = "recipe_num",//시퀀스 이름X dto 내 아이디랑 같음
+    sequenceName = "recipe_seq",
+    allocationSize = 1,
+    initialValue = 1000
+)
 
 public class RecipeEntity {
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "recipe_num")
     @Column
     long recipe_seq;
     @Column
