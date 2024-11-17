@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
     name = "recipe_num",//시퀀스 이름X dto 내 아이디랑 같음
     sequenceName = "recipe_seq",
     allocationSize = 1,
-    initialValue = 1000
+    initialValue = 1
 )
 
 public class RecipeEntity {

@@ -1,9 +1,11 @@
 package com.mbc.cook.controller;
 
+import com.mbc.cook.dto.recipe.RecipeDTO;
 import com.mbc.cook.entity.info.CategoryEntity;
 import com.mbc.cook.entity.recipe.RecipeEntity;
 import com.mbc.cook.service.info.InfoInterface;
 import com.mbc.cook.service.info.InfoService;
+import com.mbc.cook.service.recipe.RecipeInterface2;
 import com.mbc.cook.service.recipe.RecipeService2;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
@@ -16,15 +18,21 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
+import java.util.UUID;
 
 @Slf4j
 //혜린
 @Controller
 public class RecipeController2 {
+    String imgPath= "C:\\project\\cook\\src\\main\\resources\\static\\image\\upload";
+
     @Autowired
     InfoService infoService;
     @Autowired
@@ -32,8 +40,10 @@ public class RecipeController2 {
 
     @GetMapping(value = "/recipe/list")
     public String recipeList(Model model) {
+        List<RecipeEntity> list = recipeService2.recipeSelectAll();
         model.addAttribute("cssPath", "/recipe/list");//css 패스 경로(바꾸지X)
         model.addAttribute("pageTitle", "레시피");//타이틀 제목
+        model.addAttribute("recipeList", list);
         return "recipe/list";
     }
 
@@ -76,5 +86,20 @@ public class RecipeController2 {
         String categorydata= tot.toString();
         PrintWriter pp = response.getWriter();
         pp.print(categorydata);
+    }
+
+    //레시피 등록
+    @PostMapping(value = "recipeRegister")
+    public String recipeRegister(RecipeDTO dto, MultipartHttpServletRequest multi) throws IOException {
+        //이미지
+        MultipartFile mf = multi.getFile("image");
+        String fileName = mf.getOriginalFilename();
+        UUID uu = UUID.randomUUID();
+        fileName = uu.toString() + "_" + fileName;
+        dto.setImage1(fileName);
+        mf.transferTo(new File(imgPath+"\\"+fileName));
+        RecipeEntity recipeEntity = dto.getRecipeEntity();
+        recipeService2.recipeRegister(recipeEntity);
+        return "redirect:/recipe/list";
     }
 }

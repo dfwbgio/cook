@@ -58,22 +58,44 @@ input[name="image"] + img{
     margin: 0 auto;
 }
 .register_row{
-    /*position: absolute;*/
-    width: 100%;
+    position: absolute;
+    width: calc(100% - 40px);
     height: auto;
+    top: -100vh;
     margin: 40px auto 0 auto;
-    /*transition: 1s;
-    opacity: 0;*/
+    transition: 1s;
+    opacity: 0;
+    overflow-x: hidden;
 }
 .register_row.move_dw{
     position: unset;
+    width: 100%;
     transition: 1s;
     opacity: 1;
+    top: auto;
+    transform: none;
+}
+.register_row#recipe_div2,
+.register_row#recipe_div3{
+    overflow: unset;
+    width: 100%;
 }
 .register_category{
     width: 100%;
     height: auto;
-    margin: 0 auto;
+    margin: 0 -20px;
+    overflow-x: auto;
+    padding: 0 20px;
+}
+.register_category::-webkit-scrollbar{
+    width: auto;
+    height: 5px;
+    background-color: var(--ld-blue);
+}
+.register_category::-webkit-scrollbar-thumb{
+    width: auto;
+    height: 5px;
+    background-color: var(--point-color);
 }
 .register_row label,
 .register_row label *{
@@ -82,6 +104,7 @@ input[name="image"] + img{
 .register_row label + label{
     margin-left: 10px;
 }
+.register_row input[type="checkbox"] + span,
 .register_row input[type="radio"] + span{
     display: block;
     width: calc(100% - 40px);
@@ -93,21 +116,28 @@ input[name="image"] + img{
     border: 1px solid var(--point-color);
     border-radius: 5px;
 }
+.register_row input[type="checkbox"] + span:hover,
 .register_row input[type="radio"] + span:hover{
     color: var(--second-color);
     font-weight: bold;
 }
+.register_row input[type="checkbox"]:checked + span,
 .register_row input[type="radio"]:checked + span{
     color: var(--all-white);
     background-color: var(--second-color);
     border-color: var(--point-color);
 }
+.register_row input[type="checkbox"]:checked + span:hover,
 .register_row input[type="radio"]:checked + span:hover{
     font-weight: 400;
 }
 /*방법*/
 .register_make div{
     display: flex;
+    margin: 0 auto;
+}
+.register_make div + div{
+    margin-top: 5px;
 }
 .register_make button{
     display: block;
@@ -122,4 +152,8 @@ input[name="image"] + img{
 }
 .register_make button:hover{
     background-color: var(--second-color);
+}
+
+.register_row .btn_flex{
+    margin-top: 0;
 }

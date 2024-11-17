@@ -13,7 +13,7 @@ public class RecipeDTO {
     long recipe_seq;
     String category1;
     String category2;
-    String image;
+    String image1;
     String food;
     String ingredient;
     String recipe;
@@ -24,7 +24,7 @@ public class RecipeDTO {
             .recipe_seq(recipe_seq)
             .category1(category1)
             .category2(category2)
-            .image(image)
+            .image(image1)
             .food(food)
             .ingredient(ingredient)
             .recipe(recipe)
