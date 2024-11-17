@@ -1,9 +1,11 @@
 @charset "UTF-8";
 :root {/*기본 색상 지정*/
+  --opa-blue: #6FADCF10;
   --point-color: #6FADCF;
   --second-color: #3d7797;
   --md-blue: #c2e0f1;
   --lite-blue: #f4fbff;
+  --opa-white: #ffffff90;
   --all-white: #ffffff;
   --bg-white: #f9f9f9;
   --lt-gray: #eeeeee;
@@ -13,7 +15,7 @@
   --all-black: #000000;
   --lite-black: #111111;
   --bg-black: #333333;
-  --lt-red: #bb000010;
+  --opa-red: #bb000010;
   --red-color: #bb0000;
   --red-point: #830202;
   --bg-none: transparent;

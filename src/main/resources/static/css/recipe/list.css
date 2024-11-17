@@ -137,12 +137,17 @@ p.register_subtitle{
     margin: 15px auto 0 auto;
 }
 .list_row{
-    width: calc(100% - 20px);
+    width: calc(100% - 24px);
     height: auto;
     padding: 10px;
+    border: 2px solid var(--bg-none);
     border-radius: 10px;
     background-color: var(--all-white);
     margin: 0 auto;
+}
+.list_row:hover{
+    border-color: var(--md-blue);
+    background-color: var(--opa-white);
 }
 .list_row + .list_row{
     margin-top: 10px;
@@ -170,17 +175,24 @@ p.register_subtitle{
     height: auto;
     margin: 15px auto 0 auto;
 }
+.list_txt p{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
 .list_txt .display_flex p{
     font-size: 14px;
     line-height: 20px;
     font-weight: 400;
     color: var(--ddp-gray);
+    margin-right: 2px;
 }
 p.food_title{
     font-size: 18px;
     line-height: 27px;
     font-weight: bold;
     color: var(--second-color);
+    margin-top: 5px;
 }
 .list_btn{
     width: 100%;
@@ -213,7 +225,7 @@ a.btn_delete{
 a.btn_delete:hover{
     color: var(--red-color);
     border-color: var(--red-color);
-    background-color: var(--lt-red);
+    background-color: var(--opa-red);
 }
 a.btn_update{
     color: var(--all-white);
@@ -221,4 +233,49 @@ a.btn_update{
 }
 a.btn_update:hover{
     background-color: var(--second-color);
+}
+@media (min-width: 768px){
+    .list_row{
+        width: calc(50% - 34px);
+        margin: 15px 0 0 15px;
+    }
+    .list_row:nth-child(2n+1){
+        margin-left: 0;
+    }
+    .list_row:nth-child(1),
+    .list_row:nth-child(2){
+        margin-top: 0;
+    }
+}
+@media (min-width: 1000px){
+    .list_row{
+        width: calc(33.3% - 34px);
+    }
+    .list_row:nth-child(2n+1){
+        margin-left: 15px;
+    }
+    .list_row:nth-child(3n+1){
+        margin-left: 0;
+    }
+    .list_row:nth-child(3){
+        margin-top: 0;
+    }
+}
+@media (min-width: 1300px){
+    .list_row{
+        width: calc(25% - 35.24px);
+    }
+    .list_row:nth-child(3n+1){
+        margin-left: 15px;
+    }
+    .list_row:nth-child(4n+1){
+        margin-left: 0;
+    }
+    .list_row:nth-child(4){
+        margin-top: 0;
+    }
+    .list_box img{
+        min-height: 200px;
+        height: 200px;
+    }
 }
