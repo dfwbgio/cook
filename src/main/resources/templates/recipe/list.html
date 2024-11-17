@@ -67,7 +67,7 @@
                     <a class="btn_update" th:href="@{/recipe/update(num=${recipe.recipe_seq})}">수정</a>
                 </div>
             </div>
-            <p th:if="${recipeList == null}" class="no_data_txt">등록된 레시피가 없습니다.</p>
+            <p th:if="${recipeList == null} or ${recipeList.size() == 0}" class="no_data_txt">등록된 레시피가 없습니다.</p>
         </div>
     </div>
 </html>

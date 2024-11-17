@@ -234,6 +234,9 @@ a.btn_update{
 a.btn_update:hover{
     background-color: var(--second-color);
 }
+.no_data_txt{
+    padding: calc((100vh - 240px) / 2) 0;
+}
 @media (min-width: 768px){
     .list_row{
         width: calc(50% - 34px);

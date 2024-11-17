@@ -184,9 +184,11 @@ textarea:read-only:focus{
     background-color: var(--second-color);
 }
 .no_data_txt{
+    width: 100%;
     font-weight: 500;
     color: var(--point-color);
     padding: 30px 0;
+    text-align: center;
 }
 @media (min-width: 1024px){
     .w_display_flex{
