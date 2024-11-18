@@ -21,9 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
 import java.util.List;
 import java.util.UUID;
 
@@ -101,5 +99,34 @@ public class RecipeController2 {
         RecipeEntity recipeEntity = dto.getRecipeEntity();
         recipeService2.recipeRegister(recipeEntity);
         return "redirect:/recipe/list";
+    }
+
+    @PostMapping(value = "ingreSelect", produces = "application/json; charset=UTF-8")
+    @ResponseBody
+    public String ingreSelect(@RequestParam("ingredient") String ingredient) {
+        try {
+            // Python 스크립트 경로와 실행 명령어 설정
+            String path = "C:\\project\\cook\\coupangCrolling2.py";
+            ProcessBuilder builder = new ProcessBuilder("python", path, ingredient);
+
+            // 프로세스 실행
+            Process process = builder.start();
+
+            // Python 출력 읽기
+            BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream(), "UTF-8"));
+            StringBuilder resultBuilder = new StringBuilder();
+            String line;
+            while ((line = reader.readLine()) != null) {
+                resultBuilder.append(line);
+            }
+
+            // JSON 형식의 결과 반환
+            JSONObject response = new JSONObject();
+            return response.toString();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new JSONObject().put("error", "Python 실행 중 오류 발생").toString();
+        }
     }
 }

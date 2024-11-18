@@ -53,6 +53,10 @@
                         <div class="register_row" id="recipe_div3"></div><!--소분류 카테고리-->
                         <div class="register_row" id="recipe_div4">
                             <p class="register_subtitle">재료</p>
+                            <div class="btn_flex">
+                                <input type="text" class="ingredient_input" name="recipe_ingredient_input" placeholder="찾을 요리 재료 입력">
+                                <button type="button" class="btn_submit" onclick="recipeIngreSelect()">검색</button>
+                            </div>
                             <div id="register_ingredient" class="register_ingredient display_flex flex_align_c">
                                 <label for="recipe_ingredient1">
                                     <input type="checkbox" onclick="inputShow(this)" id="recipe_ingredient1" name="recipe_ingredient" data-number="4" value="재료1" hidden>
