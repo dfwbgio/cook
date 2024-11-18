@@ -28,18 +28,17 @@ p.register_subtitle{
 .register_img{
     width: 100%;
     max-width: 300px;
-    min-height: 300px;
     height: auto;
-    max-height: 300px;
     margin: 0 auto;
-    border-radius: 5px;
-    overflow: hidden;
 }
 .register_img label{
     display: block;
     width: 100%;
+    min-height: 300px;
     height: 300px;
     background-color: var(--all-white);
+    border-radius: 5px;
+    overflow: hidden;
 }
 .register_img label,
 .register_img label *{

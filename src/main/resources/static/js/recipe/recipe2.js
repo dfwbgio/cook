@@ -12,7 +12,7 @@ function recipeCategoryClick(){
         success: function(data){
             var sublist =JSON.parse(data);
             var category_div = "";
-            category_div += "<p>레시피 소분류</p>";
+            category_div += "<p class='register_subtitle'>레시피 소분류</p>";
             category_div += "<div class='register_category display_flex flex_align_c'>";
             for(var i in sublist.subcategorylist){
                 category_div += "   <label for='recipe_category2_"+i+"'>";
