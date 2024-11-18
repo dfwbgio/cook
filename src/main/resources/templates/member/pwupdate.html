@@ -1,0 +1,24 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{common/layout}"
+      layout:fragment="content">
+<div class="pw-update">
+    <div class="pw">
+        <input type="hidden" name="id" id="id" th:value="${id}">
+        <label>비밀번호</label>
+        <input type="password" name="pw" id="pw" placeholder="새로운 비밀번호를 입력해주세요">
+    </div>
+    <div class="pw">
+        <label>비밀번호 확인</label>
+        <div class="pw1">
+            <input type="password" name="pwcheck" id="pwcheck" placeholder="비밀번호 확인">
+        </div>
+    </div>
+    <div class="button">
+        <button type="button" value="비밀번호 수정" id="check" onclick="check()">
+            비밀번호 수정
+        </button>
+    </div>
+</div>
+</html>
