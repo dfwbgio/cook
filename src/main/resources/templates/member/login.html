@@ -12,5 +12,23 @@
                 <h1>로그인</h1>
             </div>
         </div>
+        <form action="/UserLogin" method="post">
+            <div class="login-main">
+                <div class="id-main">
+                    <span class="id-sub">아이디 :</span>
+                    <input type="text" name="id" id="id">
+                </div>
+                <div class="pass-main">
+                    <span class="pass-sub">비밀번호 :</span>
+                    <input type="password" name="password" id="password">
+                </div>
+                <div class="btn-main">
+                    <button type="submit" value="로그인">로그인</button>
+                    <a id="is" class="is">아이디 찾기</a>
+                    <a id="ps" class="ps">비밀번호 찾기</a>
+                </div>
+            </div>
+        </form>
+
     </div>
 </html>

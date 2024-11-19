@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{common/layout}"
+      layout:fragment="content">
+<div class="id-search">
+    <div>
+        <label>이름</label>
+        <input type="text" name="name" id="name" placeholder="이름을 입력하세요." onkeyup="click_btn()">
+    </div>
+    <div>
+        <label>전화번호</label>
+        <select id="fir_tel">
+            <option value="010">010</option>
+            <option value="011">011</option>
+            <option value="016">016</option>
+            <option value="017">017</option>
+            <option value="019">019</option>
+        </select>
+        -
+        <input type="text" maxlength="4" id="mid_tel" size="5" onkeyup="click_btn()">
+        -
+        <input type="text" maxlength="4" id="end_tel" size="5" onkeyup="click_btn()">
+        <input type="hidden" id="tel" name="tel" value="">
+    </div>
+    <div>
+        <label>이메일</label>
+        <input type="text" name="email" id="email" placeholder="aaa@abc.com" onkeyup="click_btn()">
+    </div>
+    <button type="button" onclick="findID()" id="findid">아이디찾기</button>
+</div>
+</html>
