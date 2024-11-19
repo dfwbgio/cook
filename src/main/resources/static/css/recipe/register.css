@@ -3,6 +3,7 @@
     width: 100%;
     max-width: 1000px;
     height: auto;
+    margin: 0 auto;
 }
 .register_inner{
     width: 100%;
@@ -57,13 +58,17 @@ input[name="image"] + img{
     margin: 0 auto;
 }
 .register_row{
+    /*
     position: absolute;
     width: calc(100% - 40px);
     height: auto;
     top: -100vh;
+    */
     margin: 40px auto 0 auto;
     transition: 1s;
+    /*
     opacity: 0;
+    */
     overflow-x: hidden;
 }
 .register_row.move_dw{
@@ -165,4 +170,19 @@ input[name="image"] + img{
 }
 .register_row .btn_flex .btn_submit{
     margin-left: 10px;
+}
+.register_row#recipe_div6 .btn_flex{
+    margin: 0 auto;
+}
+.register_row#recipe_div6 .btn_flex button{
+    min-width: 160px;
+    width: 160px;
+    max-width: 160px;
+}
+@media (max-width: 400px){
+    .register_row#recipe_div6 .btn_flex button{
+        min-width: 120px;
+        width: 120px;
+        max-width: 120px;
+    }
 }

@@ -102,65 +102,21 @@ function recipeRegister(){
     });
     $('#recipe_form').submit();
 }
-function recipeIngreSelect(){
-    var ingre_val = $('input[name="recipe_ingredient_input"]').val();
-    /*$.ajax({
-        type: "POST",
-        url: "/ingreSelect",
-        data: {"ingredient": ingre_val},
-        success: function(response) {
-            try {
-                // response가 이미 객체라면 JSON.parse를 사용하지 않습니다.
-                if (typeof response === 'string') {
-                    response = JSON.parse(response);
-                }
 
-                response.forEach(result => {
-                    console.log(`재료: ${result.ingredient}`);
-                    result.items.forEach(item => {
-                        console.log(`상품명: ${item.title}, 가격: ${item.price}, 링크: ${item.link}`);
-                    });
-                });
-            } catch (e) {
-                console.error("JSON 파싱 오류:", e);
-            }
-        },
-        error: function(request, status, error) {
-            console.log("AJAX 오류:", request.responseText);
-        }
-    });
-    */
+//등록-재료 입력 크롤링 부분
+function recipeIngreSelect() {
+    var ingre_val = $('input[name="recipe_ingredient_input"]').val();  // 사용자 입력 값 가져오기
     $.ajax({
         type: "POST",
         url: "/ingreSelect",
-        data: { "ingredient": "당근" },  // 예시 데이터
+        data: {"ingredient": ingre_val},  // ingredient 값을 서버로 전송
+        contentType: "application/x-www-form-urlencoded; charset=UTF-8",  // 올바른 인코딩
         success: function(response) {
-            console.log("응답 데이터:", response); // 응답 내용을 확인
-
-            // 응답이 문자열일 경우 JSON으로 파싱 시도
-            if (typeof response === 'string') {
-                try {
-                    response = JSON.parse(response); // JSON 문자열 파싱
-                } catch (e) {
-                    console.error("JSON 파싱 오류:", e);
-                    return;  // 파싱 오류가 발생하면 종료
-                }
-            }
-
-            // 응답이 배열인지 확인 후 처리
-            if (Array.isArray(response)) {
-                response.forEach(result => {
-                    console.log(`재료: ${result.ingredient}`);
-                    result.items.forEach(item => {
-                        console.log(`상품명: ${item.title}, 가격: ${item.price}`);
-                    });
-                });
-            } else {
-                console.error("응답 데이터가 배열이 아닙니다. 응답:", response);
-            }
+            console.log(response);
         },
         error: function(request, status, error) {
             console.log("AJAX 오류:", request.responseText);
+            alert("오류 발생: " + request.responseText);
         }
     });
 }
