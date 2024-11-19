@@ -29,6 +29,13 @@ $(document).ready(function(){
         $('head').append('<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>');
         $('head').append('<script src="/js/member/signup.js"></script>');
     }
+    else if(win_href.includes('/usersave')){
+        $('head').append('<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">');
+        $('head').append('<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>');
+        $('head').append('<script src="/js/member/signup.js"></script>');
+        $('head').append('<link rel="stylesheet" href="/css/member/signup.css">');
+
+    }
     else if(win_href.includes('/info')){
         $('head').append('<script src="/js/info/info.js"></script>');
     }

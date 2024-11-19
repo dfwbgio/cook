@@ -50,7 +50,8 @@ public class SecurityConfiguration {
                 "/js/**",
                 "/idcheck",
                 "/error",
-                "/usersave"
+                "/usersave",
+                "/mypage"
         };
         /* @formatter:off */
         http

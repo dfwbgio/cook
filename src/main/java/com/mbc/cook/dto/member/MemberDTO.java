@@ -1,9 +1,7 @@
 package com.mbc.cook.dto.member;
 
 import com.mbc.cook.entity.member.MemberEntity;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,35 +15,50 @@ public class MemberDTO {
 
     private String pw;
 
-    @ NotBlank(message = "이름은 필수로 입력해주세요:) ")
     @Pattern(regexp = "^(?:[가-힣]*$)",message = "한글만 입력 가능합니다:) ")
     private String name;
 
-    private String jumin;
+    @Size(min = 6,max = 6,message = "주민번호를 확인해주세요:) ")
+    private String jumin1;
+
+    @Size(min = 1,max = 1)
+    private String jumin2;
+
 
     private String addr;
     private String streetaddr;
     private String detailaddr;
 
-    @ NotBlank(message = "전화번호는 필수로 입력해주세요:) ")
-    @Pattern(regexp = "^01(?:0|1|[6-9])[.-]?(\\d{3}|\\d{4})[.-]?(\\d{4})$",message = "전화번호를 확인해주세요:) ")
-    private String tel;
+    @Pattern(regexp = "^(?:(01[016789]))*$",message = "전화번호를 확인해주세요:) ")
+    @Size(min = 3,max = 3)
+    private String tel1;
 
-    @ NotBlank(message = "이메일은 필수로 입력해주세요:) ")
-    @Email(message = "이메일을 확인해주세요:) ")
-    private String email;
+    @Size(min = 4,max = 4)
+    private String tel2;
+
+    @Size(min = 4,max = 4)
+    private String tel3;
+
+    @Pattern(regexp = "^(?:[a-zA-Z0-9]*$)",message = "이메일을 확인해주세요:) ")
+    private String email_id;
+
+    private String email_domain;
 
     public MemberEntity toEntity() {
         return MemberEntity.builder()
                 .id(id)
                 .pw(pw)
                 .name(name)
-                .jumin(jumin)
+                .jumin1(jumin1)
+                .jumin2(jumin2)
                 .addr(addr)
                 .streetaddr(streetaddr)
                 .detailaddr(detailaddr)
-                .tel(tel)
-                .email(email)
+                .tel1(tel1)
+                .tel2(tel2)
+                .tel3(tel3)
+                .email_id(email_id)
+                .email_domain(email_domain)
                 .build();
     }
 

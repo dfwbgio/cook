@@ -1,7 +1,6 @@
 package com.mbc.cook.service.member;
 
 import com.mbc.cook.dto.member.MemberDTO;
-import com.mbc.cook.entity.member.MemberEntity;
 import com.mbc.cook.repository.member.MemberRepository2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -12,6 +11,7 @@ public class MemberServiceIMP2 implements MemberService2 {
 
     @Autowired
     MemberRepository2 memberRepository2;
+    @Autowired
     BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Override
