@@ -1,1 +1,129 @@
 @charset "UTF-8";
+@charset "UTF-8";
+
+.signup_whole{
+    width:100%;
+    max-width:600px;
+    margin:0 auto;
+}
+.jumin{
+    display:flex;
+}
+.form-group{
+    margin-top:10px;
+}
+.container{
+    margin: auto 0;
+}
+.jumin1,.jumin2{
+    margin:0 10px 0 0;
+}
+.jumin1{
+    display: flex;
+    max-width:150px;
+}
+.jumin2{
+    margin-left: 10px;
+    display: flex;
+    max-width:15px;
+}
+.signup_whole p{
+    padding-top:7px;
+}
+.signup_whole label{
+    display:block;
+    margin:20px 0 10px 0;
+}
+.tel{
+    display:flex;
+}
+#tel1,#tel2,#tel3{
+    margin: 0 10px;
+    max-width:100px;
+}
+#tel1{
+margin-left:0;
+}
+.address1{
+    display:flex;
+}
+#addr{
+    width:300px;
+}
+#addr_btn{
+    width:150px;
+    text-align:right;
+    border:1px;
+}
+.address1,
+.address2,
+.address3{
+    margin:10px 0 0 0;
+}
+.email{
+    display:flex;
+}
+#email_id,
+#email_domain{
+    margin: 0 10px;
+    width:180px;
+}
+#email_id{
+    margin-left:0;
+}
+.subm_btn{
+    background-color: var(--point-color);
+    display: block;
+    width: 150px;
+    height: 40px;
+    border-radius: 5px;
+    color: var(--all-white);
+    margin-left: 15px;
+}
+.subm_btn:hover{
+    background-color: var(--second-color);
+}
+.id{
+    display:flex;
+}
+#id{
+    display:block;
+    width:200px;
+    height:26px;
+}
+#idcheck,
+#addr_btn{
+     background-color: var(--point-color);
+    display: block;
+    width: 120px;
+    height:37px;
+    border-radius: 5px;
+    color: var(--all-white);
+    margin: auto 0 auto 15px;
+}
+#idcheck:hover,
+#addr_btn:hover{
+     background-color: var(--second-color);
+}
+#addr_btn{
+    text-align:center;
+}
+.pw label+div{
+    display:flex;
+    align-items:center;
+}
+.pw i{
+    color:var(--second-color);
+    font-size: 1.2em;
+    margin-left:10px;
+}
+#pw,
+#pwcheck{
+    width:335px;
+}
+#name{
+    width:200px;
+}
+.error{
+    color:red;
+}
