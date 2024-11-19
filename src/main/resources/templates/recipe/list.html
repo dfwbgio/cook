@@ -4,67 +4,81 @@
       layout:decorate="~{common/layout}"
       layout:fragment="content">
     <div class="list_whole">
-        <div class="list_title display_flex flex_between flex_align_s">
-            <h1>레시피</h1>
-            <div class="display_flex flex_end flex_align_c">
-                <button type="button" onclick="location.href='/recipe/register'" class="register_btn">등록 +</button>
-                <button type="button" class="search_btn">
-                    <img src="/image/icon/recipe/filter-bu.png" alt="검색 아이콘" onclick="searchToggle()">
-                </button>
-            </div>
-        </div>
-        <nav class="list_search">
-            <div class="register_row move_dw" id="recipe_div2">
-                <p class="register_subtitle">레시피 카테고리</p>
-                <div class="register_category display_flex flex_align_c">
-                    <label for="recipe_category1">
-                        <input type="radio" onclick="recipeCategoryClick();inputShow(this)" id="recipe_category1" name="category1" data-number="2" value="한식" hidden>
-                        <span>한식</span>
-                    </label>
-                    <label for="recipe_category2">
-                        <input type="radio" onclick="recipeCategoryClick();inputShow(this)" id="recipe_category2" name="category1" data-number="2" value="중식" hidden>
-                        <span>중식</span>
-                    </label>
-                    <label for="recipe_category3">
-                        <input type="radio" onclick="recipeCategoryClick();inputShow(this)" id="recipe_category3" name="category1" data-number="2" value="일식" hidden>
-                        <span>일식</span>
-                    </label>
-                    <label for="recipe_category4">
-                        <input type="radio" onclick="recipeCategoryClick();inputShow(this)" id="recipe_category4" name="category1" data-number="2" value="양식" hidden>
-                        <span>양식</span>
-                    </label>
+        <div class="list_fixed">
+            <div class="list_title display_flex flex_between flex_align_c">
+                <h1>레시피</h1>
+                <div class="display_flex flex_end flex_align_c">
+                    <button type="button" onclick="location.href='/recipe/register'" class="register_btn">등록 +</button>
+                    <button type="button" class="search_btn">
+                        <img src="/image/icon/recipe/filter-bu.png" alt="검색 아이콘" onclick="searchToggle()">
+                    </button>
                 </div>
             </div>
-            <div class="register_row" id="recipe_div3"></div><!--소분류 카테고리-->
-            <div class="register_row" id="recipe_div4">
-                <p class="register_subtitle">음식명</p>
-                <div class="w_display_flex flex_align_c">
-                    <input type="text" id="food" name="food" placeholder="음식명 입력" data-number="4" onkeyup="inputShow(this)">
-                    <div class="btn_flex">
-                        <button type="button" class="btn_submit">검색</button>
+            <nav class="list_search">
+                <div class="list_category w_display_flex flex_align_s">
+                    <div class="register_row move_dw" id="recipe_div2">
+                        <p class="register_subtitle">레시피 카테고리</p>
+                        <div class="register_category display_flex flex_align_c">
+                            <label for="recipe_category1">
+                                <input type="radio" onclick="recipeCategoryClick();inputShow(this)" id="recipe_category1" name="category1" data-number="2" value="한식" hidden>
+                                <span>한식</span>
+                            </label>
+                            <label for="recipe_category2">
+                                <input type="radio" onclick="recipeCategoryClick();inputShow(this)" id="recipe_category2" name="category1" data-number="2" value="중식" hidden>
+                                <span>중식</span>
+                            </label>
+                            <label for="recipe_category3">
+                                <input type="radio" onclick="recipeCategoryClick();inputShow(this)" id="recipe_category3" name="category1" data-number="2" value="일식" hidden>
+                                <span>일식</span>
+                            </label>
+                            <label for="recipe_category4">
+                                <input type="radio" onclick="recipeCategoryClick();inputShow(this)" id="recipe_category4" name="category1" data-number="2" value="양식" hidden>
+                                <span>양식</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="register_row" id="recipe_div3"></div><!--소분류 카테고리-->
+                </div>
+                <div class="register_row" id="recipe_div4">
+                    <p class="register_subtitle">음식명</p>
+                    <div class="w_display_flex flex_align_c">
+                        <input type="text" id="food" name="food" placeholder="음식명 입력" data-number="4" onkeyup="inputShow(this)">
+                        <div class="btn_flex">
+                            <button type="button" class="btn_submit">검색</button>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </nav>
+            </nav>
+        </div>
         <div class="list_inner display_flex flex_start flex_align_str">
             <div class="list_row" th:each="recipe:${recipeList}">
-                <a th:href="@{/recipe/detail(num=${recipe.recipe_seq})}">
+                <a th:href="@{/recipe/select(num=${recipe.recipe_seq},path='detail')}">
                     <div class="list_box">
+                        <div class="list_top display_flex flex_between flex_align_c">
+                            <div class="display_flex flex_start flex_align_c">
+                                <img src="/image/icon/recipe/num-bk.png">
+                                <p th:text="${recipe.recipe_seq}">시퀀스</p>
+                            </div>
+                            <div class="display_flex flex_end flex_align_c">
+                                <img src="/image/icon/recipe/eye-bk.png">
+                                <p th:text="${recipe.hits}">조회수</p>
+                            </div>
+                        </div>
                         <div class="display_flex flex_wrap flex_start flex_align_c">
-                            <img th:src="@{/image/upload/}+${recipe.image}" alt="${recipe.food}+' 이미지'">
+                            <img th:src="@{/image/upload/}+${recipe.image}" th:alt="${recipe.food}+' 이미지'" class="recipe_img">
                             <div class="list_txt">
                                 <div class="display_flex flex_align_c">
-                                    <p th:text="${recipe.category1}"></p>
-                                    <p th:text="'('+${recipe.category2}+')'"></p>
+                                    <p th:text="${recipe.category1}">카테고리1</p>
+                                    <p th:text="'('+${recipe.category2}+')'">카테고리2</p>
                                 </div>
-                                 <p class="food_title" th:text="${recipe.food}"></p>
+                                 <p class="food_title" th:text="${recipe.food}">음식명</p>
                             </div>
                         </div>
                     </div>
                 </a>
                 <div class="list_btn display_flex flex_center flex_align_c">
-                    <a class="btn_delete" th:href="@{/recipe/delete(num=${recipe.recipe_seq})}">삭제</a>
-                    <a class="btn_update" th:href="@{/recipe/update(num=${recipe.recipe_seq})}">수정</a>
+                    <a class="btn_delete" th:href="@{/recipe/select(num=${recipe.recipe_seq},path='delete')}">삭제</a>
+                    <a class="btn_update" th:href="@{/recipe/select(num=${recipe.recipe_seq},path='update')}">수정</a>
                 </div>
             </div>
             <p th:if="${recipeList == null} or ${recipeList.size() == 0}" class="no_data_txt">등록된 레시피가 없습니다.</p>

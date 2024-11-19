@@ -13,7 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Repository
-public interface RecipeRepository2 extends JpaRepository<RecipeEntity, String> {
+public interface RecipeRepository2 extends JpaRepository<RecipeEntity, Long> {
     @Override
     List<RecipeEntity> findAll();
 }

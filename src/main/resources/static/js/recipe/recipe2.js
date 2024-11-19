@@ -12,7 +12,7 @@ function recipeCategoryClick(){
         success: function(data){
             var sublist =JSON.parse(data);
             var category_div = "";
-            category_div += "<p>레시피 소분류</p>";
+            category_div += "<p class='register_subtitle'>레시피 소분류</p>";
             category_div += "<div class='register_category display_flex flex_align_c'>";
             for(var i in sublist.subcategorylist){
                 category_div += "   <label for='recipe_category2_"+i+"'>";
@@ -65,7 +65,6 @@ function inputShow(ths){
     var data_num = ths.dataset.number;
     data_num++;
     $('#recipe_div'+data_num).addClass('move_dw');
-    console.log(data_num);
 }
 var ingreArray = [];
 var makeArray = [];
@@ -74,12 +73,24 @@ function recipeRegister(){
     var val_food = $('input[name="food"]').val();//음식명
     var val_cat1 = $('input[name="category1"]').val();//카테고리1
     var val_cat2 = $('input[name="category2"]').val();//카테고리2
-    var val_ingr = $('input[name="ingredient"]').val();//재료
-    $('input[name="recipe_ingredient"]').each(function(){
+    var len_ingr = $('input[name="ingredient"]').length;//재료
+    var ingre_div = "";
+    if(val_img == ''
+    || val_food == ''
+    || val_cat1 == ''
+    || val_cat2 == ''
+    || len_ingr == ''
+    ){
+        alertShow('정보 미입력','정보를 모두 입력해주세요.');
+        return false;
+    }
+    $('input[name="recipe_ingredient"]:checked').each(function(){
         var this_val = $(this).val();
         if(this_val != ''){
             ingreArray.push(this_val);
-            $('#recipe_ingre').val(ingreArray);
+            ingre_div += this_val;
+            ingre_div += "<br>";
+            $('#recipe_ingre').val(ingre_div);
         }
     });
     $('input[name="recipe_method_make"]').each(function(){
@@ -91,11 +102,72 @@ function recipeRegister(){
     });
     $('#recipe_form').submit();
 }
+function recipeIngreSelect(){
+    var ingre_val = $('input[name="recipe_ingredient_input"]').val();
+    /*$.ajax({
+        type: "POST",
+        url: "/ingreSelect",
+        data: {"ingredient": ingre_val},
+        success: function(response) {
+            try {
+                // response가 이미 객체라면 JSON.parse를 사용하지 않습니다.
+                if (typeof response === 'string') {
+                    response = JSON.parse(response);
+                }
+
+                response.forEach(result => {
+                    console.log(`재료: ${result.ingredient}`);
+                    result.items.forEach(item => {
+                        console.log(`상품명: ${item.title}, 가격: ${item.price}, 링크: ${item.link}`);
+                    });
+                });
+            } catch (e) {
+                console.error("JSON 파싱 오류:", e);
+            }
+        },
+        error: function(request, status, error) {
+            console.log("AJAX 오류:", request.responseText);
+        }
+    });
+    */
+    $.ajax({
+        type: "POST",
+        url: "/ingreSelect",
+        data: { "ingredient": "당근" },  // 예시 데이터
+        success: function(response) {
+            console.log("응답 데이터:", response); // 응답 내용을 확인
+
+            // 응답이 문자열일 경우 JSON으로 파싱 시도
+            if (typeof response === 'string') {
+                try {
+                    response = JSON.parse(response); // JSON 문자열 파싱
+                } catch (e) {
+                    console.error("JSON 파싱 오류:", e);
+                    return;  // 파싱 오류가 발생하면 종료
+                }
+            }
+
+            // 응답이 배열인지 확인 후 처리
+            if (Array.isArray(response)) {
+                response.forEach(result => {
+                    console.log(`재료: ${result.ingredient}`);
+                    result.items.forEach(item => {
+                        console.log(`상품명: ${item.title}, 가격: ${item.price}`);
+                    });
+                });
+            } else {
+                console.error("응답 데이터가 배열이 아닙니다. 응답:", response);
+            }
+        },
+        error: function(request, status, error) {
+            console.log("AJAX 오류:", request.responseText);
+        }
+    });
+}
 
 //리스트-필터 클릭 시
 function searchToggle(){
     $('.list_search').toggle();
 }
 $(document).ready(function(){
-    console.log("로드완료2");
 });

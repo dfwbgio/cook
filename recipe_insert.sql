@@ -10,3 +10,4 @@ insert into recipecategory values(category_seq.nextval, '중식', '요리');
 insert into recipecategory values(category_seq.nextval, '양식', '면');
 insert into recipecategory values(category_seq.nextval, '양식', '밥');
 insert into recipecategory values(category_seq.nextval, '양식', '요리');
+commit;

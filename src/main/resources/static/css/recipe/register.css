@@ -28,18 +28,17 @@ p.register_subtitle{
 .register_img{
     width: 100%;
     max-width: 300px;
-    min-height: 300px;
     height: auto;
-    max-height: 300px;
     margin: 0 auto;
-    border-radius: 5px;
-    overflow: hidden;
 }
 .register_img label{
     display: block;
     width: 100%;
+    min-height: 300px;
     height: 300px;
     background-color: var(--all-white);
+    border-radius: 5px;
+    overflow: hidden;
 }
 .register_img label,
 .register_img label *{
@@ -131,6 +130,14 @@ input[name="image"] + img{
 .register_row input[type="radio"]:checked + span:hover{
     font-weight: 400;
 }
+.register_ingredient{
+    width: 100%;
+    height: auto;
+    margin: 0 -20px;
+    overflow: hidden;
+    overflow-x: auto;
+    padding: 0 20px;
+}
 /*방법*/
 .register_make div{
     display: flex;
@@ -153,7 +160,9 @@ input[name="image"] + img{
 .register_make button:hover{
     background-color: var(--second-color);
 }
-
 .register_row .btn_flex{
-    margin-top: 0;
+    margin: 0 auto 10px auto;
+}
+.register_row .btn_flex .btn_submit{
+    margin-left: 10px;
 }
