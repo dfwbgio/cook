@@ -20,8 +20,7 @@ $(document).ready(function(){
     || win_href.includes('/member/list')
     || win_href.includes('/idsearch')
     || win_href.includes('/pwsearch')
-    || win_href.includes('/pwupdate')
-    || win_href.includes('/pwUpdate')){
+    || win_href.includes('/pwupdate')){
         $('head').append('<script src="/js/member/member.js"></script>');
     }
     else if(win_href.includes('/signup')

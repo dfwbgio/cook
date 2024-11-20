@@ -28,19 +28,7 @@
     </div>
     <div>
         <label>이메일</label>
-        <input type="text" name="email_id" id="email_id" placeholder="이메일" maxlength="18" onkeyup="email_concat()">
-        <p>@</p>
-        <input type="text" id="email_domain" class="email_domain" placeholder="직접 입력" maxlength="18" onkeyup="email_concat()">
-        <select class="select" id="domain_select" onchange="mailSelect()">
-            <option value="emailall" selected>-선택-</option>
-            <option value="naver.com">naver.com</option>
-            <option value="gamil.com">gmail.com</option>
-            <option value="hanmail.com">hanmail.com</option>
-            <option value="hotmail.com">hotmail.com</option>
-            <option value="korea.com">korea.com</option>
-            <option value="nate.com">nate.com</option>
-            <option value="yahoo.com">yahoo.com</option>
-        </select>
+        <input type="text" name="email" id="email" placeholder="aaa@abc.com" onkeyup="click_btn()">
     </div>
     <button type="button" onclick="findPW()" id="findpw">비밀번호 찾기</button>
 </div>

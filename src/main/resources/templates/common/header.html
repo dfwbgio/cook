@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org" th:fragment="header" xmlns:sec="http://www.w3.org/1999/xhtml">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" th:fragment="header">
 <meta charset="UTF-8">
     <header class="header_section">
         <div class="w_display_flex flex_end flex_align_e">
@@ -26,11 +26,10 @@
             <aside class="header_side">
                 <div class="display_flex flex_start flex_align_c">
                     <!--로그인 전(로그인 구현 후 수정)-->
-                    <a href="/login" sec:authorize="isAnonymous()" id="header_login"><span></span>로그인</a>
-                    <a href="/signup" sec:authorize="isAnonymous()" id="header_signup"><span></span>회원가입</a>
+                    <a href="/login" id="header_login">로그인</a>
+                    <a href="/signup" id="header_signup">회원가입</a>
                     <!--로그인 후(로그인 구현 후 수정)-->
-                    <a href="/mypage" sec:authorize="isAuthenticated()"><span id="header_mypage" th:text="${#authentication.name}+'님'">}></span></a>
-                    <a href="/logout" sec:authorize="isAuthenticated()"><span id="header_logout"></span>로그아웃</a>
+                    <a href="/mypage" id="header_mypage">ㅇㅇ님</a>
                     <!--관리자한테만 뜸(로그인 구현 후 수정)-->
                     <a href="/member/list" id="header_member">회원 관리</a>
                 </div>

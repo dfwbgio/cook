@@ -51,14 +51,7 @@ public class SecurityConfiguration {
                 "/idcheck",
                 "/error",
                 "/usersave",
-                "/mypage",
-                "/idsearch",
-                "/pwsearch",
-                "/pwupdate",
-                "/getid",
-                "/getpw",
-                "/pwupdate",
-                "/pwUpdate"
+                "/mypage"
         };
         /* @formatter:off */
         http
@@ -76,6 +69,7 @@ public class SecurityConfiguration {
                 .defaultSuccessUrl("/")
                 .successHandler(new AuthenticationSuccessHandler() {
                     @Override public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication)throws IOException, ServletException {
+                        System.out.println("로그인중 아이디 : "+authentication.getName());
                         response.sendRedirect("/");
                     }
                 })
@@ -90,7 +84,6 @@ public class SecurityConfiguration {
                 .permitAll()
                 .logoutUrl("/logout")
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .logoutSuccessUrl("/")
                 .deleteCookies("JSESSIONID")
                 .invalidateHttpSession(true)
                 .clearAuthentication(true);
