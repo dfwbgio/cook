@@ -15,4 +15,5 @@ public class Hangul {
         filter.setForceEncoding(true);
         return filter;
     }
+
 }
