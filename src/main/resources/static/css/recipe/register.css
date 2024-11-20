@@ -105,20 +105,30 @@ input[name="image"] + img{
 .register_row label *{
 	cursor: url('../../image/icon/common/cursor-pointer.png'), pointer!important;
 }
+.register_row label{
+    width: max-content;
+    max-width: 100%;
+}
 .register_row label + label{
     margin-left: 10px;
+}
+.register_row#recipe_div4 label{
+    margin: 10px 10px 0 0;
 }
 .register_row input[type="checkbox"] + span,
 .register_row input[type="radio"] + span{
     display: block;
-    width: calc(100% - 40px);
-    max-width: 100px;
-    height: 20px;
+    width: max-content;
+    max-width: calc(100% - 42px);
+    min-height: 20px;
+    height: auto;
     line-height: 20px;
     padding: 10px 20px;
     background-color: #ebf8ff;
     border: 1px solid var(--point-color);
     border-radius: 5px;
+    word-break: break-all;
+    overflow: hidden;
 }
 .register_row input[type="checkbox"] + span:hover,
 .register_row input[type="radio"] + span:hover{
@@ -134,14 +144,6 @@ input[name="image"] + img{
 .register_row input[type="checkbox"]:checked + span:hover,
 .register_row input[type="radio"]:checked + span:hover{
     font-weight: 400;
-}
-.register_ingredient{
-    width: 100%;
-    height: auto;
-    margin: 0 -20px;
-    overflow: hidden;
-    overflow-x: auto;
-    padding: 0 20px;
 }
 /*방법*/
 .register_make div{
@@ -170,6 +172,16 @@ input[name="image"] + img{
 }
 .register_row .btn_flex .btn_submit{
     margin-left: 10px;
+}
+.register_row .btn_flex .btn_submit.btn_submit2{
+    color: var(--point-color);
+    border-color: var(--point-color);
+    background-color: var(--all-white);
+}
+.register_row .btn_flex .btn_submit.btn_submit2:hover{
+    color: var(--second-color);
+    border-color: var(--second-color);
+    background-color: var(--opa-white);
 }
 .register_row#recipe_div6 .btn_flex{
     margin: 0 auto;

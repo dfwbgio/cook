@@ -2,6 +2,7 @@ package com.mbc.cook.controller;
 
 import com.mbc.cook.dto.recipe.RecipeDTO;
 import com.mbc.cook.entity.info.CategoryEntity;
+import com.mbc.cook.entity.recipe.IngreEntity;
 import com.mbc.cook.entity.recipe.RecipeEntity;
 import com.mbc.cook.service.info.InfoService;
 import com.mbc.cook.service.recipe.RecipeService2;
@@ -12,15 +13,13 @@ import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import java.io.*;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 @Slf4j
 
@@ -45,8 +44,10 @@ public class RecipeController2 {
 
     @GetMapping(value = "/recipe/register")
     public String recipeRegister(Model model) {
+        List<IngreEntity> list = recipeService2.findIngredientAll();
         model.addAttribute("cssPath", "/recipe/register");//css 패스 경로(바꾸지X)
         model.addAttribute("pageTitle", "레시피 등록");//타이틀 제목
+        model.addAttribute("ingreList", list);//타이틀 제목
         return "recipe/register";
     }
 
@@ -97,75 +98,72 @@ public class RecipeController2 {
         return "redirect:/recipe/list";
     }
 
-//    @PostMapping(value = "ingreSelect", produces = "application/json; charset=UTF-8")
-//    @ResponseBody
-//    public String ingreSelect(@RequestParam("ingredient") String ingredient) {
-//        try {
-//            // Python 스크립트 경로와 실행 명령어 설정
-//            String path = "C:\\project\\cook\\coupangCrollingBack.py";
-//            ProcessBuilder builder = new ProcessBuilder("python", path, ingredient);
-//
-//            // 프로세스 실행
-//            Process process = builder.start();
-//
-//            // Python 출력 읽기
-//            BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream(), "UTF-8"));
-//            StringBuilder resultBuilder = new StringBuilder();
-//            String line;
-//            while ((line = reader.readLine()) != null) {
-//                resultBuilder.append(line);
-//            }
-//
-//            // JSON 형식의 결과 반환
-//            JSONObject response = new JSONObject();
-//            return response.toString();
-//
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            return new JSONObject().put("error", "Python 실행 중 오류 발생").toString();
-//        }
-//    }
-    @PostMapping(value = "ingreSelect", produces = "application/json; charset=UTF-8")
+    //크롤링
+    @PostMapping(value = "ingreCrolling", produces = "application/json; charset=UTF-8")
     @ResponseBody
-    public String ingreSelect(@RequestParam("ingredient") String ingredient) {
-        JSONObject response = new JSONObject();
-
+    public void ingreCrolling(@RequestBody Map<String, String> requestData, HttpServletResponse response) throws IOException {
+        String ingredient = requestData.get("ingredient");  // JSON에서 ingredient 값을 추출
+        JSONObject tot = new JSONObject();
+        JSONArray arrlist = new JSONArray();
+        String txt = "";
         try {
-            // ingredient가 비어있다면 오류 반환
-            if (ingredient == null || ingredient.trim().isEmpty()) {
-                response.put("error", "Ingredient is missing");
-                return response.toString();
-            }
-
-            // Python 스크립트 경로와 실행 명령어 설정
+            // Python 스크립트 실행
             String path = "C:\\project\\cook\\coupangCrollingBack.py";
             ProcessBuilder builder = new ProcessBuilder("python", path, ingredient);
-
             // 프로세스 실행
             Process process = builder.start();
-
-            // Python 출력 읽기
             BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream(), "UTF-8"));
             StringBuilder resultBuilder = new StringBuilder();
             String line;
             while ((line = reader.readLine()) != null) {
                 resultBuilder.append(line);
             }
-            log.info("빌더: " + resultBuilder);
-
-            // Python 실행 결과 처리 후 JSONObject에 데이터 추가
             if (resultBuilder.length() > 0) {
-                response.put("message", "Data successfully processed");
-                response.put("result", new JSONObject());  // 파싱된 JSON 객체 반환
+                List<IngreEntity> list = recipeService2.findIngredient(ingredient);
+                for (int i = 0; i < list.size(); i++) {
+                    Long ingre_seq = list.get(i).getIngre_seq();
+                    String ingrename = list.get(i).getName();
+                    int ingreprice = list.get(i).getPrice();
+                    String keyword = list.get(i).getKeyword();
+                    JSONObject recipeingredient = new JSONObject();
+                    recipeingredient.put("ingreseq", ingre_seq);
+                    recipeingredient.put("ingrename", ingrename);
+                    recipeingredient.put("ingreprice", ingreprice);
+                    recipeingredient.put("keyword", keyword);
+                    arrlist.add(recipeingredient);
+                }
+                tot.put("ingredientlist", arrlist);
+                String ingredata = tot.toString();
+                txt = ingredata;
             } else {
-                response.put("error", "No data received from Python script");
+                txt = "python script에 데이터가 없습니다...T.T";
             }
-
         } catch (Exception e) {
             e.printStackTrace();
-            response.put("error", "An error occurred while executing the Python script: " + e.getMessage());
+            txt = e.getMessage();
         }
+        PrintWriter pp = response.getWriter();
+        pp.print(txt);
+    }
 
-        return response.toString();
+    @PostMapping(value = "/ingreFind")
+    public void ingreFind(@RequestParam("ingredient") String ingredient, HttpServletResponse response) throws IOException {
+        List<IngreEntity> list = recipeService2.findIngredient(ingredient);
+        JSONObject tot = new JSONObject();
+        JSONArray arrlist = new JSONArray();
+        for (int i = 0; i < list.size(); i++) {
+            Long ingre_seq = list.get(i).getIngre_seq();
+            String ingrename = list.get(i).getName();
+            int ingreprice = list.get(i).getPrice();
+            JSONObject recipeingredient = new JSONObject();
+            recipeingredient.put("ingreseq", ingre_seq);
+            recipeingredient.put("ingrename", ingrename);
+            recipeingredient.put("ingreprice", ingreprice);
+            arrlist.add(recipeingredient);
+        }
+        tot.put("ingredientlist", arrlist);
+        String ingredata = tot.toString();
+        PrintWriter pp = response.getWriter();
+        pp.print(ingredata);
     }
 }

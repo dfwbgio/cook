@@ -85,10 +85,10 @@ function recipeRegister(){
         return false;
     }
     $('input[name="recipe_ingredient"]:checked').each(function(){
-        var this_val = $(this).val();
-        if(this_val != ''){
-            ingreArray.push(this_val);
-            ingre_div += this_val;
+        var this_seq = $(this).attr('data-seq');
+        if(this_seq != ''){
+            ingreArray.push(this_seq);
+            ingre_div += this_seq;
             ingre_div += "<br>";
             $('#recipe_ingre').val(ingre_div);
         }
@@ -100,25 +100,66 @@ function recipeRegister(){
             $('#recipe_way').val(makeArray);
         }
     });
-    $('#recipe_form').submit();
+    //$('#recipe_form').submit();
+}
+
+function ingreWrite(){
+    var ingre_val = $('#ingredient_input').val();
+    $('#ingredient_input').val(ingre_val);
 }
 
 //등록-재료 입력 크롤링 부분
-function recipeIngreSelect() {
-    var ingre_val = $('input[name="recipe_ingredient_input"]').val();  // 사용자 입력 값 가져오기
-    $.ajax({
-        type: "POST",
-        url: "/ingreSelect",
-        data: {"ingredient": ingre_val},  // ingredient 값을 서버로 전송
-        contentType: "application/x-www-form-urlencoded; charset=UTF-8",  // 올바른 인코딩
-        success: function(response) {
-            console.log(response);
-        },
-        error: function(request, status, error) {
-            console.log("AJAX 오류:", request.responseText);
-            alert("오류 발생: " + request.responseText);
+function recipeIngreSelect(object) {
+    var ingre_type = object.dataset.type;
+    var ingredient = $('#ingredient_input').val();
+    if(ingre_type == 'crolling'){//크롤링, 불러오기
+        $.ajax({
+            type: "POST",
+            url: "/ingreCrolling",//크롤링
+            data: JSON.stringify({"ingredient": ingredient}),  // ingredient 값 전송
+            contentType: "application/json; charset=UTF-8",  // JSON 형식으로 전송
+            success: function(response) {
+                alertShow('크롤링 완료', '성공적으로 재료들을 크롤링 했습니다.');
+                ingreLoad(response);
+            },
+            error: function(request, status, error) {
+                console.log("AJAX 오류:", request.responseText);
+                alertShow("오류 발생!!!", request.responseText);
+            }
+        });
+    }else{
+        $.ajax({ // JSON 형식으로 전송
+            type: "post",
+            url: "/ingreFind",
+            async: true,
+            data: {"ingredient" : ingredient},
+            success: function(response) {
+                alertShow('불러오기 완료', '성공적으로 재료들을 불러왔습니다.');
+                ingreLoad(response);
+            },
+            error: function(request, status, error) {
+                console.log("AJAX 오류:", request.responseText);
+                alertShow("오류 발생!!!", request.responseText);
+            }
+        });
+    }
+}
+//쿠팡 크롤링 이후 재료 로드
+function ingreLoad(object){
+    var ingrelist = JSON.parse(object);
+    var ingredient_div = "";
+    console.log(ingrelist.ingredientlist.length);
+    if(ingrelist.ingredientlist.length != 0){
+        for(var i in ingrelist.ingredientlist){
+            ingredient_div += "<label for='recipe_ingredient"+i+"'>";
+            ingredient_div += " <input type='checkbox' onclick='inputShow(this)' id='recipe_ingredient"+i+"' name='recipe_ingredient' data-number='4' data-price='"+ingrelist.ingredientlist[i].ingreprice+"' data-seq='"+ingrelist.ingredientlist[i].ingreseq+"' value='"+ingrelist.ingredientlist[i].ingrename+"' hidden>";
+            ingredient_div += " <span>"+ingrelist.ingredientlist[i].ingrename+"</span>";
+            ingredient_div += "</label>";
         }
-    });
+    }else{
+        ingredient_div += "<p class='no_data_txt'>해당 데이터가 없습니다.</p>"
+    }
+    $("#register_ingredient").html(ingredient_div);
 }
 
 //리스트-필터 클릭 시
