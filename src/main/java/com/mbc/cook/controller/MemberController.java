@@ -9,6 +9,9 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.Banner;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +19,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import java.awt.print.Pageable;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.lang.reflect.Member;
@@ -40,6 +44,10 @@ public class MemberController {
     public String memberList(Model model) {
         model.addAttribute("cssPath", "/member/list");//css 패스 경로(바꾸지X)
         model.addAttribute("pageTitle", "회원 관리");//타이틀 제목
+
+        List<MemberEntity> list = memberservice.UserControl();
+
+        model.addAttribute("list", list);
         return "member/list";
     }
 
@@ -93,6 +101,7 @@ public class MemberController {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter prw = response.getWriter();
         memberservice.pwupdate(id,pw);
+
         prw.print("비밀번호가 변경되었습니다.");
     }
 

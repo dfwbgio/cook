@@ -6,4 +6,33 @@
     <div class="list_whole">
         <h1>회원 관리</h1>
     </div>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>이름</th>
+                <th>아이디</th>
+                <th>비밀번호</th>
+                <th>이메일</th>
+                <th>주민번호</th>
+                <th>전화번호</th>
+                <th>주소</th>
+                <th>관리</th>
+            </tr>
+        </thead>
+        <tbody>
+        <tr th:each="User:${list}">
+            <td th:text="${User.name}"></td>
+            <td th:text="${User.id}"></td>
+            <td th:text="${User.pw}"></td>
+            <td th:text="${User.email}"></td>
+            <td th:text="${User.jumin}"></td>
+            <td th:text="${User.tel}"></td>
+            <td th:text="${User.address}"></td>
+            <td>#</td>
+        </tr>
+        </tbody>
+
+    </table>
+
+
 </html>

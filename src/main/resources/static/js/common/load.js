@@ -1,7 +1,6 @@
 $(document).ready(function(){
     //상세보기 페이지들에 css 링크 추가
     if(win_href.includes('/delete')
-    || win_href.includes('/select')
     || win_href.includes('/detail')
     || win_href.includes('/register')
     || win_href.includes('/update')
@@ -17,24 +16,12 @@ $(document).ready(function(){
     }
     //페이지별 로드 시키기
     if(win_href.includes('/login')
-    || win_href.includes('/member/list')
-    || win_href.includes('/idsearch')
-    || win_href.includes('/pwsearch')
-    || win_href.includes('/pwupdate')){
+    || win_href.includes('/member/list')){
         $('head').append('<script src="/js/member/member.js"></script>');
     }
     else if(win_href.includes('/signup')
     || win_href.includes('/mypage')){
-        $('head').append('<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">');
-        $('head').append('<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>');
         $('head').append('<script src="/js/member/signup.js"></script>');
-    }
-    else if(win_href.includes('/usersave')){
-        $('head').append('<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">');
-        $('head').append('<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>');
-        $('head').append('<script src="/js/member/signup.js"></script>');
-        $('head').append('<link rel="stylesheet" href="/css/member/signup.css">');
-
     }
     else if(win_href.includes('/info')){
         $('head').append('<script src="/js/info/info.js"></script>');
@@ -46,12 +33,13 @@ $(document).ready(function(){
         $('head').append('<script src="/js/random/random.js"></script>');
     }
     else if(win_href.includes('/recipe/cart')
-    || win_href.includes('/recipe/select')){
+    || win_href.includes('/recipe/detail')){
         $('head').append('<script src="/js/recipe/recipe.js"></script>');
     }
     else if(win_href.includes('/recipe/list')
     || win_href.includes('/recipe/register')
-    || win_href.includes('/recipe/select')){
+    || win_href.includes('/recipe/update')
+    || win_href.includes('/recipe/delete')){
         $('head').append('<script src="/js/recipe/recipe2.js"></script>');
     }
     else if(win_path==('/')

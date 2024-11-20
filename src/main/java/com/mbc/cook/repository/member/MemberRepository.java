@@ -2,6 +2,7 @@ package com.mbc.cook.repository.member;
 
 import com.mbc.cook.dto.member.MemberDTO;
 import com.mbc.cook.entity.member.MemberEntity;
+import org.springframework.data.domain.Page;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -9,7 +10,9 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.awt.print.Pageable;
 import java.util.List;
+import java.util.Map;
 
 @Repository
 public interface MemberRepository extends JpaRepository<MemberEntity,String> {
@@ -31,4 +34,5 @@ public interface MemberRepository extends JpaRepository<MemberEntity,String> {
     @Modifying
     @Query(value = "update member1115 set pw=:pw where id=:id", nativeQuery = true)
     void pwupdate(@Param("id") String id, @Param("pw") String pw);
+
 }
