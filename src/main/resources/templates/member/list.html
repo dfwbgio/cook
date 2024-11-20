@@ -11,7 +11,6 @@
             <tr>
                 <th>이름</th>
                 <th>아이디</th>
-                <th>비밀번호</th>
                 <th>이메일</th>
                 <th>주민번호</th>
                 <th>전화번호</th>
@@ -23,16 +22,24 @@
         <tr th:each="User:${list}">
             <td th:text="${User.name}"></td>
             <td th:text="${User.id}"></td>
-            <td th:text="${User.pw}"></td>
-            <td th:text="${User.email}"></td>
-            <td th:text="${User.jumin}"></td>
-            <td th:text="${User.tel}"></td>
-            <td th:text="${User.address}"></td>
+            <td th:text="${User.email_id}+'@'+${User.email_domain}"></td>
+            <td th:text="${User.jumin1}+'-'+${User.jumin2}+'******'"></td>
+            <td th:text="${User.tel1}+'-'+${User.tel2}+'-'+${User.tel3}"></td>
+            <td th:text="${User.streetaddr}+' '+${User.addr}+' '+${User.detailaddr}"></td>
             <td>#</td>
         </tr>
+        <div class="pagination">
+            <div th:each="page : ${#numbers.sequence(0, total -1)}">
+                <span th:if="${npage == pageStat.index}">
+                    <p th:text="${pageStat.index+1}"></p>
+                </span>
+                <span th:if="${npage != pageStat.index}">
+                    <a th:href="@{/member/list(page=${pageStat.index})}" th:text="${pageStat.index+1}"></a>
+                </span>
+            </div>
+        </div>
         </tbody>
-
     </table>
-
+    <!--페이징 처리-->
 
 </html>
