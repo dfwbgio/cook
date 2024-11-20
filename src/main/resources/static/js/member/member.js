@@ -69,16 +69,22 @@
             return false;
         }
 
-        var email = $('#email').val();
-        var email_regexp =/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+        var email = $('#email_id').val();
+        var domain = $('#email_domain').val();
+        var email_regexp =/^[a-zA-Z0-9]{1,15}$/;
         if(email==""){
             alertShow('오류','이메일을 입력해주세요.');
-            $('#email').focus();
+            $('#email_id').focus();
+            return false;
+        }
+        if(domain==""){
+            alertShow('오류','도메인을 입력해주세요');
+            $('#email_domain').focus();
             return false;
         }
         if(!email_regexp.test(email)){
-            alertShow('오류','이메일 형식이 맞지 않습니다.');
-            $('#email').focus();
+            alertShow('오류','이메일은 영문자+숫자만 입력해주세요.');
+            $('#email_id').focus();
             return false;
         }
         return true;
@@ -108,6 +114,7 @@
             $('#pwcheck').focus();
             return false;
         }
+        else{return true};
     };
 
     function findID() { //아이디 찾기
@@ -116,7 +123,9 @@
         var mid_tel = $('#mid_tel').val();
         var end_tel = $('#end_tel').val();
         var tel = fir_tel + "-" + mid_tel + "-" + end_tel;
-        var email=$('#email').val();
+        var email1=$('#email_id').val();
+        var email2=$('#email_domain').val();
+        var email = email1 + "@" + email2;
         if(checkform()){
             $.ajax({
                 type:"post",
@@ -140,7 +149,9 @@
         var mid_tel = $('#mid_tel').val();
         var end_tel = $('#end_tel').val();
         var tel = fir_tel + "-" + mid_tel + "-" + end_tel;
-        var email=$('#email').val();
+        var email1=$('#email_id').val();
+        var email2=$('#email_domain').val();
+        var email = email1 + "@" + email2;
         if(checkform()){
             $.ajax({
                 type:"post",
@@ -148,11 +159,11 @@
                 async:true,
                 data:{"id":id, "name":name, "tel":tel, "email":email},
                 success:function(data){
-                    if(data==null){
-                        alertShow('회원정보가 없습니다.',"");
+                    if(data==1){
+                        location.href='pwupdate?id='+id;
                     }
                     else{
-                        location.href='pwupdate?id='+id;
+                        alertShow('회원정보가 없습니다.','');
                     }
                 },
                 error:function(){
@@ -161,26 +172,43 @@
             });
         }
     };
-
-    function check() { //패스워드변경
-        var id=$('#id').val();
-        var pw=$('#pw').val();
-        var pwcheck=$('#pwcheck').val();
+    function check(){ //패스워드 변경
+        var id= $('#id').val();
+        var pw = $('#pw').val();
+        var pwcheck = $('#pwcheck').val();
         if(checkform1()){
             $.ajax({
-                type:"post",
-                url:"/pwUpdate",
-                async:true,
-                data:{"id":id, "pw":pw},
-                success:function(data){
-                    alertShow("변경완료","비밀번호가 변경되었습니다.");
+                type: "post",
+                url: "/pwUpdate",
+                async: true,
+                data: {"id":id,"pw":pw},
+                success:function(){
+                    alertShow('변경 완료','비밀번호 변경이 완료되었습니다.');
+                    setTimeout(function(){window.close();}, 10000);
                 },
                 error:function(){
-                    alertShow("오류","비밀번호를 다시 입력해주세요.");
+                    alertShow("오류",'비밀번호를 다시 입력해주세요');
                 }
             });
         }
     };
 
+    //이메일 도메인에 값 넣기
+    function mailSelect(){
+        var domain = $('#domain_select').find('option:selected').val();
+        if(domain == 'emailall'){
+            $('#email_domain').val("");
+        }
+        else{
+            $('#email_domain').val(domain);
+        }
+    };
+
+    function email_concat() {
+        var email_val1 = $('#email_id').val();
+        var email_val2 = $('#email_domain').val();
+        var total_email = email_val1+"@"+email_val2;
+        $('#total_email').val(total_email);
+    };
 
 
