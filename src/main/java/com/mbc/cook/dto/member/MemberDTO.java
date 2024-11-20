@@ -44,6 +44,7 @@ public class MemberDTO {
 
     private String email_domain;
 
+
     public MemberEntity toEntity() {
         return MemberEntity.builder()
                 .id(id)
@@ -61,5 +62,9 @@ public class MemberDTO {
                 .email_domain(email_domain)
                 .build();
     }
+
+
+
+
 
 }
