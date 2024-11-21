@@ -34,7 +34,7 @@ public class MemberController {
         return "member/login";
     }
 
-    @GetMapping(value = "/member/list")
+    @GetMapping(value = "/admin/list")
     public String memberList(Model model, @RequestParam(required = false, defaultValue = "0", value = "page") int page ) {
         model.addAttribute("cssPath", "/member/list");//css 패스 경로(바꾸지X)
         model.addAttribute("pageTitle", "회원 관리");//타이틀 제목
