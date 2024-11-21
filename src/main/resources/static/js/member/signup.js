@@ -114,31 +114,51 @@ function mailSelect(){
         $('#email_domain').val(domain);
     }
 }
+//마이페이지에서 비밀번호 수정 버튼을 눌렀을 때 비밀번호 입력란이 나오도록 구현
+function pw_show() {
+    $("#or_pw").remove();
+     var pw_div = "";
+     pw_div += "<div class='pw'>";
+     pw_div += "<div><input type='password' class='form-control' id='pw' name='pw' placeholder='수정할 비밀번호를 입력하세요'>";
+     pw_div += "<i class='fa fa-eye-slash fa-lg'></i></div></div>";
+     pw_div += "<div class='pw'>";
+     pw_div += "<label for='pwcheck'>비밀번호 확인</label>";
+     pw_div += "<div class='pw1'>";
+     pw_div += "<input type='password' name='pwcheck' id='pwcheck' placeholder='비밀번호를 한번 더 입력' onkeyup='passwordCheck()'>";
+     pw_div += "<i class='fa fa-eye-slash fa-lg'></i>";
+     pw_div += "<span id='pw_message'></span></div></div>";
+     $("#update_pw").html(pw_div);
 
-function jumin_concat() {
-    var fir_jumin = $('#jumin1').val();
-    var sec_jumin = $('#jumin2').val();
-    var total_jumin = fir_jumin + "-" + sec_jumin + "000000";
-    var jumin_regexp = /^\d{6}[-]\d{7}$/;
-        if(jumin_regexp.test(total_jumin)) {
-            $('#total_jumin').val(total_jumin);
-        } else {
-            return false;
+    //비밀번호 일치 유무
+    function passwordCheck(){
+        var pw = $("#pw").val();
+        var pwcheck = $("#pwcheck").val();
+        var pw_message = document.getElementById("pw_message");	//확인 메세지
+        var correctColor = "#3d7797";	//맞았을 때 출력되는 색깔.
+        var wrongColor = "#ff0000";		//틀렸을 때 출력되는 색깔
+        if(pw == pwcheck){ //password 변수의 값과 passwordConfirm 변수의 값과 동일하다.
+            if(pw.length<6 ||pw.length>16){
+                pw_message.style.color = wrongColor;
+                pw_message.innerHTML = "비밀번호는 6~16자 이내로 입력해주세요.";
+            }
+            else{
+                pw_message.style.color = correctColor;/* span 태그의 ID(confirmMsg) 사용  */
+                pw_message.innerHTML = " 비밀번호가 일치합니다.";/* innerHTML : HTML 내부에 추가적인 내용을 넣을 때 사용하는 것. */
+            }
+        }else{
+            pw_message.style.color = wrongColor;
+            pw_message.innerHTML = " 비밀번호가 일치하지 않습니다.";
         }
+    }
+     //비밀번호 보기 구현
+     $('.pw i').on('click',function(){
+         $('input').toggleClass('active');
+         if($('input').hasClass('active')){
+             $(this).attr('class',"fa fa-eye fa-lg")
+             .prev('input').attr('type',"text");
+         }else{
+             $(this).attr('class',"fa fa-eye-slash fa-lg")
+             .prev('input').attr('type','password');
+         }
+     });
 }
-
-function tel_concat(){
-    var fir_tel = $("#tel1").val();
-    var mid_tel = $('#tel2').val();
-    var end_tel = $('#tel3').val();
-    var total_tel = fir_tel + "-" + mid_tel + "-" + end_tel;
-    $('#total_tel').val(total_tel);
-}
-
-function email_concat() {
-    var email_val1 = $('#email_id').val();
-    var email_val2 = $('#email_domain').val();
-    var total_email = email_val1 + "@" + email_val2;
-    $('#total_email').val(total_email);
-}
-
