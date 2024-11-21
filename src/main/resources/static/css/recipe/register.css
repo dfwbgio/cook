@@ -58,17 +58,13 @@ input[name="image"] + img{
     margin: 0 auto;
 }
 .register_row{
-    /*
     position: absolute;
     width: calc(100% - 40px);
     height: auto;
     top: -100vh;
-    */
     margin: 40px auto 0 auto;
     transition: 1s;
-    /*
     opacity: 0;
-    */
 }
 .register_row.move_dw{
     position: unset;
@@ -214,18 +210,37 @@ input[name="image"] + img{
 .register_make div + div{
     margin-top: 5px;
 }
-.register_make button{
+.register_make div input{
+    max-width: 738px;
+}
+.register_make div button{
     display: block;
     min-width: 100px;
     width: 100px;
     max-width: 100px;
     height: 40px;
-    margin-left: 10px;
+    margin: 0 0 0 5px;
+    border-radius: 5px;
+    color: var(--point-color);
+    border: 1px solid var(--point-color);
+    background-color: var(--all-white);
+}
+.register_make button:hover{
+    color: var(--second-color);
+    border: 1px solid var(--second-color);
+    background-color: var(--opa-blue);
+}
+button.make_btn{
+    display: block;
+    width: 100%;
+    max-width: 200px;
+    height: 40px;
+    margin: 5px 0 0 auto;
     border-radius: 5px;
     color: var(--all-white);
     background-color: var(--point-color);
 }
-.register_make button:hover{
+button.make_btn:hover{
     background-color: var(--second-color);
 }
 .register_row .btn_flex{
