@@ -12,5 +12,91 @@
                 <h1>마이페이지</h1>
             </div>
         </div>
+        <div class="container">
+            <form th:action="@{/userupdate}" method="post" id="memberform" modelAttribute="memberDTO" th:object="${memberDTO}">
+                <div class="form-group">
+                    <label>아이디</label>
+                    <div class="id">
+                        <input type="text" class="write_id" id="id" name="id" th:value="${info}" readonly>
+                    </div>
+                </div>
+                <div>
+                    <label>비밀번호</label>
+                    <input type="button" id="pw_btn" value="비밀번호 수정" onclick="pw_show()">
+                    <input type="text" id="or_pw" th:field="*{pw}" th:value="${pw}" hidden="hidden">
+                </div>
+                <div class="pw" id="update_pw">
+                </div>
+                <div class="form-group">
+                    <label>이름</label>
+                    <input type="text" class="form-control" id="name" th:field="*{name}">
+                </div>
+                <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="error"></p>
+                <div class="form-group">
+                    <label>주민번호</label>
+                    <div class="jumin">
+                        <input type="text" id="jumin1" class="jumin1" th:value="${jumin1}" th:field="*{jumin1}" >
+                        <p>-</p>
+                        <input type="text" id="jumin2" class="jumin2" th:value="${jumin1}" th:field="*{jumin2}" >
+                        <p>* * * * * *</p>
+                    </div>
+                    <p th:if="${#fields.hasErrors('jumin1')}" th:errors="*{jumin1}" class="error"></p>
+                    <p th:if="${#fields.hasErrors('jumin2')}" th:errors="*{jumin2}" class="error"></p>
+                </div>
+                <div class="col-sm-10">
+                    <label>주소</label>
+                    <div class="address">
+                        <div class="address1">
+                            <input type="text" class="form-control mb-2" id="addr" maxlength="10" th:field="*{addr}" th:value="${daar}">
+                            <input type="button" id="addr_btn" class="btn" onclick="execDaumPostcode()" value="우편번호 찾기"><br>
+                        </div>
+                        <div class="address2">
+                            <input type="text" class="form-control mb-2" id="streetaddr" maxlength="40" th:field="*{streetaddr}" th:value="${streetaddr}">
+                        </div>
+                        <div class="address3">
+                            <input type="text" class="form-control" id="detailaddr" maxlength="40" th:field="*{detailaddr}" th:value="${detailaddr}">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>전화번호</label>
+                    <div class="tel">
+                        <input type="text" class="form-control" id="tel1" onkeyup="tel_concat()" th:field="*{tel1}" th:value="${tel1}">
+                        <p>-</p>
+                        <input type="text" class="form-control" id="tel2" onkeyup="tel_concat()" th:field="*{tel2}" th:value="${tel2}">
+                        <p>-</p>
+                        <input type="text" class="form-control" id="tel3" onkeyup="tel_concat()" th:field="*{tel3}" th:value="${tel3}">
+                    </div>
+                    <p th:if="${#fields.hasErrors('tel1')}" th:errors="*{tel1}" class="error"></p>
+                    <p th:if="${#fields.hasErrors('tel2')}" th:errors="*{tel2}" class="error"></p>
+                    <p th:if="${#fields.hasErrors('tel3')}" th:errors="*{tel3}" class="error"></p>
+                </div>
+                <div class="form-group">
+                    <label>이메일</label>
+                    <div class="email">
+                        <input type="text" id="email_id" class="form_w200" value="" title="이메일 아이디" maxlength="18" th:field="*{email_id}" th:value="${email_id}"/>
+                        <p>@</p>
+                        <input type="text" id="email_domain" class="form_w200" value="" title="이메일 도메인" maxlength="18" th:field="*{email_domain}" th:value="${email_domain}" />
+                        <select class="select" id="domain_select" title="이메일 도메인 주소 선택" onchange="mailSelect()">
+                            <option value="emailall" selected>-선택-</option>
+                            <option value="naver.com">naver.com</option>
+                            <option value="gmail.com">gmail.com</option>
+                            <option value="hanmail.net">hanmail.net</option>
+                            <option value="hotmail.com">hotmail.com</option>
+                            <option value="korea.com">korea.com</option>
+                            <option value="nate.com">nate.com</option>
+                            <option value="yahoo.com">yahoo.com</option>
+                        </select>
+                    </div>
+                    <p th:if="${#fields.hasErrors('email_id')}" th:errors="*{email_id}" class="error"></p>
+                    <p th:if="${#fields.hasErrors('email_domain')}" th:errors="*{email_domain}" class="error"></p>
+                    <div class="btn_flex">
+                        <button type="button" class="btn_prev" onclick="location.href='/'">메인으로</button>
+                        <button type="submit" class="btn_submit">수정</button>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
+
 </html>

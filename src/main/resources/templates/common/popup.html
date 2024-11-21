@@ -29,5 +29,19 @@
             <div class="standby_loader"></div>
         </div>
     </div>
+    <div class="pwchk_whole">
+        <div class="pwchk_bg"></div>
+        <div class="pwchk_box">
+            <h2>마이페이지 비밀번호 확인</h2>
+            <div class="pw">
+                <input type="password" class="form-control" id="chkpw" name="chkpw" placeholder="비밀번호를 입력하세요" required>
+                <i class="fa fa-eye-slash fa-lg"></i>
+            </div>
+            <div class="btn_flex">
+                <button type="button" class="btn_prev" onclick="location.href='/'">메인으로</button>
+                <button type="button" class="btn_submit" onclick="pwchk()">확인</button>
+            </div>
+        </div>
+    </div>
     <input type="hidden" id="confirm_message" value="none">
 </html>
