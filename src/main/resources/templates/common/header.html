@@ -29,7 +29,7 @@
                     <a href="/login" sec:authorize="isAnonymous()" id="header_login"><span></span>로그인</a>
                     <a href="/signup" sec:authorize="isAnonymous()" id="header_signup"><span></span>회원가입</a>
                     <!--로그인 후(로그인 구현 후 수정)-->
-                    <a href="/mypage" sec:authorize="isAuthenticated()"><span id="header_mypage" th:text="${#authentication.name}+'님'">}></span></a>
+                    <a href="javascript:void(0)" onclick="mypageChk()" sec:authorize="isAuthenticated()"><span id="header_mypage" th:text="${#authentication.name}"></span>님</a>
                     <a href="/logout" sec:authorize="isAuthenticated()"><span id="header_logout"></span>로그아웃</a>
                     <!--관리자한테만 뜸(로그인 구현 후 수정)-->
                     <a href="/member/list" id="header_member">회원 관리</a>
