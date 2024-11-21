@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 @Service
@@ -28,11 +29,15 @@ public class CustomUserDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String name) {
         Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
         MemberEntity memberEntity = memberRepository.findOneById(name);
-        if(memberEntity != null){
+        if(Objects.equals(memberEntity.getId(), "admin")){
+            grantedAuthorities.add(new SimpleGrantedAuthority("ADMIN"));
+            return new User(memberEntity.getId(), memberEntity.getPw(), grantedAuthorities);
+        }
+        else if(memberEntity.getId()!=null && memberEntity.getId() != "admin"){
             grantedAuthorities.add(new SimpleGrantedAuthority("USER"));
             return new User(memberEntity.getId(), memberEntity.getPw(), grantedAuthorities);
         }
-        else {
+        else{
             throw new UsernameNotFoundException("아이디를 찾을수 없습니다.");
         }
     }
