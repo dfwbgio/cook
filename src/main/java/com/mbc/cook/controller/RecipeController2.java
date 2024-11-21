@@ -108,7 +108,7 @@ public class RecipeController2 {
         String txt = "";
         try {
             // Python 스크립트 실행
-            String path = "C:\\project\\cook\\coupangCrollingBack.py";
+            String path = "C:\\project\\cook\\coupangCrolling.py";
             ProcessBuilder builder = new ProcessBuilder("python", path, ingredient);
             // 프로세스 실행
             Process process = builder.start();
@@ -146,9 +146,10 @@ public class RecipeController2 {
         pp.print(txt);
     }
 
+    //불러오기
     @PostMapping(value = "/ingreFind")
     public void ingreFind(@RequestParam("ingredient") String ingredient, HttpServletResponse response) throws IOException {
-        List<IngreEntity> list = recipeService2.findIngredient(ingredient);
+        List<IngreEntity> list = recipeService2.findIngredientLike(ingredient);
         JSONObject tot = new JSONObject();
         JSONArray arrlist = new JSONArray();
         for (int i = 0; i < list.size(); i++) {

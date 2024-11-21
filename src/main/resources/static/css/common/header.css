@@ -126,6 +126,7 @@
     border-color: var(--dp-gray);
     transition: 0.2s;
 }
+.header_side .display_flex a
 .header_side .display_flex a + a{
     margin-left: 10px;
 }

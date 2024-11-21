@@ -85,10 +85,18 @@ function recipeRegister(){
         return false;
     }
     $('input[name="recipe_ingredient"]:checked').each(function(){
-        var this_seq = $(this).attr('data-seq');
-        if(this_seq != ''){
-            ingreArray.push(this_seq);
-            ingre_div += this_seq;
+        var ingre_val = $(this).val();//이름
+        var ingre_pri = $(this).attr('data-price');//가격
+        var ingre_seq = $(this).attr('data-seq');//시퀀스
+        if(ingre_val != '' && ingre_pri != '' && ingre_seq != ''){
+            ingreArray.push(ingre_val);
+            ingreArray.push(ingre_pri);
+            ingreArray.push(ingre_seq);
+            ingre_div += ingre_val;
+            ingre_div += "<br>";
+            ingre_div += ingre_pri;
+            ingre_div += "<br>";
+            ingre_div += ingre_seq;
             ingre_div += "<br>";
             $('#recipe_ingre').val(ingre_div);
         }
@@ -100,7 +108,7 @@ function recipeRegister(){
             $('#recipe_way').val(makeArray);
         }
     });
-    //$('#recipe_form').submit();
+    $('#recipe_form').submit();
 }
 
 function ingreWrite(){
@@ -110,6 +118,7 @@ function ingreWrite(){
 
 //등록-재료 입력 크롤링 부분
 function recipeIngreSelect(object) {
+    standbyShow('로드 중', '잠시만 기다려주세요.');
     var ingre_type = object.dataset.type;
     var ingredient = $('#ingredient_input').val();
     if(ingre_type == 'crolling'){//크롤링, 불러오기
@@ -119,10 +128,12 @@ function recipeIngreSelect(object) {
             data: JSON.stringify({"ingredient": ingredient}),  // ingredient 값 전송
             contentType: "application/json; charset=UTF-8",  // JSON 형식으로 전송
             success: function(response) {
+                standbyHide();
                 alertShow('크롤링 완료', '성공적으로 재료들을 크롤링 했습니다.');
                 ingreLoad(response);
             },
             error: function(request, status, error) {
+                standbyHide();
                 console.log("AJAX 오류:", request.responseText);
                 alertShow("오류 발생!!!", request.responseText);
             }
@@ -134,10 +145,12 @@ function recipeIngreSelect(object) {
             async: true,
             data: {"ingredient" : ingredient},
             success: function(response) {
+                standbyHide();
                 alertShow('불러오기 완료', '성공적으로 재료들을 불러왔습니다.');
                 ingreLoad(response);
             },
             error: function(request, status, error) {
+                standbyHide();
                 console.log("AJAX 오류:", request.responseText);
                 alertShow("오류 발생!!!", request.responseText);
             }
@@ -152,7 +165,7 @@ function ingreLoad(object){
     if(ingrelist.ingredientlist.length != 0){
         for(var i in ingrelist.ingredientlist){
             ingredient_div += "<label for='recipe_ingredient"+i+"'>";
-            ingredient_div += " <input type='checkbox' onclick='inputShow(this)' id='recipe_ingredient"+i+"' name='recipe_ingredient' data-number='4' data-price='"+ingrelist.ingredientlist[i].ingreprice+"' data-seq='"+ingrelist.ingredientlist[i].ingreseq+"' value='"+ingrelist.ingredientlist[i].ingrename+"' hidden>";
+            ingredient_div += " <input type='checkbox' onclick='ingreClick(this);inputShow(this)' id='recipe_ingredient"+i+"' name='recipe_ingredient' data-number='4' data-id='recipe_ingredient"+i+"' data-price='"+ingrelist.ingredientlist[i].ingreprice+"' data-seq='"+ingrelist.ingredientlist[i].ingreseq+"' value='"+ingrelist.ingredientlist[i].ingrename+"' hidden>";
             ingredient_div += " <span>"+ingrelist.ingredientlist[i].ingrename+"</span>";
             ingredient_div += "</label>";
         }
@@ -160,6 +173,13 @@ function ingreLoad(object){
         ingredient_div += "<p class='no_data_txt'>해당 데이터가 없습니다.</p>"
     }
     $("#register_ingredient").html(ingredient_div);
+}
+
+//
+function ingreClick(object){
+    var ingre_seq = object.dataset.seq;
+    var ingre_val
+    console.log(ingre_seq);
 }
 
 //리스트-필터 클릭 시

@@ -34,4 +34,9 @@ public class RecipeServiceImp2 implements RecipeService2 {
     public List<IngreEntity> findIngredientAll() {
         return ingreRepository.findAll();
     }
+
+    @Override
+    public List<IngreEntity> findIngredientLike(String ingredient) {
+        return ingreRepository.findIngredientLike(ingredient);
+    }
 }

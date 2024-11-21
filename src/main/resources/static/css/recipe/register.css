@@ -69,7 +69,6 @@ input[name="image"] + img{
     /*
     opacity: 0;
     */
-    overflow-x: hidden;
 }
 .register_row.move_dw{
     position: unset;
@@ -145,6 +144,27 @@ input[name="image"] + img{
 .register_row input[type="radio"]:checked + span:hover{
     font-weight: 400;
 }
+/*재료*/
+.register_ingredient{
+    width: 100%;
+    height: auto;
+    max-height: 300px;
+    overflow: hidden;
+    overflow-y: auto;
+    padding-right: 8px;
+}
+.register_ingredient::-webkit-scrollbar{
+    width: 8px;
+    height: auto;
+    background-color: var(--md-blue);
+    border-radius: 10px;
+}
+.register_ingredient::-webkit-scrollbar-thumb{
+    width: 8px;
+    height: auto;
+    background-color: var(--point-color);
+    border-radius: 10px;
+}
 /*방법*/
 .register_make div{
     display: flex;
@@ -172,6 +192,9 @@ input[name="image"] + img{
 }
 .register_row .btn_flex .btn_submit{
     margin-left: 10px;
+}
+.register_row#recipe_div4 .btn_flex .btn_submit{
+    
 }
 .register_row .btn_flex .btn_submit.btn_submit2{
     color: var(--point-color);

@@ -15,4 +15,6 @@ public interface RecipeService2 {
     List<IngreEntity> findIngredient(String ingredient);
 
     List<IngreEntity> findIngredientAll();
+
+    List<IngreEntity> findIngredientLike(String ingredient);
 }

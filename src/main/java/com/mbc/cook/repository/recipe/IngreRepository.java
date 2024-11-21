@@ -20,4 +20,11 @@ public interface IngreRepository extends JpaRepository<IngreEntity, String> {
     @Modifying
     @Query(value = "select ingre_seq, name, price, keyword from ingredient where keyword=:ingredient", nativeQuery = true)
     List<IngreEntity> findIngredient(@Param(value = "ingredient") String ingredient);
+
+    @Transactional
+    @Modifying
+    @Query(value = "select ingre_seq, name, price, keyword from ingredient " +
+            "WHERE (name LIKE %:ingredient%) " +
+            "OR (keyword LIKE %:ingredient%)", nativeQuery = true)
+    List<IngreEntity> findIngredientLike(@Param(value = "ingredient") String ingredient);
 }
