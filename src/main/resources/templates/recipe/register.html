@@ -54,7 +54,7 @@
                         <div class="register_row" id="recipe_div4">
                             <p class="register_subtitle">재료</p>
                             <div class="btn_flex">
-                                <input type="text" id="ingredient_input" onkeyup="ingreWrite()" class="ingredient_input" name="ingredient_input" placeholder="찾을 요리 재료 입력">
+                                <input type="text" id="ingredient_input" class="ingredient_input" name="ingredient_input" placeholder="찾을 요리 재료 입력">
                                 <button type="button" class="btn_submit" onclick="recipeIngreSelect(this)" data-type="search">불러오기</button>
                                 <button type="button" class="btn_submit btn_submit2" onclick="recipeIngreSelect(this)" data-type="crolling">크롤링</button>
                             </div>
@@ -66,7 +66,7 @@
                                 </label>
                                 <p th:if="${ingreList == null} or ${ingreList.size() == 0}" class="no_data_txt">등록된 데이터가 없습니다.</p>
                             </div>
-                            <div id="clicked_ingredient" class="register_ingredient display_flex flex_wrap flex_align_c"></div>
+                            <div id="clicked_ingredient" class="clicked_ingredient display_flex flex_wrap flex_align_c"></div>
                         </div>
                         <div class="register_row" id="recipe_div5">
                             <p class="register_subtitle">만드는 방법</p>
