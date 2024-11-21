@@ -126,7 +126,10 @@
     border-color: var(--dp-gray);
     transition: 0.2s;
 }
-.header_side .display_flex a
+.header_side .display_flex a span{
+    color: var(--ddp-gray);
+    margin-right: 2px;
+}
 .header_side .display_flex a + a{
     margin-left: 10px;
 }
@@ -256,6 +259,9 @@ a.link_on{
     }
     .header_side .display_flex a:hover{
         border-color: var(--lite-blue);
+    }
+    .header_side .display_flex a span{
+        color: var(--lt-gray);
     }
     .header_side .display_flex a + a{
         margin-left: 20px;
