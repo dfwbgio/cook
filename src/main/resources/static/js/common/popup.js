@@ -48,3 +48,38 @@ function standbyShow(title, subtitle){
     $('#standby_title').html(title);
     $('#standby_subtitle').html(subtitle);
 }
+
+function mypageChk() {
+    $("body").css('overflow', 'hidden');
+    $('.pwchk_whole').show();
+}
+//mypage 들어갈 때 pwchk
+function pwchk() {
+    console.log("click");
+    var id = $("#header_mypage").text();
+    var pw= $("#chkpw").val();
+    $.ajax({
+        type:"post",
+        url:"/pwchk",
+        async:true,
+        data:{"id":id,"pw":pw},
+        success:function(data){
+            if(data){
+                 location.href="/mypage?id="+id;
+            } else {
+                return false;
+            }
+        }
+    });
+    //비밀번호 보기 구현
+         $('.pw i').on('click',function(){
+             $('input').toggleClass('active');
+             if($('input').hasClass('active')){
+                 $(this).attr('class',"fa fa-eye fa-lg")
+                 .prev('input').attr('type',"text");
+             }else{
+                 $(this).attr('class',"fa fa-eye-slash fa-lg")
+                 .prev('input').attr('type','password');
+             }
+         });
+}
