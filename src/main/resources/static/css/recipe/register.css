@@ -112,7 +112,7 @@ input[name="image"] + img{
     margin-left: 10px;
 }
 .register_row#recipe_div4 label{
-    margin: 10px 10px 0 0;
+    margin: 0 10px 10px 0;
 }
 .register_row input[type="checkbox"] + span,
 .register_row input[type="radio"] + span{
@@ -146,12 +146,14 @@ input[name="image"] + img{
 }
 /*재료*/
 .register_ingredient{
-    width: 100%;
+    width: calc(100% - 30px);
     height: auto;
     max-height: 300px;
     overflow: hidden;
     overflow-y: auto;
-    padding-right: 8px;
+    padding: 15px 23px 15px 15px;
+    background-color: var(--all-white);
+    border-radius: 5px;
 }
 .register_ingredient::-webkit-scrollbar{
     width: 8px;
@@ -164,6 +166,45 @@ input[name="image"] + img{
     height: auto;
     background-color: var(--point-color);
     border-radius: 10px;
+}
+.clicked_ingredient{
+    width: 100%;
+    height: auto;
+    max-height: 300px;
+    overflow: hidden;
+    overflow-y: auto;
+    padding-right: 8px;
+    margin: 10px auto 0 auto;
+}
+.clicked_ingredient::-webkit-scrollbar{
+    width: 8px;
+    height: auto;
+    background-color: var(--md-blue);
+    border-radius: 10px;
+}
+.clicked_ingredient::-webkit-scrollbar-thumb{
+    width: 8px;
+    height: auto;
+    background-color: var(--point-color);
+    border-radius: 10px;
+}
+.ingre_checked{
+    position: relative;
+    width: max-content;
+    max-width: 100%;
+    height: auto;
+    margin: 10px 50px 0 0;
+}
+.ingre_checked span{
+    position: absolute;
+    display: block;
+    min-width: 20px;
+    width: 20px;
+    height: 20px;
+    background: url('/image/icon/recipe/delete-bg-bu.png') no-repeat;
+    background-size: contain;
+    top: 2px;
+    right: -25px;
 }
 /*방법*/
 .register_make div{
