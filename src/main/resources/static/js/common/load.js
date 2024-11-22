@@ -45,12 +45,17 @@ $(document).ready(function(){
         $('head').append('<script src="/js/random/random.js"></script>');
     }
     else if(win_href.includes('/recipe/cart')
-    || win_href.includes('/recipe/select')){
+    || win_href.includes('/recipe/select')
+    && win_search.includes('path=detail')
+    ){
         $('head').append('<script src="/js/recipe/recipe.js"></script>');
     }
     else if(win_href.includes('/recipe/list')
     || win_href.includes('/recipe/register')
-    || win_href.includes('/recipe/select')){
+    || win_href.includes('/recipe/select')
+    && win_search.includes('path=update')
+    || win_search.includes('path=delete')
+    ){
         $('head').append('<script src="/js/recipe/recipe2.js"></script>');
     }
     else if(win_path==('/')
