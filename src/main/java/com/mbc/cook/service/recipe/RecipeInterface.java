@@ -1,7 +1,6 @@
 package com.mbc.cook.service.recipe;
 
-
-public interface RecipeInterface2 {
+public interface RecipeInterface {
     public long getRecipe_seq();
     public String getCategory1();
     public String getCategory2();
