@@ -20,7 +20,7 @@ function recipeCategoryClick(){
             category_div += "<div class='register_category display_flex flex_align_c'>";
             for(var i in sublist.subcategorylist){
                 category_div += "   <label for='recipe_category2_"+i+"'>";
-                category_div += "       <input type='radio' id='recipe_category2_"+i+"' name='category2' value='"+sublist.subcategorylist[i].subcategory+"' onclick='inputShow(this)' data-number='3' hidden>";
+                category_div += "       <input type='radio' id='recipe_category2_"+i+"' name='category2' value='"+sublist.subcategorylist[i].subcategory+"' data-number='3' hidden>";
                 category_div += "       <span>"+sublist.subcategorylist[i].subcategory+"</span>";
                 category_div += "   </label>";
             }
@@ -40,12 +40,6 @@ function recipeImgChange(event){
     };
     reader.readAsDataURL(event.target.files[0]);
 }
-//클릭하면 레시피 등록 페이지 다음 input창이 뜸
-function inputShow(ths){
-    var data_num = ths.dataset.number;
-    data_num++;
-    $('#recipe_div'+data_num).addClass('move_dw');
-}
 //레시피 등록 버튼 클릭 시
 var seqArray = [];//시퀀스
 var ingreArray = [];//재료
@@ -57,7 +51,8 @@ function recipeRegister(){
     var val_cat2 = $('input[name="category2"]').val();//카테고리2
     var len_ingr = $('input[name="ingredient"]').length;//재료
     var ingre_ing = "";
-    if(val_img == ''
+    if(win_href.includes('&path=register')
+    && val_img == ''
     || val_food == ''
     || val_cat1 == ''
     || val_cat2 == ''
@@ -65,6 +60,14 @@ function recipeRegister(){
     ){
         alertShow('정보 미입력','정보를 모두 입력해주세요.');
         return false;
+    }else if(win_href.includes('&path=update')
+    && val_food == ''
+    || val_cat1 == ''
+    || val_cat2 == ''
+    || len_ingr == ''
+    ){
+      alertShow('정보 미입력','정보를 모두 입력해주세요.');
+      return false;
     }
     var ingre_ing = ""; // 결과를 저장할 변수 초기화
     for (var i = 0; i < ingreArray.length; i += 3) { // i를 3씩 증가
@@ -79,14 +82,17 @@ function recipeRegister(){
         ingre_ing += ingre_price + "<br>";
     }
     $('#recipe_ingre').val(ingre_ing);
+    var way_make = ""; // 결과를 저장할 변수 초기화
     $('input[name="recipe_method_make"]').each(function(){
         var this_val = $(this).val();
         if(this_val != ''){
-            makeArray.push(this_val);
-            $('#recipe_way').val(makeArray);
+            way_make += this_val + "<br>";
         }
+        $('#recipe_way').val(way_make);
     });
+    standbyShow('저장 중', '잠시만 기다려 주세요.');
     $('#recipe_form').submit();
+    standbyHide();
 }
 //등록-재료 입력 크롤링 부분
 function recipeIngreSelect(object) {
@@ -136,7 +142,7 @@ function ingreLoad(object){
     if(ingrelist.ingredientlist.length != 0){
         for(var i in ingrelist.ingredientlist){
             ingredient_div += "<label for='recipe_ingredient"+ingrelist.ingredientlist[i].ingreseq+"'>";
-            ingredient_div += " <input type='checkbox' onclick='ingreClick(this);inputShow(this)' id='recipe_ingredient"+ingrelist.ingredientlist[i].ingreseq+"' name='recipe_ingredient' data-number='4' data-id='recipe_ingredient"+ingrelist.ingredientlist[i].ingreseq+"' data-price='"+ingrelist.ingredientlist[i].ingreprice+"' data-seq='"+ingrelist.ingredientlist[i].ingreseq+"' value='"+ingrelist.ingredientlist[i].ingrename+"' hidden>";
+            ingredient_div += " <input type='checkbox' onclick='ingreClick(this)' id='recipe_ingredient"+ingrelist.ingredientlist[i].ingreseq+"' name='recipe_ingredient' data-id='recipe_ingredient"+ingrelist.ingredientlist[i].ingreseq+"' data-price='"+ingrelist.ingredientlist[i].ingreprice+"' data-seq='"+ingrelist.ingredientlist[i].ingreseq+"' value='"+ingrelist.ingredientlist[i].ingrename+"' hidden>";
             ingredient_div += " <span>"+ingrelist.ingredientlist[i].ingrename+"</span>";
             ingredient_div += "</label>";
         }
@@ -183,8 +189,9 @@ function recipeMethodMake(){
     method_len++;
     $('#recipe_method_len').attr('value', method_len);
     var recipe_new_div = "";
-    recipe_new_div += "<div id='recipe_method_make"+method_len+"'>"
-    recipe_new_div += " <input type='text' id='recipemakeinput"+method_len+"' name='recipe_method_make' placeholder='요리 방법 입력' data-number='5' onkeyup='inputShow(this)'>";
+    recipe_new_div += "<div id='recipe_method_make"+method_len+"'>";
+    recipe_new_div += " <p>"+method_len+".</p>";
+    recipe_new_div += " <input type='text' id='recipemakeinput"+method_len+"' name='recipe_method_make' placeholder='요리 방법 입력' data-number='5'>";
     recipe_new_div += " <button type='button' data-id='recipe_method_make"+method_len+"' data-num='"+method_len+"' onclick='recipeMathodDelete(this)'>방법 -</button>";
     recipe_new_div += "</div>";
     $('#register_make').append(recipe_new_div);
@@ -199,10 +206,44 @@ function recipeMathodDelete(ths){//레시피 등록 방법 삭제
         $('#recipe_method_make'+(i-1)).find('input').attr('id', 'recipemakeinput'+(i - 1));
         $('#recipe_method_make'+(i-1)).find('button').attr('data-id', 'recipe_method_make'+(i - 1));
         $('#recipe_method_make'+(i-1)).find('button').attr('data-num', (i - 1));
+        $('#recipe_method_make'+(i-1)).find('p').text((i - 1)+'.');
     }
     var recipe_tot = $('#recipe_method_len').val();
     recipe_tot--;
     $('#recipe_method_len').attr('value', recipe_tot);
 }
 $(document).ready(function(){
+    if(win_href.includes('/recipe/select') && win_href.includes('&path=update') || win_href.includes('&path=delete')){//업데이트
+        //재료
+        var recipe_ingre = $('#recipe_ingre').val().split('<br>');
+        var ingre_num = recipe_ingre.length - 1;
+        var ingre_br = "";
+        for(var g = 0; g < (ingre_num / 3); g++){
+            ingre_br += "<div class='ingre_checked' id='ingre_checked"+recipe_ingre[(3*g)]+"' data-seq='"+recipe_ingre[(3*g)]+"' data-price='"+recipe_ingre[(3*g) + 2]+"' value='"+recipe_ingre[(3*g) + 1]+"' onclick='ingreClick(this)'>";
+            ingre_br += "   <p>"+recipe_ingre[(3*g) + 1]+"</p>";
+            ingre_br += "   <span></span>";
+            ingre_br += "</div>";
+            seqArray.push(recipe_ingre[(3*g)]);
+            ingreArray.push(recipe_ingre[(3*g)]);
+            ingreArray.push(recipe_ingre[(3*g)+1]);
+            ingreArray.push(recipe_ingre[(3*g)+2]);
+        }
+        ingreChk();
+        $('#clicked_ingredient').append(ingre_br);
+        //방법
+        var make_input = $('#recipe_way').val().split('<br>');
+        var make_num = make_input.length - 1;
+        var make_br = "";
+        for(var n = 0; n < make_num; n++){
+            make_br += "<div id='recipe_method_make"+(n + 1)+"'>";
+            make_br += "    <p>"+(n + 1)+".</p>";
+            make_br += "    <input type='text' data-id='recipe_method_make"+(n + 1)+"' name='recipe_method_make' value='"+make_input[n]+"' placeholder='요리 방법 입력'>";
+            if(n >= 1){
+                make_br += "    <button type='button' data-id='recipe_method_make"+(n + 1)+"' data-num='"+(n + 1)+"' onclick='recipeMathodDelete(this)'>방법 -</button>";
+            }
+            make_br += "</div>";
+        }
+        $('#register_make').append(make_br);
+        $('#recipe_method_len').val(make_num);
+    }
 });

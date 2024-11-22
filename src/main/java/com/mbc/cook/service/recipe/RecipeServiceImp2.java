@@ -39,4 +39,9 @@ public class RecipeServiceImp2 implements RecipeService2 {
     public List<IngreEntity> findIngredientLike(String ingredient) {
         return ingreRepository.findIngredientLike(ingredient);
     }
+
+    @Override
+    public void recipeUpdate(long recipeSeq, String category1, String category2, String food, String ingredient, String recipe) {
+        recipeRepository2.updateNoImg(recipeSeq,category1,category2,food,ingredient,recipe);
+    }
 }

@@ -4,13 +4,14 @@
       layout:decorate="~{common/layout}"
       layout:fragment="content">
     <div class="register_whole">
-        <div class="detail_title">
+        <div class="detail_title display_flex flex_between flex_align_e">
             <div class="display_flex flex_align_c">
                 <button type="button" onclick="history.back(-1)">
                     <img src="/image/icon/common/arrow-sm-prev.svg">
                 </button>
                 <h1>레시피 등록</h1>
             </div>
+            <p>* 입력창 입력 시 다음 섹션이 나타납니다.</p>
         </div>
         <div class="register_inner">
             <form action="/recipeRegister" id="recipe_form" method="post" enctype="multipart/form-data">
@@ -20,32 +21,32 @@
                     <div class="register_img">
                         <p class="register_subtitle">음식 이미지</p>
                         <label for="recipeimg">
-                            <input type="file" name="image" id="recipeimg" onchange="recipeImgChange(event);inputShow(this)" data-number="0" hidden="hidden" accept="image/*">
-                            <img src="" id="recipePreviewImg" alt="음식 이미지" onerror="this.src='/image/icon/info/profile-default.png'">
+                            <input type="file" name="image" id="recipeimg" onchange="recipeImgChange(event)" data-number="0" hidden="hidden" accept="image/*">
+                            <img src="" title="이미지를 업로드하면 다음 섹션이 나타납니다." id="recipePreviewImg" alt="음식 이미지" onerror="this.src='/image/icon/info/profile-default.png'">
                         </label>
                     </div>
                     <div class="register_content">
                         <div class="register_row" id="recipe_div1">
                             <p class="register_subtitle">음식명</p>
-                            <input type="text" id="food" name="food" placeholder="음식명 입력" data-number="1" onkeyup="inputShow(this)">
+                            <input type="text" id="food" name="food" placeholder="음식명 입력" data-number="1">
                         </div>
                         <div class="register_row" id="recipe_div2">
                             <p class="register_subtitle">레시피 카테고리</p>
                             <div class="register_category display_flex flex_align_c">
                                 <label for="recipe_category1">
-                                    <input type="radio" onclick="recipeCategoryClick();inputShow(this)" id="recipe_category1" name="category1" data-number="2" value="한식" hidden>
+                                    <input type="radio" onclick="recipeCategoryClick()" id="recipe_category1" name="category1" data-number="2" value="한식" hidden>
                                     <span>한식</span>
                                 </label>
                                 <label for="recipe_category2">
-                                    <input type="radio" onclick="recipeCategoryClick();inputShow(this)" id="recipe_category2" name="category1" data-number="2" value="중식" hidden>
+                                    <input type="radio" onclick="recipeCategoryClick()" id="recipe_category2" name="category1" data-number="2" value="중식" hidden>
                                     <span>중식</span>
                                 </label>
                                 <label for="recipe_category3">
-                                    <input type="radio" onclick="recipeCategoryClick();inputShow(this)" id="recipe_category3" name="category1" data-number="2" value="일식" hidden>
+                                    <input type="radio" onclick="recipeCategoryClick()" id="recipe_category3" name="category1" data-number="2" value="일식" hidden>
                                     <span>일식</span>
                                 </label>
                                 <label for="recipe_category4">
-                                    <input type="radio" onclick="recipeCategoryClick();inputShow(this)" id="recipe_category4" name="category1" data-number="2" value="양식" hidden>
+                                    <input type="radio" onclick="recipeCategoryClick()" id="recipe_category4" name="category1" data-number="2" value="양식" hidden>
                                     <span>양식</span>
                                 </label>
                             </div>
@@ -61,7 +62,7 @@
                             <!--크롤링 된 재료 뜨는 부분-->
                             <div id="register_ingredient" class="register_ingredient display_flex flex_wrap flex_align_c">
                                 <label th:for="@{recipe_ingredient}+${ingre.ingre_seq}" th:each="ingre:${ingreList}">
-                                    <input type="checkbox" onclick="ingreClick(this);inputShow(this)" th:id="@{recipe_ingredient}+${ingre.ingre_seq}" name="recipe_ingredient" data-number="4" th:data-price="${ingre.price}" th:data-seq="${ingre.ingre_seq}" th:value="${ingre.name}" hidden>
+                                    <input type="checkbox" onclick="ingreClick(this)" th:id="@{recipe_ingredient}+${ingre.ingre_seq}" name="recipe_ingredient" data-number="4" th:data-price="${ingre.price}" th:data-seq="${ingre.ingre_seq}" th:value="${ingre.name}" hidden>
                                     <span th:text="${ingre.name}"></span>
                                 </label>
                                 <p th:if="${ingreList == null} or ${ingreList.size() == 0}" class="no_data_txt">등록된 데이터가 없습니다.</p>
@@ -72,7 +73,8 @@
                             <p class="register_subtitle">만드는 방법</p>
                             <div id="register_make" class="register_make">
                                 <div>
-                                    <input type="text" data-name="recipe_method_make1" name="recipe_method_make" placeholder="요리 방법 입력" data-number="5" onkeyup="inputShow(this)">
+                                    <p>1.</p>
+                                    <input type="text" data-name="recipe_method_make1" name="recipe_method_make" placeholder="요리 방법 입력" data-number="5">
                                 </div>
                             </div>
                             <button type="button" class="make_btn" onclick="recipeMethodMake()">방법 +</button>

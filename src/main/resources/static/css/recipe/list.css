@@ -174,7 +174,9 @@ p.register_subtitle{
 }
 img.recipe_img{
     width: 100%;
+    min-height: 160px;
     height: 160px;
+    max-height: 160px;
     object-fit: cover;
     margin: 0 auto;
     border-radius: 5px;

@@ -16,4 +16,19 @@ import java.util.List;
 public interface RecipeRepository2 extends JpaRepository<RecipeEntity, Long> {
     @Override
     List<RecipeEntity> findAll();
+
+    @Transactional
+    @Modifying
+    @Query(value = "UPDATE recipe SET category1 = :category1, " +
+            "                  category2 = :category2, " +
+            "                  food = :food, " +
+            "                  ingredient = :ingredient, " +
+            "                  recipe = :recipe " +
+            "WHERE recipe_seq = :recipeSeq", nativeQuery = true)
+    void updateNoImg(@Param("recipeSeq") long recipeSeq,
+                     @Param("category1") String category1,
+                     @Param("category2") String category2,
+                     @Param("food") String food,
+                     @Param("ingredient") String ingredient,
+                     @Param("recipe") String recipe);
 }

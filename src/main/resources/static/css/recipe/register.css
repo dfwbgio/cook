@@ -58,21 +58,8 @@ input[name="image"] + img{
     margin: 0 auto;
 }
 .register_row{
-    position: absolute;
-    width: calc(100% - 40px);
     height: auto;
-    top: -100vh;
-    margin: 40px auto 0 auto;
-    transition: 1s;
-    opacity: 0;
-}
-.register_row.move_dw{
-    position: unset;
-    width: 100%;
-    transition: 1s;
-    opacity: 1;
-    top: auto;
-    transform: none;
+    margin: 60px auto 0 auto;
 }
 .register_row#recipe_div2,
 .register_row#recipe_div3{
@@ -147,7 +134,7 @@ input[name="image"] + img{
     max-height: 300px;
     overflow: hidden;
     overflow-y: auto;
-    padding: 15px 23px 15px 15px;
+    padding: 15px;
     background-color: var(--all-white);
     border-radius: 5px;
 }
@@ -205,13 +192,14 @@ input[name="image"] + img{
 /*방법*/
 .register_make div{
     display: flex;
+    align-items: center;
     margin: 0 auto;
 }
 .register_make div + div{
     margin-top: 5px;
 }
-.register_make div input{
-    max-width: 738px;
+.register_make div p{
+    min-width: 35px;
 }
 .register_make div button{
     display: block;

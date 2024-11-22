@@ -1,1 +1,274 @@
 @charset "UTF-8";
+.update_whole{
+    width: 100%;
+    max-width: 1000px;
+    height: auto;
+    margin: 0 auto;
+}
+.register_inner{
+    width: 100%;
+    height: auto;
+    margin: 40px auto;
+}
+/*컨텐츠 시작*/
+.register_flex{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: start;
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+}
+/*각 섹션 제목*/
+p.register_subtitle{
+    width: 100%;
+    height: auto;
+    margin: 0 auto 5px auto;
+}
+/*이미지*/
+.register_img{
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    margin: 0 auto;
+}
+.register_img label{
+    display: block;
+    width: 100%;
+    min-height: 300px;
+    height: 300px;
+    background-color: var(--all-white);
+    border-radius: 5px;
+    overflow: hidden;
+}
+.register_img label,
+.register_img label *{
+	cursor: url('../../image/icon/common/cursor-pointer.png'), pointer!important;
+}
+input[name="image"] + img{
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+/*공통*/
+.register_content{
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+}
+.register_row{
+    margin: 60px auto 0 auto;
+}
+.register_row.move_dw{
+    position: unset;
+    width: 100%;
+    transition: 1s;
+    opacity: 1;
+    top: auto;
+    transform: none;
+}
+.register_row#recipe_div2,
+.register_row#recipe_div3{
+    overflow: unset;
+    width: 100%;
+}
+.register_category{
+    width: 100%;
+    height: auto;
+    margin: 0 -20px;
+    overflow-x: auto;
+    padding: 0 20px;
+}
+.register_category::-webkit-scrollbar{
+    width: auto;
+    height: 5px;
+    background-color: var(--ld-blue);
+}
+.register_category::-webkit-scrollbar-thumb{
+    width: auto;
+    height: 5px;
+    background-color: var(--point-color);
+}
+.register_row label,
+.register_row label *{
+	cursor: url('../../image/icon/common/cursor-pointer.png'), pointer!important;
+}
+.register_row label{
+    width: max-content;
+    max-width: 100%;
+}
+.register_row label + label{
+    margin-left: 10px;
+}
+.register_row#recipe_div4 label{
+    margin: 0 10px 10px 0;
+}
+.register_row input[type="checkbox"] + span,
+.register_row input[type="radio"] + span{
+    display: block;
+    width: max-content;
+    max-width: calc(100% - 42px);
+    min-height: 20px;
+    height: auto;
+    line-height: 20px;
+    padding: 10px 20px;
+    background-color: #ebf8ff;
+    border: 1px solid var(--point-color);
+    border-radius: 5px;
+    word-break: break-all;
+    overflow: hidden;
+}
+.register_row input[type="checkbox"] + span:hover,
+.register_row input[type="radio"] + span:hover{
+    color: var(--second-color);
+    font-weight: bold;
+}
+.register_row input[type="checkbox"]:checked + span,
+.register_row input[type="radio"]:checked + span{
+    color: var(--all-white);
+    background-color: var(--second-color);
+    border-color: var(--point-color);
+}
+.register_row input[type="checkbox"]:checked + span:hover,
+.register_row input[type="radio"]:checked + span:hover{
+    font-weight: 400;
+}
+/*재료*/
+.register_ingredient{
+    width: calc(100% - 30px);
+    height: auto;
+    max-height: 300px;
+    overflow: hidden;
+    overflow-y: auto;
+    padding: 15px;
+    background-color: var(--all-white);
+    border-radius: 5px;
+}
+.register_ingredient::-webkit-scrollbar{
+    width: 8px;
+    height: auto;
+    background-color: var(--md-blue);
+    border-radius: 10px;
+}
+.register_ingredient::-webkit-scrollbar-thumb{
+    width: 8px;
+    height: auto;
+    background-color: var(--point-color);
+    border-radius: 10px;
+}
+.clicked_ingredient{
+    width: 100%;
+    height: auto;
+    max-height: 300px;
+    overflow: hidden;
+    overflow-y: auto;
+    padding-right: 8px;
+    margin: 10px auto 0 auto;
+}
+.clicked_ingredient::-webkit-scrollbar{
+    width: 8px;
+    height: auto;
+    background-color: var(--md-blue);
+    border-radius: 10px;
+}
+.clicked_ingredient::-webkit-scrollbar-thumb{
+    width: 8px;
+    height: auto;
+    background-color: var(--point-color);
+    border-radius: 10px;
+}
+.ingre_checked{
+    position: relative;
+    width: max-content;
+    max-width: 100%;
+    height: auto;
+    margin: 10px 50px 0 0;
+}
+.ingre_checked span{
+    position: absolute;
+    display: block;
+    min-width: 20px;
+    width: 20px;
+    height: 20px;
+    background: url('/image/icon/recipe/delete-bg-bu.png') no-repeat;
+    background-size: contain;
+    top: 2px;
+    right: -25px;
+}
+/*방법*/
+.register_make div{
+    display: flex;
+    align-items: center;
+    margin: 0 auto;
+}
+.register_make div + div{
+    margin-top: 5px;
+}
+.register_make div button{
+    display: block;
+    min-width: 100px;
+    width: 100px;
+    max-width: 100px;
+    height: 40px;
+    margin: 0 0 0 5px;
+    border-radius: 5px;
+    color: var(--point-color);
+    border: 1px solid var(--point-color);
+    background-color: var(--all-white);
+}
+.register_make div p{
+    min-width: 35px;
+}
+.register_make button:hover{
+    color: var(--second-color);
+    border: 1px solid var(--second-color);
+    background-color: var(--opa-blue);
+}
+button.make_btn{
+    display: block;
+    width: 100%;
+    max-width: 200px;
+    height: 40px;
+    margin: 5px 0 0 auto;
+    border-radius: 5px;
+    color: var(--all-white);
+    background-color: var(--point-color);
+}
+button.make_btn:hover{
+    background-color: var(--second-color);
+}
+.register_row .btn_flex{
+    margin: 0 auto 10px auto;
+}
+.register_row .btn_flex .btn_submit{
+    margin-left: 10px;
+}
+.register_row#recipe_div4 .btn_flex .btn_submit{
+
+}
+.register_row .btn_flex .btn_submit.btn_submit2{
+    color: var(--point-color);
+    border-color: var(--point-color);
+    background-color: var(--all-white);
+}
+.register_row .btn_flex .btn_submit.btn_submit2:hover{
+    color: var(--second-color);
+    border-color: var(--second-color);
+    background-color: var(--opa-white);
+}
+.register_row#recipe_div6 .btn_flex{
+    margin: 0 auto;
+}
+.register_row#recipe_div6 .btn_flex button{
+    min-width: 160px;
+    width: 160px;
+    max-width: 160px;
+}
+@media (max-width: 400px){
+    .register_row#recipe_div6 .btn_flex button{
+        min-width: 120px;
+        width: 120px;
+        max-width: 120px;
+    }
+}

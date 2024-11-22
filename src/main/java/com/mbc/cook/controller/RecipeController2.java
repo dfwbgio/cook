@@ -16,7 +16,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
-
 import java.io.*;
 import java.util.List;
 import java.util.Map;
@@ -97,6 +96,46 @@ public class RecipeController2 {
         recipeService2.recipeRegister(recipeEntity);
         return "redirect:/recipe/list";
     }
+
+    @PostMapping(value = "/recipeUpdate")
+    public String recipeUpdate(RecipeDTO dto,
+                               @RequestParam("recipe_seq") long recipe_seq,
+                               @RequestParam("category1") String category1,
+                               @RequestParam("category2") String category2,
+                               @RequestParam("image") MultipartFile image, // 수정
+                               @RequestParam("food") String food,
+                               @RequestParam("ingredient") String ingredient,
+                               @RequestParam("recipe") String recipe,
+                               @RequestParam("or_img") String or_img,
+                               Model model) throws IOException {
+        log.info(image.getOriginalFilename() + " 이미지!!!!!!!!!!!!!!!");
+
+        if (image.isEmpty()) { // 이미지 변경X
+            recipeService2.recipeUpdate(recipe_seq, category1, category2, food, ingredient, recipe);
+        } else { // 이미지 변경O
+            RecipeEntity recipeEntity = dto.getRecipeEntity();
+
+            // 파일 이름 설정
+            String fileName = image.getOriginalFilename();
+            UUID uu = UUID.randomUUID();
+            fileName = uu.toString() + "_" + fileName;
+
+            dto.setImage1(fileName);
+
+            // 파일 저장
+            image.transferTo(new File(imgPath + "\\" + fileName));
+
+            recipeService2.recipeRegister(recipeEntity);
+
+            // 기존 이미지 삭제
+            File origin = new File(imgPath + "\\" + or_img);
+            if (origin.exists()) {
+                origin.delete();
+            }
+        }
+        return "redirect:/recipe/list";
+    }
+
 
     //크롤링
     @PostMapping(value = "ingreCrolling", produces = "application/json; charset=UTF-8")

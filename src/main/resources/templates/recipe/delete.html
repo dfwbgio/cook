@@ -3,7 +3,7 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{common/layout}"
       layout:fragment="content">
-    <div class="delete_whole">
+    <div class="update_whole">
         <div class="detail_title">
             <div class="display_flex flex_align_c">
                 <button type="button" onclick="history.back(-1)">
@@ -12,5 +12,75 @@
                 <h1>레시피 삭제</h1>
             </div>
         </div>
+        <div class="register_inner">
+            <form action="/recipeUpdate" id="recipe_form" method="post" enctype="multipart/form-data">
+                <input type="hidden" id="recipe_seq" name="recipe_seq" th:value="${dto.recipe_seq}">
+                <input type="hidden" id="or_img" name="or_img" th:value="${dto.image}">
+                <input type="hidden" id="recipe_ingre" name="ingredient" th:value="${dto.ingredient}">
+                <input type="hidden" id="recipe_way" name="recipe" th:value="${dto.recipe}">
+                <div class="register_flex">
+                    <div class="register_img">
+                        <p class="register_subtitle">음식 이미지</p>
+                        <label for="recipeimg">
+                            <input type="file" th:value="${dto.image}" name="image" id="recipeimg" onchange="recipeImgChange(event)" data-number="0" hidden="hidden" accept="image/*">
+                            <img th:src="@{/image/upload/}+${dto.image}" id="recipePreviewImg" th:alt="${dto.food}+' 이미지'">
+                        </label>
+                    </div>
+                    <div class="register_content">
+                        <div class="register_row" id="recipe_div1">
+                            <p class="register_subtitle">음식명</p>
+                            <input type="text" id="food" name="food" th:value="${dto.food}" placeholder="음식명 입력">
+                        </div>
+                        <div class="register_row" id="recipe_div2">
+                            <p class="register_subtitle">레시피 카테고리</p>
+                            <div class="register_category display_flex flex_align_c">
+                                <label for="recipe_category1">
+                                    <input type="radio" onclick="recipeCategoryClick()" id="recipe_category1" name="category1" value="한식" th:checked="${dto.category1 == '한식'}" hidden>
+                                    <span>한식</span>
+                                </label>
+                                <label for="recipe_category2">
+                                    <input type="radio" onclick="recipeCategoryClick()" id="recipe_category2" name="category1" value="중식" th:checked="${dto.category1 == '중식'}" hidden>
+                                    <span>중식</span>
+                                </label>
+                                <label for="recipe_category3">
+                                    <input type="radio" onclick="recipeCategoryClick()" id="recipe_category3" name="category1" value="일식" th:checked="${dto.category1 == '일식'}" hidden>
+                                    <span>일식</span>
+                                </label>
+                                <label for="recipe_category4">
+                                    <input type="radio" onclick="recipeCategoryClick()" id="recipe_category4" name="category1" value="양식" th:checked="${dto.category1 == '양식'}" hidden>
+                                    <span>양식</span>
+                                </label>
+                            </div>
+                        </div>
+                        <!--소분류 카테고리-->
+                        <div class="register_row" id="recipe_div3">
+                            <p class='register_subtitle'>레시피 소분류</p>
+                            <div class='register_category display_flex flex_align_c'>
+                                <label th:for="${sub.categorynum}" th:each="sub:${recipeList}">
+                                    <input type="radio" th:id="${sub.categorynum}" name="category2" th:value="${sub.subcategory}" th:checked="${dto.category2 == sub.subcategory}" checked hidden>
+                                    <span th:text="${sub.subcategory}"></span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="register_row" id="recipe_div4">
+                            <p class="register_subtitle">재료</p>
+                            <div id="clicked_ingredient" class="clicked_ingredient display_flex flex_wrap flex_align_c"></div>
+                        </div>
+                        <div class="register_row" id="recipe_div5">
+                            <p class="register_subtitle">만드는 방법</p>
+                            <div id="register_make" class="register_make"></div>
+                            <button type="button" class="make_btn" onclick="recipeMethodMake()">방법 +</button>
+                        </div>
+                    </div>
+                    <div class="register_row" id="recipe_div6">
+                        <div class="btn_flex">
+                            <button type="button" onclick="history.go(-1)" class="btn_prev">이전</button>
+                            <button type="button" onclick="recipeRegister()" class="btn_submit">수정</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
+    <input type="hidden" id="recipe_method_len" value="1">
 </html>

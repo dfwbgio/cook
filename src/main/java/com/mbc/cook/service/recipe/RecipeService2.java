@@ -17,4 +17,6 @@ public interface RecipeService2 {
     List<IngreEntity> findIngredientAll();
 
     List<IngreEntity> findIngredientLike(String ingredient);
+
+    void recipeUpdate(long recipeSeq, String category1, String category2, String food, String ingredient, String recipe);
 }
