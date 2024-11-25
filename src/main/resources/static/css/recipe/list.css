@@ -53,7 +53,7 @@
 .list_search{
     width: 100%;
     height: auto;
-    margin: 10px auto 5px auto;
+    margin: 20px auto 5px auto;
     display: none;
 }
 /*각 섹션 제목*/
@@ -67,9 +67,7 @@ p.register_subtitle{
     height: auto;
     margin: 0 auto;
     transition: 1s;
-    opacity: 0;
     overflow-x: hidden;
-    display: none;
 }
 .register_row.move_dw{
     transition: 1s;
@@ -86,7 +84,15 @@ p.register_subtitle{
 }
 .register_row + .register_row,
 .list_category + .register_row{
-    margin-top: 10px;
+    margin-top: 20px;
+}
+.register_row .btn_flex{
+    margin: 0 0 0 10px;
+}
+.register_row .btn_flex button{
+    min-width: 100px;
+    width: 100px;
+    max-width: 100px;
 }
 .register_category{
     width: 100%;
@@ -300,7 +306,7 @@ a.btn_update:hover{
     }
     .list_category .register_row{
         width: max-content;
-        margin: 0 20px 0 0;
+        margin: 0 30px 0 0;
     }
 }
 @media (min-width: 1300px){
