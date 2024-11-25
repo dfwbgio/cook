@@ -28,7 +28,7 @@ function recipeCategoryClick(){
            $("#recipe_div3").html(category_div);
         },
          error: function (request, status, error) {
-            console.log("message: " + request.responseText)
+            alertShow("오류 발생!!!", request.responseText);
         }
     });
 }
@@ -112,7 +112,6 @@ function recipeIngreSelect(object) {
             },
             error: function(request, status, error) {
                 standbyHide();
-                console.log("AJAX 오류:", request.responseText);
                 alertShow("오류 발생!!!", request.responseText);
             }
         });
@@ -129,7 +128,6 @@ function recipeIngreSelect(object) {
             },
             error: function(request, status, error) {
                 standbyHide();
-                console.log("AJAX 오류:", request.responseText);
                 alertShow("오류 발생!!!", request.responseText);
             }
         });
@@ -176,9 +174,6 @@ function ingreClick(object){
         $('#ingre_checked'+ingre_seq).remove();
         $('#recipe_ingredient'+ingre_seq).prop('checked', false);
     }
-    console.log("index: "+index);
-    console.log(seqArray);
-    console.log(ingreArray);
 }
 //재료 불러오기 or 크롤링 후
 function ingreChk(){
@@ -258,7 +253,5 @@ $(document).ready(function(){
         }
         $('#register_make').append(make_br);
         $('#recipe_method_len').val(make_num);
-        console.log(seqArray);
-        console.log(ingreArray);
     }
 });
