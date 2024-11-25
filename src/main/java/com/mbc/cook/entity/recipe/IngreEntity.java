@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 public class IngreEntity {
     @Id
     @Column
-    Long ingre_seq;
+    long ingre_seq;
     @Column
     String name;
     @Column
