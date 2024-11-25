@@ -61,7 +61,7 @@
                             <!--크롤링 된 재료 뜨는 부분-->
                             <div id="register_ingredient" class="register_ingredient display_flex flex_wrap flex_align_c">
                                 <label th:for="@{recipe_ingredient}+${ingre.ingre_seq}" th:each="ingre:${ingreList}">
-                                    <input type="checkbox" onclick="ingreClick(this)" th:id="@{recipe_ingredient}+${ingre.ingre_seq}" name="recipe_ingredient" data-number="4" th:data-price="${ingre.price}" th:data-seq="${ingre.ingre_seq}" th:value="${ingre.name}" hidden>
+                                    <input type="checkbox" onclick="ingreClick(this)" th:id="@{recipe_ingredient}+${ingre.ingre_seq}" name="recipe_ingredient" th:data-name="${ingre.name}" th:value="${ingre.ingre_seq}" hidden>
                                     <span th:text="${ingre.name}"></span>
                                 </label>
                                 <p th:if="${ingreList == null} or ${ingreList.size() == 0}" class="no_data_txt">등록된 데이터가 없습니다.</p>

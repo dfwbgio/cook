@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Repository
-public interface IngreRepository extends JpaRepository<IngreEntity, String> {
+public interface IngreRepository extends JpaRepository<IngreEntity, Long> {
     @Override
     List<IngreEntity> findAll();
 

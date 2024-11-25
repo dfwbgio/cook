@@ -42,7 +42,6 @@ function recipeImgChange(event){
 }
 //레시피 등록 버튼 클릭 시
 var seqArray = [];//시퀀스
-var ingreArray = [];//재료
 var makeArray = [];//방법
 function recipeRegister(){
     var val_img = $('input[name="image"]').val();//이미지
@@ -69,19 +68,7 @@ function recipeRegister(){
       alertShow('정보 미입력','정보를 모두 입력해주세요.');
       return false;
     }
-    var ingre_ing = ""; // 결과를 저장할 변수 초기화
-    for (var i = 0; i < ingreArray.length; i += 3) { // i를 3씩 증가
-        var ingre_seq = ingreArray[i];        // 현재 순번
-        var ingre_name = ingreArray[i + 1];  // 이름
-        var ingre_price = ingreArray[i + 2]; // 가격
-        // 배열 범위 초과 방지
-        if (ingre_name === undefined || ingre_price === undefined) break;
-        // 결과 문자열 업데이트
-        ingre_ing += ingre_seq + "<br>";
-        ingre_ing += ingre_name + "<br>";
-        ingre_ing += ingre_price + "<br>";
-    }
-    $('#recipe_ingre').val(ingre_ing);
+    $('#recipe_ingre').val(seqArray);
     var way_make = ""; // 결과를 저장할 변수 초기화
     $('input[name="recipe_method_make"]').each(function(){
         var this_val = $(this).val();
@@ -140,7 +127,7 @@ function ingreLoad(object){
     if(ingrelist.ingredientlist.length != 0){
         for(var i in ingrelist.ingredientlist){
             ingredient_div += "<label for='recipe_ingredient"+ingrelist.ingredientlist[i].ingreseq+"'>";
-            ingredient_div += " <input type='checkbox' onclick='ingreClick(this)' id='recipe_ingredient"+ingrelist.ingredientlist[i].ingreseq+"' name='recipe_ingredient' data-id='recipe_ingredient"+ingrelist.ingredientlist[i].ingreseq+"' data-price='"+ingrelist.ingredientlist[i].ingreprice+"' data-seq='"+ingrelist.ingredientlist[i].ingreseq+"' value='"+ingrelist.ingredientlist[i].ingrename+"' hidden>";
+            ingredient_div += " <input type='checkbox' onclick='ingreClick(this)' id='recipe_ingredient"+ingrelist.ingredientlist[i].ingreseq+"' name='recipe_ingredient' data-id='recipe_ingredient"+ingrelist.ingredientlist[i].ingreseq+"' data-name='"+ingrelist.ingredientlist[i].ingrename+"' value='"+ingrelist.ingredientlist[i].ingreseq+"' hidden>";
             ingredient_div += " <span>"+ingrelist.ingredientlist[i].ingrename+"</span>";
             ingredient_div += "</label>";
         }
@@ -152,28 +139,25 @@ function ingreLoad(object){
 }
 //재료 클릭 시
 function ingreClick(object){
-    var ingre_seq = object.dataset.seq;//재료 시퀀스 넘버
-    var ingre_name = object.value;//재료 이름
-    var ingre_pri = object.dataset.price;//재료 가격
+    var ingre_seq = object.value;//재료 시퀀스 넘버
+    var ingre_name = object.dataset.name;//재료 시퀀스 넘버
     var index = seqArray.indexOf(ingre_seq);
     var ingre_br = "";
+    console.log(index);
     if(index < 0)  {//시퀀스 번호가 seqArray 배열에 없으면 ingreArray 배열에 값을 넣어줌
         seqArray.push(ingre_seq);
-        ingreArray.push(ingre_seq);
-        ingreArray.push(ingre_name);
-        ingreArray.push(ingre_pri);
-        ingre_br += "<div class='ingre_checked' id='ingre_checked"+ingre_seq+"' data-seq='"+ingre_seq+"' data-price='"+ingre_pri+"' value='"+ingre_name+"' onclick='ingreClick(this)'>";
-        ingre_br += "   <p>"+ingre_name+"</p>";
+        ingre_br += "<div class='ingre_checked' id='ingre_checked"+ingre_seq+"' value='"+ingre_seq+"' onclick='ingreClick(this)'>";
+        ingre_br += "   <p>" + ingre_name + "</p>";
         ingre_br += "   <span></span>";
         ingre_br += "</div>";
         $('#clicked_ingredient').append(ingre_br);
     }
     else{
         seqArray.splice(index, 1);
-        ingreArray.splice((index*3), 3);
         $('#ingre_checked'+ingre_seq).remove();
         $('#recipe_ingredient'+ingre_seq).prop('checked', false);
     }
+    console.log(seqArray);
 }
 //재료 불러오기 or 크롤링 후
 function ingreChk(){
@@ -216,21 +200,18 @@ $(document).ready(function(){
         var recipe_ingre = $('#recipe_ingre').val().split('<br>');
         var ingre_num = recipe_ingre.length - 1;
         var ingre_br = "";
-        for(var g = 0; g < (ingre_num / 3); g++){
+        for(var g = 0; g < ingre_num; g++){
             if(win_href.includes('&path=update')){
-            ingre_br += "<div class='ingre_checked' id='ingre_checked"+recipe_ingre[(3*g)]+"' data-seq='"+recipe_ingre[(3*g)]+"' data-price='"+recipe_ingre[(3*g) + 2]+"' value='"+recipe_ingre[(3*g) + 1]+"' onclick='ingreClick(this)'>";
+            ingre_br += "<div class='ingre_checked' id='ingre_checked"+recipe_ingre[g]+"' data-seq='"+recipe_ingre[g]+"' data-name='"+recipe_ingre[g + 1]+"' value='"+recipe_ingre[g + 1]+"' onclick='ingreClick(this)'>";
             }else if(win_href.includes('&path=delete')){
             ingre_br += "<div class='ingre_checked'>";
             }
-            ingre_br += "   <p>"+recipe_ingre[(3*g) + 1]+"</p>";
+            ingre_br += "   <p>"+recipe_ingre[g + 1]+"</p>";
             if(win_href.includes('&path=update')){
             ingre_br += "   <span></span>";
             }
             ingre_br += "</div>";
-            seqArray.push(recipe_ingre[(3*g)]);
-            ingreArray.push(recipe_ingre[(3*g)]);
-            ingreArray.push(recipe_ingre[(3*g)+1]);
-            ingreArray.push(recipe_ingre[(3*g)+2]);
+            seqArray.push(recipe_ingre[g]);
         }
         ingreChk();
         $('#clicked_ingredient').append(ingre_br);

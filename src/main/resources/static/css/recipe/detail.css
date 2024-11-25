@@ -1,1 +1,91 @@
 @charset "UTF-8";
+.detail_title .display_flex.flex_align_c{
+    justify-content: center;
+}
+.detail_title .display_flex.flex_align_c button{
+    margin: 0 10px;
+}
+.detail_title .display_flex.flex_align_c h1{
+    font-weight: bold;
+    font-size: 30px;
+}
+.recipe_img{
+    display:flex;
+    margin: 30px auto 10px auto;
+}
+.detail_whole p {
+    font-weight: bold;
+    margin: 20px 0 0 0;
+}
+.detail_whole hr {
+    margin: 5px 0;
+    border: 0.05rem solid #6fadcf;
+    font-weight: normal;
+}
+.detail_content .cart{
+    display:flex;
+    justify-content: space-between;
+    align-items: end;
+}
+.detail_content .cart button{
+    width: 120px;
+    height: fit-content;
+    padding: 5px;
+    border: 1px solid var(--point-color);
+    background-color:var(--all-white);
+    border-radius: 5px;
+}
+.detail_content .cart button:hover{
+    background-color:var(--opa-blue);
+    font-weight:bold;
+}
+#ingredientBox {
+    display: flex;
+    flex-wrap: wrap;
+    width: calc(100% - 144px);
+    min-width: 280px;
+    margin: 0 auto;
+}
+#ingredientBox .ingredient label{
+    width: fit-content;
+}
+.ingredient input[type="checkbox"]{
+    display: none;
+}
+.ingredient input[type="checkbox"]+span span.check{display:none;}
+.ingredient input[type="checkbox"]+span{
+    border: 1px solid var(--point-color);
+    background-color: var(--all-white);
+    display: block;
+    border-radius: 10px;
+    padding: 10px 0;
+    margin: 5px 0;
+    width: 120px;
+    text-align: center;
+}
+.ingredient{
+    margin-right: 10px;
+}
+.ingredient input[type="checkbox"]:checked+span{
+    background-color: var(--opa-blue);
+}
+.ingredient input[type="checkbox"]:checked+span span.check{
+    margin: 0 5px 0 0;
+    display:initial;
+}
+.recipeProcess{
+    padding: 0 0 0 20px;
+    display: flex;
+    align-items: center;
+    margin : 20px 0;
+}
+.recipeProcess p{
+    margin : 0;
+}
+.recipeProcess input[type="text"]:read-only{
+    border:none;
+    background-color: var(--bg-none);
+    opacity:1.0;
+    font-weight: bold;
+
+}
