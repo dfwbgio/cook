@@ -172,10 +172,13 @@ function ingreClick(object){
     }
     else{
         seqArray.splice(index, 1);
-        ingreArray.splice(index, 3);
+        ingreArray.splice((index*3), 3);
         $('#ingre_checked'+ingre_seq).remove();
         $('#recipe_ingredient'+ingre_seq).prop('checked', false);
     }
+    console.log("index: "+index);
+    console.log(seqArray);
+    console.log(ingreArray);
 }
 //재료 불러오기 or 크롤링 후
 function ingreChk(){
@@ -219,9 +222,15 @@ $(document).ready(function(){
         var ingre_num = recipe_ingre.length - 1;
         var ingre_br = "";
         for(var g = 0; g < (ingre_num / 3); g++){
+            if(win_href.includes('&path=update')){
             ingre_br += "<div class='ingre_checked' id='ingre_checked"+recipe_ingre[(3*g)]+"' data-seq='"+recipe_ingre[(3*g)]+"' data-price='"+recipe_ingre[(3*g) + 2]+"' value='"+recipe_ingre[(3*g) + 1]+"' onclick='ingreClick(this)'>";
+            }else if(win_href.includes('&path=delete')){
+            ingre_br += "<div class='ingre_checked'>";
+            }
             ingre_br += "   <p>"+recipe_ingre[(3*g) + 1]+"</p>";
+            if(win_href.includes('&path=update')){
             ingre_br += "   <span></span>";
+            }
             ingre_br += "</div>";
             seqArray.push(recipe_ingre[(3*g)]);
             ingreArray.push(recipe_ingre[(3*g)]);
@@ -237,13 +246,19 @@ $(document).ready(function(){
         for(var n = 0; n < make_num; n++){
             make_br += "<div id='recipe_method_make"+(n + 1)+"'>";
             make_br += "    <p>"+(n + 1)+".</p>";
-            make_br += "    <input type='text' data-id='recipe_method_make"+(n + 1)+"' name='recipe_method_make' value='"+make_input[n]+"' placeholder='요리 방법 입력'>";
-            if(n >= 1){
-                make_br += "    <button type='button' data-id='recipe_method_make"+(n + 1)+"' data-num='"+(n + 1)+"' onclick='recipeMathodDelete(this)'>방법 -</button>";
+            if(win_href.includes('&path=update')){
+                make_br += "    <input type='text' data-id='recipe_method_make"+(n + 1)+"' name='recipe_method_make' value='"+make_input[n]+"' placeholder='요리 방법 입력'>";
+                if(n >= 1){
+                    make_br += "    <button type='button' data-id='recipe_method_make"+(n + 1)+"' data-num='"+(n + 1)+"' onclick='recipeMathodDelete(this)'>방법 -</button>";
+                }
+            }else{
+                make_br += "    <input type='text' data-id='recipe_method_make"+(n + 1)+"' name='recipe_method_make' value='"+make_input[n]+"' placeholder='요리 방법 입력' readonly>";
             }
             make_br += "</div>";
         }
         $('#register_make').append(make_br);
         $('#recipe_method_len').val(make_num);
+        console.log(seqArray);
+        console.log(ingreArray);
     }
 });
