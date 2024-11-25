@@ -38,6 +38,9 @@ $(document).ready(function(){
     else if(win_href.includes('/info')){
         $('head').append('<script src="/js/info/info.js"></script>');
     }
+    else if(win_href.includes('/faq')){
+        $('head').append('<script src="/js/faq/faq.js"></script>');
+    }
     else if(win_href.includes('/community')){
         $('head').append('<script src="/js/community/community.js"></script>');
     }

@@ -9,8 +9,24 @@
                 <button type="button" onclick="history.back(-1)">
                     <img src="/image/icon/common/arrow-sm-prev.svg">
                 </button>
-                <h1>1:1 문의 등록</h1>
+                <h1>FAQ 등록</h1>
             </div>
         </div>
+
+    <form action="/faq/faqsave" method="post">
+        <div class="faq-main">
+            <div class="question">
+                <label>질문</label>
+                <input type="text" name="question" id="question">
+            </div>
+            <div class="A">
+                <label>답변</label>
+                <textarea rows="5" cols="100" name="asked" id="asked"></textarea>
+            </div>
+        </div>
+        <div class="submit">
+            <button type="submit" value="등록">등록</button>
+        </div>
+    </form>
     </div>
 </html>

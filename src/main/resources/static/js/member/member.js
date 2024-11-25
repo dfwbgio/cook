@@ -13,8 +13,18 @@
     });
 
     $(document).ready(function() {
-    		$('#name').focus();
-    	});
+        $('#name').focus();
+        $('.pw i').on('click',function(){
+            $('input').toggleClass('active');
+            if($('input').hasClass('active')){
+                $(this).attr('class',"fa fa-eye fa-lg")
+                .prev('input').attr('type',"text");
+            }else{
+                $(this).attr('class',"fa fa-eye-slash fa-lg")
+                .prev('input').attr('type','password');
+            }
+        });
+    });
     function click_btn(){
         if(window.event.keyCode == 13){
             $('#findid').click();
@@ -192,6 +202,8 @@
             });
         }
     };
+
+
 
     //이메일 도메인에 값 넣기
     function mailSelect(){
