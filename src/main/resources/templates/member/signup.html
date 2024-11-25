@@ -45,14 +45,13 @@
             <div class="form-group">
                 <label>주민번호</label>
                 <div class="jumin">
-                    <input type="text" id="jumin1" name="jumin1" class="jumin1" placeholder="000000" onkeyup="jumin_concat()" th:field="*{jumin1}" required>
+                    <input type="text" id="jumin1" name="jumin1" class="jumin1" placeholder="000000" th:field="*{jumin1}" maxlength="6" required>
                     <p>-</p>
-                    <input type="text" id="jumin2" name="jumin2" class="jumin2" placeholder="0" onkeyup="jumin_concat()" th:field="*{jumin2}" required>
+                    <input type="text" id="jumin2" name="jumin2" class="jumin2" placeholder="0" th:field="*{jumin2}" required>
                     <p>* * * * * *</p>
                 </div>
                 <p th:if="${#fields.hasErrors('jumin1')}" th:errors="*{jumin1}" class="error"></p>
                 <p th:if="${#fields.hasErrors('jumin2')}" th:errors="*{jumin2}" class="error"></p>
-                <input type="hidden" id="total_jumin" name="jumin">
             </div>
             <div class="col-sm-10">
                 <label>주소</label>
@@ -72,23 +71,22 @@
             <div class="form-group">
                 <label>전화번호</label>
                 <div class="tel">
-                    <input type="text" class="form-control" name="tel1" id="tel1"  placeholder="ex)  010" onkeyup="tel_concat()" th:field="*{tel1}" required>
+                    <input type="text" class="form-control" name="tel1" id="tel1"  placeholder="ex)  010" th:field="*{tel1}" maxlength="3" required>
                     <p>-</p>
-                    <input type="text" class="form-control" name="tel2" id="tel2" placeholder="1234" onkeyup="tel_concat()" th:field="*{tel2}" required>
+                    <input type="text" class="form-control" name="tel2" id="tel2" placeholder="1234" th:field="*{tel2}" maxlength="4" required>
                     <p>-</p>
-                    <input type="text" class="form-control" name="tel3" id="tel3" placeholder="5678" onkeyup="tel_concat()" th:field="*{tel3}" required>
+                    <input type="text" class="form-control" name="tel3" id="tel3" placeholder="5678" th:field="*{tel3}" maxlength="4" required>
                 </div>
                 <p th:if="${#fields.hasErrors('tel1')}" th:errors="*{tel1}" class="error"></p>
                 <p th:if="${#fields.hasErrors('tel2')}" th:errors="*{tel2}" class="error"></p>
                 <p th:if="${#fields.hasErrors('tel3')}" th:errors="*{tel3}" class="error"></p>
-                <input type="hidden" id="total_tel" name="tel">
             </div>
             <div class="form-group">
                 <label>이메일</label>
                 <div class="email">
-                    <input type="text" id="email_id" class="form_w200" value="" title="이메일 아이디" placeholder="이메일" maxlength="18" onkeyup="email_concat()" th:field="*{email_id}" required />
+                    <input type="text" id="email_id" class="form_w200" value="" title="이메일 아이디" placeholder="이메일" maxlength="18" th:field="*{email_id}" required />
                     <p>@</p>
-                    <input type="text" id="email_domain" class="form_w200" value="" title="이메일 도메인" placeholder="직접 입력" maxlength="18" onkeyup="email_concat()" th:field="*{email_domain}" required />
+                    <input type="text" id="email_domain" class="form_w200" value="" title="이메일 도메인" placeholder="직접 입력" maxlength="18" th:field="*{email_domain}" required />
                     <select class="select" id="domain_select" title="이메일 도메인 주소 선택" onchange="mailSelect()">
                         <option value="emailall" selected>-선택-</option>
                         <option value="naver.com">naver.com</option>
@@ -99,7 +97,6 @@
                         <option value="nate.com">nate.com</option>
                         <option value="yahoo.com">yahoo.com</option>
                     </select>
-                    <input type="hidden" id="total_email" name="email">
                 </div>
                 <p th:if="${#fields.hasErrors('email_id')}" th:errors="*{email_id}" class="error"></p>
                 <p th:if="${#fields.hasErrors('email_domain')}" th:errors="*{email_domain}" class="error"></p>

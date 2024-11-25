@@ -2,6 +2,28 @@
 //시아
 
 $(document).ready(function(){
+
+    //주민번호 maxLength만큼 입력했을 시 커서 자동 이동
+    $(".jumin1").keyup(function(){
+        if(this.value.length == this.maxLength) {
+            $(".jumin2").focus();
+        }
+    })
+
+    //전화번호 maxLength만큼 입력했을 시 커서 자동 이동(첫번째->두번째)
+    $("#tel1").keyup(function(){
+        if(this.value.length == this.maxLength) {
+            $("#tel2").focus();
+        }
+    })
+
+    //전화번호 maxLength만큼 입력했을 시 커서 자동 이동(두번째->세번째)
+    $("#tel2").keyup(function(){
+        if(this.value.length == this.maxLength) {
+            $("#tel3").focus();
+        }
+    })
+
     //비밀번호 보기 구현
     $('.pw i').on('click',function(){
         $('input').toggleClass('active');
@@ -16,13 +38,13 @@ $(document).ready(function(){
     //아이디 유효성 검사후 중복체크
     $("#idcheck").click(function(){
         var id = $("#id").val();
-        var vid=/^[a-zA-Z0-9]{4,10}$/;
+        var vid=/^[a-zA-Z0-9]{4,16}$/;
         if(id==""){
             alertShow('오류','아이디를 입력해주세요.');
             return false;
         }
         else if(!vid.test(id)){
-            alertShow('오류','아이디는 영문자와 숫자로만 4~10글자 이내로만 작성해야합니다.');
+            alertShow('오류','아이디는 영문자와 숫자로만 4~16글자 이내로만 작성해야합니다.');
             return false;
         }
         $.ajax({
