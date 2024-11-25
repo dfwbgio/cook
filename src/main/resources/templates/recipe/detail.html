@@ -6,11 +6,22 @@
     <div class="detail_whole">
         <div class="detail_title">
             <div class="display_flex flex_align_c">
-                <button type="button" onclick="history.back(-1)">
+                <button type="button" th:onclick="|location.href='@{/recipe/list}'|">
                     <img src="/image/icon/common/arrow-sm-prev.svg">
                 </button>
-                <h1>레시피 상세</h1>
+                <h1 th:text="${dto.food}+'의 레시피'"></h1>
             </div>
         </div>
+        <div class="detail_content">
+            <img class="recipe_img" th:src="@{/image/upload/}+${dto.image}">
+            <form action="cartsave" method="post">
+                <div class="cart"><p>필요 재료</p><button type="submit">필요한 재료 담기</button></div><hr>
+                <input type="hidden" id="ingredient" th:value="${dto.ingredient}" >
+                <div id="ingredientBox"></div>
+            </form>
+        <!-- 레시피 -->
+        <p>요리 순서</p><hr>
+        <input type="hidden" id="recipe" th:value="${dto.recipe}">
+        <div id="recipeProcess"></div>
     </div>
 </html>
