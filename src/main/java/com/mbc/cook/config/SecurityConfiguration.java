@@ -61,10 +61,14 @@ public class SecurityConfiguration {
                 "/getpw",
                 "/pwupdate",
                 "/pwUpdate"
+
         };
         /* @formatter:off */
         http
-                .csrf().disable()
+                .csrf()
+                .disable()
+//                .ignoringRequestMatchers("/faq/faqsave", "/faq/updatesave", "/faq/delete", "/faq/deletesave")
+//                .and()
                 .authorizeRequests()
                 .requestMatchers(urlsToBePermittedAll).permitAll()
                 .requestMatchers("/admin/**").hasAuthority("ADMIN")
