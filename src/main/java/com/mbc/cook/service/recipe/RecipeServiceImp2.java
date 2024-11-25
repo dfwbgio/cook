@@ -44,4 +44,9 @@ public class RecipeServiceImp2 implements RecipeService2 {
     public void recipeUpdate(long recipeSeq, String category1, String category2, String food, String ingredient, String recipe) {
         recipeRepository2.updateNoImg(recipeSeq,category1,category2,food,ingredient,recipe);
     }
+
+    @Override
+    public void recipeDelete(long recipeSeq) {
+        recipeRepository2.deleteById(recipeSeq);
+    }
 }

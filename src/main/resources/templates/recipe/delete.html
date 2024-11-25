@@ -13,41 +13,40 @@
             </div>
         </div>
         <div class="register_inner">
-            <form action="/recipeUpdate" id="recipe_form" method="post" enctype="multipart/form-data">
+            <form action="/recipeDelete" id="recipe_form" method="post">
                 <input type="hidden" id="recipe_seq" name="recipe_seq" th:value="${dto.recipe_seq}">
-                <input type="hidden" id="or_img" name="or_img" th:value="${dto.image}">
                 <input type="hidden" id="recipe_ingre" name="ingredient" th:value="${dto.ingredient}">
                 <input type="hidden" id="recipe_way" name="recipe" th:value="${dto.recipe}">
                 <div class="register_flex">
                     <div class="register_img">
                         <p class="register_subtitle">음식 이미지</p>
                         <label for="recipeimg">
-                            <input type="file" th:value="${dto.image}" name="image" id="recipeimg" onchange="recipeImgChange(event)" data-number="0" hidden="hidden" accept="image/*">
+                            <input type="text" th:value="${dto.image}" name="image" id="recipeimg" hidden="hidden" readonly>
                             <img th:src="@{/image/upload/}+${dto.image}" id="recipePreviewImg" th:alt="${dto.food}+' 이미지'">
                         </label>
                     </div>
                     <div class="register_content">
                         <div class="register_row" id="recipe_div1">
                             <p class="register_subtitle">음식명</p>
-                            <input type="text" id="food" name="food" th:value="${dto.food}" placeholder="음식명 입력">
+                            <input type="text" id="food" name="food" th:value="${dto.food}" readonly>
                         </div>
                         <div class="register_row" id="recipe_div2">
                             <p class="register_subtitle">레시피 카테고리</p>
                             <div class="register_category display_flex flex_align_c">
                                 <label for="recipe_category1">
-                                    <input type="radio" onclick="recipeCategoryClick()" id="recipe_category1" name="category1" value="한식" th:checked="${dto.category1 == '한식'}" hidden>
+                                    <input type="radio" id="recipe_category1" name="category1" value="한식" th:checked="${dto.category1 == '한식'}" hidden disabled>
                                     <span>한식</span>
                                 </label>
                                 <label for="recipe_category2">
-                                    <input type="radio" onclick="recipeCategoryClick()" id="recipe_category2" name="category1" value="중식" th:checked="${dto.category1 == '중식'}" hidden>
+                                    <input type="radio" id="recipe_category2" name="category1" value="중식" th:checked="${dto.category1 == '중식'}" hidden disabled>
                                     <span>중식</span>
                                 </label>
                                 <label for="recipe_category3">
-                                    <input type="radio" onclick="recipeCategoryClick()" id="recipe_category3" name="category1" value="일식" th:checked="${dto.category1 == '일식'}" hidden>
+                                    <input type="radio" id="recipe_category3" name="category1" value="일식" th:checked="${dto.category1 == '일식'}" hidden disabled>
                                     <span>일식</span>
                                 </label>
                                 <label for="recipe_category4">
-                                    <input type="radio" onclick="recipeCategoryClick()" id="recipe_category4" name="category1" value="양식" th:checked="${dto.category1 == '양식'}" hidden>
+                                    <input type="radio" id="recipe_category4" name="category1" value="양식" th:checked="${dto.category1 == '양식'}" hidden disabled>
                                     <span>양식</span>
                                 </label>
                             </div>
@@ -57,7 +56,7 @@
                             <p class='register_subtitle'>레시피 소분류</p>
                             <div class='register_category display_flex flex_align_c'>
                                 <label th:for="${sub.categorynum}" th:each="sub:${recipeList}">
-                                    <input type="radio" th:id="${sub.categorynum}" name="category2" th:value="${sub.subcategory}" th:checked="${dto.category2 == sub.subcategory}" checked hidden>
+                                    <input type="radio" th:id="${sub.categorynum}" name="category2" th:value="${sub.subcategory}" th:checked="${dto.category2 == sub.subcategory}" checked hidden disabled>
                                     <span th:text="${sub.subcategory}"></span>
                                 </label>
                             </div>
@@ -69,13 +68,12 @@
                         <div class="register_row" id="recipe_div5">
                             <p class="register_subtitle">만드는 방법</p>
                             <div id="register_make" class="register_make"></div>
-                            <button type="button" class="make_btn" onclick="recipeMethodMake()">방법 +</button>
                         </div>
                     </div>
                     <div class="register_row" id="recipe_div6">
                         <div class="btn_flex">
                             <button type="button" onclick="history.go(-1)" class="btn_prev">이전</button>
-                            <button type="button" onclick="recipeRegister()" class="btn_submit">수정</button>
+                            <button type="submit" class="btn_submit">삭제</button>
                         </div>
                     </div>
                 </div>

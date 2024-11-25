@@ -119,20 +119,11 @@ input[name="image"] + img{
     word-break: break-all;
     overflow: hidden;
 }
-.register_row input[type="checkbox"] + span:hover,
-.register_row input[type="radio"] + span:hover{
-    color: var(--second-color);
-    font-weight: bold;
-}
 .register_row input[type="checkbox"]:checked + span,
 .register_row input[type="radio"]:checked + span{
     color: var(--all-white);
     background-color: var(--second-color);
     border-color: var(--point-color);
-}
-.register_row input[type="checkbox"]:checked + span:hover,
-.register_row input[type="radio"]:checked + span:hover{
-    font-weight: 400;
 }
 /*재료*/
 .register_ingredient{

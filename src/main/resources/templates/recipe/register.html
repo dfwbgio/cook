@@ -11,7 +11,6 @@
                 </button>
                 <h1>레시피 등록</h1>
             </div>
-            <p>* 입력창 입력 시 다음 섹션이 나타납니다.</p>
         </div>
         <div class="register_inner">
             <form action="/recipeRegister" id="recipe_form" method="post" enctype="multipart/form-data">
@@ -22,7 +21,7 @@
                         <p class="register_subtitle">음식 이미지</p>
                         <label for="recipeimg">
                             <input type="file" name="image" id="recipeimg" onchange="recipeImgChange(event)" data-number="0" hidden="hidden" accept="image/*">
-                            <img src="" title="이미지를 업로드하면 다음 섹션이 나타납니다." id="recipePreviewImg" alt="음식 이미지" onerror="this.src='/image/icon/info/profile-default.png'">
+                            <img src="" title="이미지를 업로드하면 미리보기가 활성화 됩니다." id="recipePreviewImg" alt="음식 이미지" onerror="this.src='/image/icon/info/profile-default.png'">
                         </label>
                     </div>
                     <div class="register_content">

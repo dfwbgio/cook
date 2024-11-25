@@ -107,24 +107,18 @@ public class RecipeController2 {
                                @RequestParam("ingredient") String ingredient,
                                @RequestParam("recipe") String recipe,
                                @RequestParam("or_img") String or_img,
+                               MultipartHttpServletRequest multi,
                                Model model) throws IOException {
-        log.info(image.getOriginalFilename() + " 이미지!!!!!!!!!!!!!!!");
-
         if (image.isEmpty()) { // 이미지 변경X
             recipeService2.recipeUpdate(recipe_seq, category1, category2, food, ingredient, recipe);
         } else { // 이미지 변경O
-            RecipeEntity recipeEntity = dto.getRecipeEntity();
-
-            // 파일 이름 설정
-            String fileName = image.getOriginalFilename();
+            MultipartFile mf = multi.getFile("image");
+            String fileName = mf.getOriginalFilename();
             UUID uu = UUID.randomUUID();
             fileName = uu.toString() + "_" + fileName;
-
             dto.setImage1(fileName);
-
-            // 파일 저장
-            image.transferTo(new File(imgPath + "\\" + fileName));
-
+            mf.transferTo(new File(imgPath + "\\" + fileName));
+            RecipeEntity recipeEntity = dto.getRecipeEntity();
             recipeService2.recipeRegister(recipeEntity);
 
             // 기존 이미지 삭제
@@ -205,5 +199,15 @@ public class RecipeController2 {
         String ingredata = tot.toString();
         PrintWriter pp = response.getWriter();
         pp.print(ingredata);
+    }
+
+    @PostMapping(value = "/recipeDelete")
+    public String recipeDelete(@RequestParam(value = "recipe_seq") long recipe_seq,
+                               @RequestParam(value = "image") String image){
+        recipeService2.recipeDelete(recipe_seq);
+        // 기존 이미지 삭제
+        File origin = new File(imgPath + "\\" + image);
+        origin.delete();
+        return "redirect:/recipe/list";
     }
 }
