@@ -17,10 +17,10 @@ from bs4 import BeautifulSoup
 ingredient = sys.argv[1]
 
 # 오라클 라이브러리 경로 설정
-oracledb.init_oracle_client(lib_dir="C:\\project\\cook\\instantclient-basic-windows.x64-11.2.0.4.0\\instantclient_11_2")
+oracledb.init_oracle_client(lib_dir="C:\\project\\cook\\instantclient_11_2")
 
 # 오라클 데이터베이스 연결
-connect = oracledb.connect(user='lhr', password='1234', dsn='localhost')
+connect = oracledb.connect(user='kkr', password='1234', dsn='localhost')
 c = connect.cursor()  # 커서 생성
 
 # 크롬 옵션 설정
@@ -30,7 +30,7 @@ options.add_argument("--disable-blink-features=AutomationControlled")  # 자동�
 options.add_argument("--disable-gpu")  # GPU 비활성화
 options.add_argument("--disable-dev-shm-usage")  # 메모리 부족 문제 해결
 options.add_argument("--no-sandbox")  # 샌드박스 모드 비활성화 (리눅스 환경에서 권장)
-options.add_argument("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.5481.77 Safari/537.36")
+options.add_argument("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/192.168.0.12 Safari/537.36")
 
 # WebDriver 설정
 driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)

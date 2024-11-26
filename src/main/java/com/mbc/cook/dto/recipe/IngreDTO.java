@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @Data
 
 public class IngreDTO {
-    Long ingre_seq;
+    long ingre_seq;
     String name;
     int price;
     String keyword;

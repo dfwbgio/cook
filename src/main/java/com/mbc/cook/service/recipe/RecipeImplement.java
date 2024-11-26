@@ -26,4 +26,15 @@ public class RecipeImplement implements RecipeService {
 
     @Override
     public IngreEntity findIngredientByID(long num) { return ingreRepository.findById(num).orElse(null); }
+
+    @Override
+    public void cartSave(String id, String ingredient) {
+        recipeRepository.cartSave(id, ingredient);
+    }
+
+    @Override
+    public List<String> selectIngredient(String id) {
+        return recipeRepository.selectIngredient(id);
+    }
+
 }

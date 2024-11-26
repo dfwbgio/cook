@@ -29,8 +29,9 @@
                     <a href="/login" sec:authorize="isAnonymous()" id="header_login"><span></span>로그인</a>
                     <a href="/signup" sec:authorize="isAnonymous()" id="header_signup"><span></span>회원가입</a>
                     <!--로그인 후(로그인 구현 후 수정)-->
-                    <a href="#" sec:authorize="hasAuthority('ADMIN')"><span id="adminmypage" th:text="관리자로그인중"></span></a>
+                    <a href="#" sec:authorize="hasAuthority('ADMIN')"><span id="adminmypage" th:text="관리자페이지"></span></a>
                     <a href="javascript:void(0)" onclick="mypageChk()" sec:authorize="isAuthenticated()"><span id="header_mypage" th:text="${#authentication.name}"></span>님</a>
+                    <a href="/recipe/cart" sec:authorize="isAuthenticated()"><span id="cart"></span>장바구니</a>
                     <a href="/logout" sec:authorize="isAuthenticated()"><span id="header_logout"></span>로그아웃</a>
                     <!--관리자한테만 뜸(로그인 구현 후 수정)-->
                     <a href="/admin/list" sec:authorize="hasAuthority('ADMIN')" id="header_member" th:text="회원관리"></a>

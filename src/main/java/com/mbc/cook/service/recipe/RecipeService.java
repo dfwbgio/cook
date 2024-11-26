@@ -14,4 +14,8 @@ public interface RecipeService {
     void clickup(long num);
 
     IngreEntity findIngredientByID(long num);
+
+    void cartSave(String id, String ingredient);
+
+    List<String> selectIngredient(String id);
 }

@@ -1,16 +1,8 @@
 //규리
-function confirmOk(){
-    alertShow('레시피1','레시피1 js');
+function confirmOk(title, subtitle, type){
+    confirmShow(title,subtitle,type);
 }
 $(document).ready(function(){
-    var ingredient = $('#ingredient').val().split(",");
-    var ingredient_div = "";
-       for (var i in ingredient){
-           ingredient_div += "<div class='ingredient'>"
-           ingredient_div +=    "<label><input type='checkbox' id='ingredient_"+i+"' name='ingredient' value='"+ingredient[i]+"' checked><span><span class='check'>✔</span>"+ingredient[i]+"</span></label>";
-           ingredient_div += "</div>";
-       }
-       $('#ingredientBox').append(ingredient_div);
     //요리 레시피 분할
     var recipe = $('#recipe').val().split("<br>");
     var recipe_div = "";
@@ -20,4 +12,9 @@ $(document).ready(function(){
         recipe_div += "</div>";
     }
     $('#recipeProcess').append(recipe_div);
+
+    $('#cartClick').click(function(){
+        confirmOk("해당 상품들을 장바구니에 담으시겠습니까?","담길재료내용","장바구니에 재료가 담겼습니다.");
+
+    });
 });

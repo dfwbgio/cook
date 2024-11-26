@@ -16,4 +16,14 @@ public interface RecipeRepository extends JpaRepository<RecipeEntity, Long> {
     @Modifying
     @Query(value = "update recipe set hits = hits + 1 where recipe_seq = :num",nativeQuery = true)
     void clickup(@Param("num") long num);
+
+    @Transactional
+    @Modifying
+    @Query(value = "insert into cart (cart_seq, id, order_item, status) values (cart_seq.nextval, :id, :ingredient, 'orderprev')",nativeQuery = true)
+    void cartSave(@Param("id") String id, @Param("ingredient") String ingredient);
+
+    @Transactional
+    @Modifying
+    @Query(value = "select order_item from cart where id = :id",nativeQuery = true)
+    List<String> selectIngredient(@Param("id") String id);
 }
