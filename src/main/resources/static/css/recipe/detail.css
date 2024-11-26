@@ -60,8 +60,9 @@
     border-radius: 10px;
     padding: 10px 0;
     margin: 5px 0;
-    width: 120px;
+    width: max-content;
     text-align: center;
+    padding: 10px 15px;
 }
 .ingredient{
     margin-right: 10px;
