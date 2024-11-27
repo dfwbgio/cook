@@ -9,9 +9,16 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 @Table(name = "ingredient")
+@SequenceGenerator(
+    name = "ingre_num",//시퀀스 이름X dto 내 아이디랑 같음
+    sequenceName = "ingre_seq",
+    allocationSize = 1,
+    initialValue = 1
+)
 
 public class IngreEntity {
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "ingre_num")
     @Column
     long ingre_seq;
     @Column
