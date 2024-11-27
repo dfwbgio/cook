@@ -259,6 +259,10 @@ a.link_on{
         transition: none;
         z-index: 1;
     }
+    .header_side .display_flex{
+        width: max-content;
+        margin: 0;
+    }
     .header_side .display_flex a{
         padding-bottom: 8px;
         margin-bottom: 2px;
