@@ -51,6 +51,6 @@ public class RecipeServiceImp2 implements RecipeService2 {
 
     @Override
     public Page<RecipeEntity> recipeAllPaging(int page) {
-        return recipeRepository2.findAll(PageRequest.of(page,10, Sort.by(Sort.Direction.DESC,"recipeseq")));
+        return recipeRepository2.findAll(PageRequest.of(page,12, Sort.by(Sort.Direction.DESC,"recipeseq")));
     }
 }

@@ -85,7 +85,7 @@
             </div>
             <p th:if="${recipeList == null} or ${recipeList.size() == 0}" class="no_data_txt">등록된 레시피가 없습니다.</p>
         </div>
-        <div class="pagination">
+        <div class="pagination" th:if="${total > 0}">
             <div th:each="page : ${#numbers.sequence(0, total -1)}">
                 <span th:if="${npage == pageStat.index}">
                     <p th:text="${pageStat.index+1}"></p>

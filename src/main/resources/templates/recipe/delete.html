@@ -9,10 +9,11 @@
                 <button type="button" onclick="history.back(-1)">
                     <img src="/image/icon/common/arrow-sm-prev.svg">
                 </button>
-                <h1>레시피 삭제</h1>
+                <h1 th:text="'`'+${dto.food}+'` 레시피 삭제'"></h1>
             </div>
         </div>
         <div class="register_inner">
+            <p class="recipe_delete_title">정말 삭제하시겠습니까?<br/>레시피를 삭제하면 <span>복구하실 수 없습니다.</span></p>
             <form action="/recipeDelete" id="recipe_form" method="post">
                 <input type="hidden" id="recipeseq" name="recipeseq" th:value="${dto.recipeseq}">
                 <input type="hidden" id="recipe_ingre" name="ingredient" th:value="${dto.ingredient}">

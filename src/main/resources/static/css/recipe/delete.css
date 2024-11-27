@@ -1,4 +1,16 @@
 @charset "UTF-8";
+p.recipe_delete_title{
+    font-size: 18px;
+    line-height: 27px;
+    text-align: center;
+    margin: 0 auto 40px auto;
+}
+p.recipe_delete_title span{
+    font-size: 18px;
+    line-height: 27px;
+    text-align: center;
+    color: var(--red-color);
+}
 .update_whole{
     width: 100%;
     max-width: 1000px;
