@@ -11,7 +11,7 @@ function randomClick() {
             var listnum=sublist.recipeRandom.length;
             var ranrdom = Math.floor(Math.random()*listnum);
             var random_div="";
-            random_div+="<div class='random_div' data-seq='"+sublist.recipeRandom[ranrdom].recipe_seq+"' onclick='recipeGo(this)'>";
+            random_div+="<div class='random_div' data-seq='"+sublist.recipeRandom[ranrdom].recipeseq+"' onclick='recipeGo(this)'>";
             random_div+="   <img src='/image/upload/"+sublist.recipeRandom[ranrdom].image+"' alt='"+sublist.recipeRandom[ranrdom].food+" 이미지'>";
             random_div+="   <p>"+sublist.recipeRandom[ranrdom].food+"</p>";
             random_div+="</div>";

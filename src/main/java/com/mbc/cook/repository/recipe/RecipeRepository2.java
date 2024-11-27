@@ -24,8 +24,8 @@ public interface RecipeRepository2 extends JpaRepository<RecipeEntity, Long> {
             "                  food = :food, " +
             "                  ingredient = :ingredient, " +
             "                  recipe = :recipe " +
-            "WHERE recipe_seq = :recipeSeq", nativeQuery = true)
-    void updateNoImg(@Param("recipeSeq") long recipeSeq,
+            "WHERE recipeseq = :recipeseq", nativeQuery = true)
+    void updateNoImg(@Param("recipeseq") long recipeseq,
                      @Param("category1") String category1,
                      @Param("category2") String category2,
                      @Param("food") String food,

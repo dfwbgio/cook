@@ -11,6 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -33,11 +34,16 @@ public class RecipeController2 {
     RecipeService2 recipeService2;
 
     @GetMapping(value = "/recipe/list")
-    public String recipeList(Model model) {
-        List<RecipeEntity> list = recipeService2.recipeSelectAll();
+    public String recipeList(Model model, @RequestParam(required = false, defaultValue = "0", value = "page") int page) {
+//        List<RecipeEntity> list = recipeService2.recipeSelectAll();
         model.addAttribute("cssPath", "/recipe/list");//css 패스 경로(바꾸지X)
         model.addAttribute("pageTitle", "레시피");//타이틀 제목
-        model.addAttribute("recipeList", list);
+//        model.addAttribute("recipeList", list);
+        Page<RecipeEntity> list = recipeService2.recipeAllPaging(page);
+
+        model.addAttribute("npage", page);
+        model.addAttribute("total",list.getTotalPages());
+        model.addAttribute("recipeList", list.getContent());
         return "recipe/list";
     }
 
@@ -99,7 +105,7 @@ public class RecipeController2 {
 
     @PostMapping(value = "/recipeUpdate")
     public String recipeUpdate(RecipeDTO dto,
-                               @RequestParam("recipe_seq") long recipe_seq,
+                               @RequestParam("recipeseq") long recipeseq,
                                @RequestParam("category1") String category1,
                                @RequestParam("category2") String category2,
                                @RequestParam("image") MultipartFile image, // 수정
@@ -110,7 +116,7 @@ public class RecipeController2 {
                                MultipartHttpServletRequest multi,
                                Model model) throws IOException {
         if (image.isEmpty()) { // 이미지 변경X
-            recipeService2.recipeUpdate(recipe_seq, category1, category2, food, ingredient, recipe);
+            recipeService2.recipeUpdate(recipeseq, category1, category2, food, ingredient, recipe);
         } else { // 이미지 변경O
             MultipartFile mf = multi.getFile("image");
             String fileName = mf.getOriginalFilename();
@@ -202,9 +208,9 @@ public class RecipeController2 {
     }
 
     @PostMapping(value = "/recipeDelete")
-    public String recipeDelete(@RequestParam(value = "recipe_seq") long recipe_seq,
+    public String recipeDelete(@RequestParam(value = "recipeseq") long recipeseq,
                                @RequestParam(value = "image") String image){
-        recipeService2.recipeDelete(recipe_seq);
+        recipeService2.recipeDelete(recipeseq);
         // 기존 이미지 삭제
         File origin = new File(imgPath + "\\" + image);
         origin.delete();

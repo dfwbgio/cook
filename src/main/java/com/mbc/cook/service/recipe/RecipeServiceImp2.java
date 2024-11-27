@@ -1,10 +1,14 @@
 package com.mbc.cook.service.recipe;
 
+import com.mbc.cook.entity.info.CategoryEntity;
 import com.mbc.cook.entity.recipe.IngreEntity;
 import com.mbc.cook.entity.recipe.RecipeEntity;
 import com.mbc.cook.repository.recipe.IngreRepository;
 import com.mbc.cook.repository.recipe.RecipeRepository2;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
@@ -18,11 +22,6 @@ public class RecipeServiceImp2 implements RecipeService2 {
     @Override
     public void recipeRegister(RecipeEntity recipeEntity) {
         recipeRepository2.save(recipeEntity);
-    }
-
-    @Override
-    public List<RecipeEntity> recipeSelectAll() {
-        return recipeRepository2.findAll();
     }
 
     @Override
@@ -41,12 +40,17 @@ public class RecipeServiceImp2 implements RecipeService2 {
     }
 
     @Override
-    public void recipeUpdate(long recipeSeq, String category1, String category2, String food, String ingredient, String recipe) {
-        recipeRepository2.updateNoImg(recipeSeq,category1,category2,food,ingredient,recipe);
+    public void recipeUpdate(long recipeseq, String category1, String category2, String food, String ingredient, String recipe) {
+        recipeRepository2.updateNoImg(recipeseq,category1,category2,food,ingredient,recipe);
     }
 
     @Override
-    public void recipeDelete(long recipeSeq) {
-        recipeRepository2.deleteById(recipeSeq);
+    public void recipeDelete(long recipeseq) {
+        recipeRepository2.deleteById(recipeseq);
+    }
+
+    @Override
+    public Page<RecipeEntity> recipeAllPaging(int page) {
+        return recipeRepository2.findAll(PageRequest.of(page,10, Sort.by(Sort.Direction.DESC,"recipeseq")));
     }
 }

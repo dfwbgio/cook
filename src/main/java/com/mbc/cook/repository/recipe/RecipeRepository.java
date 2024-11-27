@@ -14,7 +14,7 @@ import java.util.List;
 public interface RecipeRepository extends JpaRepository<RecipeEntity, Long> {
     @Transactional
     @Modifying
-    @Query(value = "update recipe set hits = hits + 1 where recipe_seq = :num",nativeQuery = true)
+    @Query(value = "update recipe set hits = hits + 1 where recipeseq = :num",nativeQuery = true)
     void clickup(@Param("num") long num);
 
     @Transactional

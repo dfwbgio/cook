@@ -19,8 +19,8 @@ import lombok.NoArgsConstructor;
 public class RecipeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "recipe_num")
-    @Column
-    long recipe_seq;
+    @Column()
+    long recipeseq;
     @Column
     String category1;
     @Column
@@ -37,8 +37,8 @@ public class RecipeEntity {
     int hits;
 
     @Builder
-    public RecipeEntity(long recipe_seq, String category1, String category2, String image, String food, String ingredient, String recipe, int hits) {
-        this.recipe_seq = recipe_seq;
+    public RecipeEntity(long recipeseq, String category1, String category2, String image, String food, String ingredient, String recipe, int hits) {
+        this.recipeseq = recipeseq;
         this.category1 = category1;
         this.category2 = category2;
         this.image = image;

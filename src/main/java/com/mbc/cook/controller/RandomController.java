@@ -39,11 +39,11 @@ public class RandomController {
         for (int i = 0; i < list.size(); i++) {
             String food = list.get(i).getFood();
             String image = list.get(i).getImage();
-            int recipe_seq = (int) list.get(i).getRecipe_seq();
+            int recipeseq = (int) list.get(i).getRecipeseq();
             JSONObject recipeRandom = new JSONObject();
             recipeRandom.put("food", food);
             recipeRandom.put("image", image);
-            recipeRandom.put("recipe_seq", recipe_seq);
+            recipeRandom.put("recipeseq", recipeseq);
             arrlist.add(recipeRandom);
         }
 

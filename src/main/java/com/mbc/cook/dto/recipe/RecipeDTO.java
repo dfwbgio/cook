@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @Data
 
 public class RecipeDTO {
-    long recipe_seq;
+    long recipeseq;
     String category1;
     String category2;
     String image1;
@@ -21,7 +21,7 @@ public class RecipeDTO {
 
     public RecipeEntity getRecipeEntity(){
         return RecipeEntity.builder()
-            .recipe_seq(recipe_seq)
+            .recipeseq(recipeseq)
             .category1(category1)
             .category2(category2)
             .image(image1)

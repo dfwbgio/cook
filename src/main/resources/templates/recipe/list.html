@@ -54,12 +54,12 @@
         </div>
         <div class="list_inner display_flex flex_start flex_align_str">
             <div class="list_row" th:each="recipe:${recipeList}">
-                <a th:href="@{/recipe/select(num=${recipe.recipe_seq},path='detail')}">
+                <a th:href="@{/recipe/select(num=${recipe.recipeseq},path='detail')}">
                     <div class="list_box">
                         <div class="list_top display_flex flex_between flex_align_c">
                             <div class="display_flex flex_start flex_align_c">
                                 <img src="/image/icon/recipe/num-bk.png">
-                                <p th:text="${recipe.recipe_seq}">시퀀스</p>
+                                <p th:text="${recipe.recipeseq}">시퀀스</p>
                             </div>
                             <div class="display_flex flex_end flex_align_c">
                                 <img src="/image/icon/recipe/eye-bk.png">
@@ -79,11 +79,21 @@
                     </div>
                 </a>
                 <div class="list_btn display_flex flex_center flex_align_c" sec:authorize="hasAuthority('ADMIN')">
-                    <a class="btn_delete" th:href="@{/recipe/select(num=${recipe.recipe_seq},path='delete')}">삭제</a>
-                    <a class="btn_update" th:href="@{/recipe/select(num=${recipe.recipe_seq},path='update')}">수정</a>
+                    <a class="btn_delete" th:href="@{/recipe/select(num=${recipe.recipeseq},path='delete')}">삭제</a>
+                    <a class="btn_update" th:href="@{/recipe/select(num=${recipe.recipeseq},path='update')}">수정</a>
                 </div>
             </div>
             <p th:if="${recipeList == null} or ${recipeList.size() == 0}" class="no_data_txt">등록된 레시피가 없습니다.</p>
+        </div>
+        <div class="pagination">
+            <div th:each="page : ${#numbers.sequence(0, total -1)}">
+                <span th:if="${npage == pageStat.index}">
+                    <p th:text="${pageStat.index+1}"></p>
+                </span>
+                <span th:if="${npage != pageStat.index}">
+                    <a th:href="@{/recipe/list(page=${pageStat.index})}" th:text="${pageStat.index+1}"></a>
+                </span>
+            </div>
         </div>
     </div>
 </html>

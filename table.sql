@@ -1,9 +1,9 @@
---Å×ÀÌºí ÀüÃ¼ ¸ðÀ½
---·¹½ÃÇÇ µî·Ï
+--ï¿½ï¿½ï¿½Ìºï¿½ ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½
+--ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 CREATE TABLE RECIPE 
 (
   HITS NUMBER(6, 0) 
-, RECIPE_SEQ NUMBER(6, 0) NOT NULL 
+, RECIPESEQ NUMBER(6, 0) NOT NULL
 , CATEGORY1 VARCHAR2(90 CHAR) 
 , CATEGORY2 VARCHAR2(90 CHAR) 
 , FOOD VARCHAR2(300 CHAR) 
@@ -11,7 +11,7 @@ CREATE TABLE RECIPE
 , INGREDIENT VARCHAR2(3000 CHAR) 
 , RECIPE VARCHAR2(3000 CHAR) 
 );
---°ü¸®ÀÚ Ä«Å×°í¸® µî·Ï
+--ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ä«ï¿½×°ï¿½ ï¿½ï¿½ï¿½
 CREATE TABLE RECIPECATEGORY 
 (
   MAINCATEGORY VARCHAR2(30 BYTE) 

@@ -14,7 +14,7 @@
         </div>
         <div class="register_inner">
             <form action="/recipeUpdate" id="recipe_form" method="post" enctype="multipart/form-data">
-                <input type="hidden" id="recipe_seq" name="recipe_seq" th:value="${dto.recipe_seq}">
+                <input type="hidden" id="recipeseq" name="recipeseq" th:value="${dto.recipeseq}">
                 <input type="hidden" id="or_img" name="or_img" th:value="${dto.image}">
                 <input type="hidden" id="recipe_ingre" name="ingredient" th:value="${dto.ingredient}">
                 <input type="hidden" id="recipe_way" name="recipe" th:value="${dto.recipe}">
