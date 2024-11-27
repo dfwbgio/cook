@@ -183,12 +183,41 @@ textarea:read-only:focus{
 .btn_flex button.btn_submit:hover{
     background-color: var(--second-color);
 }
+/*데이터 없을 때*/
 .no_data_txt{
     width: 100%;
     font-weight: 500;
     color: var(--point-color);
     padding: 30px 0;
     text-align: center;
+}
+/*페이징*/
+.pagination{
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    margin: 20px auto 0 auto;
+}
+.pagination div + div{
+    margin-left: 10px;
+}
+.pagination p,
+.pagination a{
+    display: block;
+    min-width: 14px;
+    font-size: 15px;
+    line-height: 22px;
+    font-weight: 400;
+    color: var(--ddp-gray);
+    text-align: center;
+}
+.pagination p{
+    font-weight: bold;
+    color: var(--second-color);
+}
+.pagination a:hover{
+    text-decoration: underline;
 }
 @media (min-width: 1024px){
     .w_display_flex{

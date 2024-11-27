@@ -2,6 +2,7 @@ package com.mbc.cook.service.info;
 
 import com.mbc.cook.entity.info.CategoryEntity;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,4 +20,6 @@ public interface InfoService {
     void categorydelete(long num);
 
     List<CategoryEntity> getSubCategoryList(String category);
+
+    Page<CategoryEntity> categoryList(int page);
 }

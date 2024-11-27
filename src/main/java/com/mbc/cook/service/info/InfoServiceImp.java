@@ -3,6 +3,9 @@ package com.mbc.cook.service.info;
 import com.mbc.cook.entity.info.CategoryEntity;
 import com.mbc.cook.repository.info.InfoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -40,5 +43,10 @@ public class InfoServiceImp implements InfoService {
     @Override
     public List<CategoryEntity> getSubCategoryList(String category) {
         return infoRepository.getSubCategoryList(category);
+    }
+
+    @Override
+    public Page<CategoryEntity> categoryList(int page) {
+        return infoRepository.findAll(PageRequest.of(page,10, Sort.by(Sort.Direction.DESC,"categorynum")));
     }
 }
