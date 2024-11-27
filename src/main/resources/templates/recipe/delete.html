@@ -63,7 +63,11 @@
                         </div>
                         <div class="register_row" id="recipe_div4">
                             <p class="register_subtitle">재료</p>
-                            <div id="clicked_ingredient" class="clicked_ingredient display_flex flex_wrap flex_align_c"></div>
+                            <div id="clicked_ingredient" class="clicked_ingredient display_flex flex_wrap flex_align_c">
+                                <div class="ingre_checked" th:each="ingre2:${ingreList}">
+                                    <p th:text="${ingre2.name}"></p>
+                                </div>
+                            </div>
                         </div>
                         <div class="register_row" id="recipe_div5">
                             <p class="register_subtitle">만드는 방법</p>

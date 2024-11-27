@@ -43,7 +43,7 @@
                 </div>
                 <div class="register_row" id="recipe_div4">
                     <p class="register_subtitle">음식명</p>
-                    <div class="w_display_flex flex_align_c">
+                    <div class="display_flex flex_align_c">
                         <input type="text" id="food" name="food" placeholder="음식명 입력">
                         <div class="btn_flex">
                             <button type="button" class="btn_submit">검색</button>
@@ -78,7 +78,7 @@
                         </div>
                     </div>
                 </a>
-                <div class="list_btn display_flex flex_center flex_align_c">
+                <div class="list_btn display_flex flex_center flex_align_c" sec:authorize="hasAuthority('ADMIN')">
                     <a class="btn_delete" th:href="@{/recipe/select(num=${recipe.recipe_seq},path='delete')}">삭제</a>
                     <a class="btn_update" th:href="@{/recipe/select(num=${recipe.recipe_seq},path='update')}">수정</a>
                 </div>

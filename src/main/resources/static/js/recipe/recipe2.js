@@ -48,14 +48,29 @@ function recipeRegister(){
     var val_food = $('input[name="food"]').val();//음식명
     var val_cat1 = $('input[name="category1"]').val();//카테고리1
     var val_cat2 = $('input[name="category2"]').val();//카테고리2
-    var len_ingr = $('input[name="ingredient"]').length;//재료
+    var val_ingr = $('input[name="ingredient"]').val();//재료
+    var val_way = $('input[name="recipe"]').val();//재료
     var ingre_ing = "";
-    if(win_href.includes('&path=register')
+    //재료 array recipe_ingre div에 값 넣기
+    $('#recipe_ingre').val(seqArray);
+    //각 방법 뒤에 <br> 붙이기
+    var way_make = "";
+    var method_len = $('input[name="recipe_method_make"]').length - 1;
+    $('input[name="recipe_method_make"]').each(function(index){
+        var this_val = $(this).val();
+        if(this_val !== '' && index !== method_len){
+            way_make += this_val + "<br>";
+        } else {
+            way_make += this_val;
+        }
+    });
+    $('#recipe_way').val(way_make);
+    //유효성
+    if(win_href.includes('/register')
     && val_img == ''
     || val_food == ''
     || val_cat1 == ''
     || val_cat2 == ''
-    || len_ingr == ''
     ){
         alertShow('정보 미입력','정보를 모두 입력해주세요.');
         return false;
@@ -63,20 +78,12 @@ function recipeRegister(){
     && val_food == ''
     || val_cat1 == ''
     || val_cat2 == ''
-    || len_ingr == ''
+    || val_ingr == ''
+    || val_way == ''
     ){
       alertShow('정보 미입력','정보를 모두 입력해주세요.');
       return false;
     }
-    $('#recipe_ingre').val(seqArray);
-    var way_make = ""; // 결과를 저장할 변수 초기화
-    $('input[name="recipe_method_make"]').each(function(){
-        var this_val = $(this).val();
-        if(this_val != ''){
-            way_make += this_val + "<br>";
-        }
-        $('#recipe_way').val(way_make);
-    });
     standbyShow('저장 중', '잠시만 기다려 주세요.');
     $('#recipe_form').submit();
     standbyHide();
@@ -140,7 +147,7 @@ function ingreLoad(object){
 //재료 클릭 시
 function ingreClick(object){
     var ingre_seq = object.dataset.seq;//재료 시퀀스 넘버
-    var ingre_name = object.dataset.name;//재료 이름
+    var ingre_name = object.value;//재료 이름
     var index = seqArray.indexOf(ingre_seq);
     var ingre_br = "";
     if(index < 0)  {//시퀀스 번호가 seqArray 배열에 없으면 ingreArray 배열에 값을 넣어줌
@@ -197,27 +204,20 @@ $(document).ready(function(){
         //재료
         var recipe_ingre = $('#recipe_ingre').val().split(',');
         var ingre_num = recipe_ingre.length;
-        var ingre_br = "";
-        for(var g = 0; g <= ingre_num; g++){
-            if(win_href.includes('&path=update')){
-            ingre_br += "<div class='ingre_checked' id='ingre_checked"+recipe_ingre[g]+"' value='"+recipe_ingre[g]+"' data-seq='"+recipe_ingre[g]+"' onclick='ingreClick(this)'>";
-            }else if(win_href.includes('&path=delete')){
-            ingre_br += "<div class='ingre_checked'>";
-            }
-            ingre_br += "   <p>"+recipe_ingre[g]+"</p>";
-            if(win_href.includes('&path=update')){
-            ingre_br += "   <span></span>";
-            }
-            ingre_br += "</div>";
+        for(var g = 0; g < ingre_num; g++){
             seqArray.push(recipe_ingre[g]);
         }
+        $('.ingre_checked').each(function(index){
+            $(this).attr('data-seq', seqArray[index]);
+            $(this).attr('id', 'ingre_checked'+seqArray[index]);
+            $(this).attr('value', seqArray[index]);
+        });
         ingreChk();
-        $('#clicked_ingredient').append(ingre_br);
         //방법
         var make_input = $('#recipe_way').val().split('<br>');
-        var make_num = make_input.length - 1;
+        var make_num = make_input.length;
         var make_br = "";
-        for(var n = 0; n < make_num; n++){
+        for(var n = 0; n <= make_num - 1; n++){
             make_br += "<div id='recipe_method_make"+(n + 1)+"'>";
             make_br += "    <p>"+(n + 1)+".</p>";
             if(win_href.includes('&path=update')){

@@ -71,13 +71,18 @@
                             </div>
                             <!--크롤링 된 재료 뜨는 부분-->
                             <div id="register_ingredient" class="register_ingredient display_flex flex_wrap flex_align_c">
-                                <label th:for="@{recipe_ingredient}+${ingre.ingre_seq}" th:each="ingre:${ingreList}">
+                                <label th:for="@{recipe_ingredient}+${ingre.ingre_seq}" th:each="ingre:${ingreList2}">
                                     <input type="checkbox" onclick="ingreClick(this)" th:id="@{recipe_ingredient}+${ingre.ingre_seq}" name="recipe_ingredient" th:data-price="${ingre.price}" th:data-seq="${ingre.ingre_seq}" th:value="${ingre.name}" hidden>
                                     <span th:text="${ingre.name}"></span>
                                 </label>
-                                <p th:if="${ingreList == null} or ${ingreList.size() == 0}" class="no_data_txt">등록된 데이터가 없습니다.</p>
+                                <p th:if="${ingreList2 == null} or ${ingreList2.size() == 0}" class="no_data_txt">등록된 데이터가 없습니다.</p>
                             </div>
-                            <div id="clicked_ingredient" class="clicked_ingredient display_flex flex_wrap flex_align_c"></div>
+                            <div id="clicked_ingredient" class="clicked_ingredient display_flex flex_wrap flex_align_c">
+                                <div class="ingre_checked" id="ingre_checked" value="" data-seq="" onclick="ingreClick(this)" th:each="ingre2:${ingreList}">
+                                   <p th:text="${ingre2.name}"></p>
+                                   <span></span>
+                                </div>
+                            </div>
                         </div>
                         <div class="register_row" id="recipe_div5">
                             <p class="register_subtitle">만드는 방법</p>
