@@ -55,6 +55,7 @@ $(document).ready(function(){
     }
     else if(win_href.includes('/recipe/list')
     || win_href.includes('/recipe/register')
+    || win_href.includes('/recipe/search')
     || win_href.includes('/recipe/select')
     && win_search.includes('path=update')
     || win_search.includes('path=delete')

@@ -4,6 +4,31 @@
 function searchToggle(){
     $('.list_search').toggle();
 }
+function recipeListSearch(){
+    var category_val1 = $('input[name="category1"]:checked').val();
+    var category_len1 = $('input[name="category1"]:checked').length;
+    var category_val2 = $('input[name="category2"]:checked').val();
+    var category_len2 = $('input[name="category2"]:checked').length;
+    var food_val = $('#food_name').val();
+    if(category_len1 < 1 && category_len2 < 1 && food_val == ''){
+        location.href='/recipe/list';
+    }
+    else{
+        if(category_len1 < 1){
+            category_val1 = 'none';
+        }
+        if(category_len2 < 1){
+            category_val2 = 'none';
+        }
+        if(food_val == '' || food_val == null){
+            food_val = 'none';
+        }
+        console.log(category_val1);
+        console.log(category_val2);
+        console.log(food_val);
+        location.href='/recipe/search?category1='+category_val1+'&category2='+category_val2+'&food='+food_val;
+    }
+}
 //등록
 //json 이용하여 세부 카테고리를 가져오기 위함
 function recipeCategoryClick(){

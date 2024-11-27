@@ -54,8 +54,8 @@
                         </div>
                         <!--소분류 카테고리-->
                         <div class="register_row" id="recipe_div3">
-                            <p class='register_subtitle'>레시피 소분류</p>
-                            <div class='register_category display_flex flex_align_c'>
+                            <p class="register_subtitle">레시피 소분류</p>
+                            <div class="register_category display_flex flex_align_c">
                                <label th:for="${sub.categorynum}" th:each="sub:${recipeList}">
                                    <input type="radio" th:id="${sub.categorynum}" name="category2" th:value="${sub.subcategory}" th:checked="${dto.category2 == sub.subcategory}" checked hidden>
                                    <span th:text="${sub.subcategory}"></span>

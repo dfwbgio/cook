@@ -1,0 +1,327 @@
+@charset "UTF-8";
+.main_inner{
+    margin-top: 0;
+}
+.list_whole{
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+}
+.list_fixed{
+    position: relative;
+    width: calc(100vw - 40px);
+    height: auto;
+    padding: 10px 20px;
+    background-color: var(--md-blue);
+    left: 50%;
+    transform: translateX(-50%);
+}
+.list_title{
+    width: 100%;
+    height: auto;
+}
+.register_btn{
+    display: block;
+    min-width: 80px;
+    width: 80px;
+    height: 40px;
+    padding: 5px;
+    color: var(--point-color);
+    background-color: var(--all-white);
+    border: 1px solid var(--point-color);
+    border-radius: 5px;
+    margin-right: 10px;
+}
+.register_btn:hover{
+    color: var(--second-color);
+    background-color: var(--lite-blue);
+    border-color: var(--second-color);
+}
+.search_btn{
+    display: block;
+    min-width: 40px;
+    width: 40px;
+    height: 40px;
+    padding: 5px;
+}
+.search_btn img{
+    width: 100%;
+    height: auto;
+    background-size: contain;
+}
+.list_search{
+    width: 100%;
+    height: auto;
+    margin: 20px auto 5px auto;
+}
+/*각 섹션 제목*/
+p.register_subtitle{
+    width: 100%;
+    height: auto;
+    margin: 0 auto 5px auto;
+}
+.register_row{
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+    transition: 1s;
+    overflow-x: hidden;
+}
+.register_row.move_dw{
+    transition: 1s;
+    opacity: 1;
+    display: block;
+}
+.register_row#recipe_div2,
+.register_row#recipe_div3{
+    overflow: unset;
+}
+.register_row#recipe_div2{
+    margin-top: 0;
+    display: block;
+}
+.register_row + .register_row,
+.list_category + .register_row{
+    margin-top: 20px;
+}
+.register_row .btn_flex{
+    margin: 0 0 0 10px;
+}
+.register_row .btn_flex button{
+    min-width: 100px;
+    width: 100px;
+    max-width: 100px;
+}
+.register_category{
+    width: 100%;
+    height: auto;
+    margin: 0 -20px;
+    overflow-x: auto;
+    padding: 0 20px;
+}
+.register_category::-webkit-scrollbar{
+    width: auto;
+    height: 5px;
+    background-color: var(--ld-blue);
+}
+.register_category::-webkit-scrollbar-thumb{
+    width: auto;
+    height: 5px;
+    background-color: var(--point-color);
+}
+.register_row label,
+.register_row label *{
+	cursor: url('../../image/icon/common/cursor-pointer.png'), pointer!important;
+}
+.register_row label + label{
+    margin-left: 10px;
+}
+.register_row input[type="checkbox"] + span,
+.register_row input[type="radio"] + span{
+    display: block;
+    width: calc(100% - 40px);
+    max-width: 100px;
+    height: 20px;
+    line-height: 20px;
+    padding: 10px 20px;
+    background-color: #ebf8ff;
+    border: 1px solid var(--point-color);
+    border-radius: 5px;
+}
+.register_row input[type="checkbox"] + span:hover,
+.register_row input[type="radio"] + span:hover{
+    color: var(--second-color);
+    font-weight: bold;
+}
+.register_row input[type="checkbox"]:checked + span,
+.register_row input[type="radio"]:checked + span{
+    color: var(--all-white);
+    background-color: var(--second-color);
+    border-color: var(--point-color);
+}
+.register_row input[type="checkbox"]:checked + span:hover,
+.register_row input[type="radio"]:checked + span:hover{
+    font-weight: 400;
+}
+/*리스트*/
+.list_inner{
+    width: 100%;
+    height: auto;
+    flex-wrap: wrap;
+    margin: 15px auto 0 auto;
+}
+.list_row{
+    width: calc(100% - 24px);
+    height: auto;
+    padding: 10px;
+    border: 2px solid var(--bg-none);
+    border-radius: 10px;
+    background-color: var(--all-white);
+    margin: 0 auto;
+}
+.list_row:hover{
+    border-color: var(--md-blue);
+    background-color: var(--opa-white);
+}
+.list_row + .list_row{
+    margin-top: 10px;
+}
+.list_box{
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+}
+.list_box .display_flex{
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+}
+img.recipe_img{
+    width: 100%;
+    min-height: 160px;
+    height: 160px;
+    max-height: 160px;
+    object-fit: cover;
+    margin: 0 auto;
+    border-radius: 5px;
+    overflow: hidden;
+}
+.list_box .display_flex.list_top{
+    width: 100%;
+    height: auto;
+    margin: 0 auto 10px auto;
+}
+.list_top .display_flex{
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+}
+.list_top img{
+    display: block;
+    min-width: 20px;
+    width: 20px;
+    height: 20px;
+    margin: 0 5px 0 0;
+}
+.list_txt{
+    width: 100%;
+    height: auto;
+    margin: 15px auto 0 auto;
+}
+.list_txt p{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.list_txt .display_flex p{
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 400;
+    color: var(--ddp-gray);
+    margin-right: 2px;
+}
+p.food_title{
+    font-size: 18px;
+    line-height: 27px;
+    font-weight: bold;
+    color: var(--second-color);
+    margin-top: 5px;
+}
+.list_btn{
+    width: 100%;
+    height: auto;
+    margin: 15px auto 0 auto;
+    padding-top: 15px;
+    border-top: 1px solid var(--lt-gray);
+}
+.list_btn a{
+    display: block;
+    width: calc(100% - 2px);
+    height: 34px;
+    line-height: 34px;
+    border-radius: 5px;
+    margin: 0;
+    border: 1px solid var(--bg-none);
+    text-align: center;
+}
+.list_btn a + a{
+    margin-left: 10px;
+}
+.list_btn a:hover{
+    font-weight: bold;
+}
+a.btn_delete{
+    color: var(--red-color);
+    border-color: var(--red-color);
+    background-color: var(--all-white);
+}
+a.btn_delete:hover{
+    color: var(--red-color);
+    border-color: var(--red-color);
+    background-color: var(--opa-red);
+}
+a.btn_update{
+    color: var(--all-white);
+    background-color: var(--point-color);
+}
+a.btn_update:hover{
+    background-color: var(--second-color);
+}
+.no_data_txt{
+    padding: calc((100vh - 435px) / 2) 0;
+}
+@media (min-width: 768px){
+    .list_row{
+        width: calc(50% - 34px);
+        margin: 15px 0 0 15px;
+    }
+    .list_row:nth-child(2n+1){
+        margin-left: 0;
+    }
+    .list_row:nth-child(1),
+    .list_row:nth-child(2){
+        margin-top: 0;
+    }
+}
+@media (min-width: 1000px){
+    .list_row{
+        width: calc(33.3% - 34px);
+    }
+    .list_row:nth-child(2n+1){
+        margin-left: 15px;
+    }
+    .list_row:nth-child(3n+1){
+        margin-left: 0;
+    }
+    .list_row:nth-child(3){
+        margin-top: 0;
+    }
+}
+@media (min-width: 1024px){
+    .list_category{
+        width: 100%;
+        margin: 0 auto;
+    }
+    .list_category .register_row{
+        width: max-content;
+        margin: 0 30px 0 0;
+    }
+}
+@media (min-width: 1300px){
+    .list_row{
+        width: calc(25% - 35.24px);
+    }
+    .list_row:nth-child(3n+1){
+        margin-left: 15px;
+    }
+    .list_row:nth-child(4n+1){
+        margin-left: 0;
+    }
+    .list_row:nth-child(4){
+        margin-top: 0;
+    }
+    img.recipe_img{
+        min-height: 200px;
+        height: 200px;
+    }
+}

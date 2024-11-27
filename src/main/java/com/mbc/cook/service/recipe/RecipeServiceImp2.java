@@ -53,4 +53,24 @@ public class RecipeServiceImp2 implements RecipeService2 {
     public Page<RecipeEntity> recipeAllPaging(int page) {
         return recipeRepository2.findAll(PageRequest.of(page,12, Sort.by(Sort.Direction.DESC,"recipeseq")));
     }
+
+    @Override
+    public List<RecipeEntity> recipeSearchOneCategory(String category1) {
+        return recipeRepository2.recipeSearchOneCategory(category1);
+    }
+
+    @Override
+    public List<RecipeEntity> recipeSearchCategory(String category1, String category2) {
+        return recipeRepository2.recipeSearchCategory(category1,category2);
+    }
+
+    @Override
+    public List<RecipeEntity> recipeSearchName(String food) {
+        return recipeRepository2.recipeSearchName(food);
+    }
+
+    @Override
+    public List<RecipeEntity> recipeSearchAll(String category1, String category2, String food) {
+        return recipeRepository2.recipeSearchAll(category1,category2,food);
+    }
 }

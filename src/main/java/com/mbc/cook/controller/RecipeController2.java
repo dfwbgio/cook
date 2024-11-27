@@ -17,6 +17,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 import java.io.*;
 import java.util.List;
 import java.util.Map;
@@ -33,12 +35,11 @@ public class RecipeController2 {
     @Autowired
     RecipeService2 recipeService2;
 
+    //레시피 리스트 페이지로 이동
     @GetMapping(value = "/recipe/list")
     public String recipeList(Model model, @RequestParam(required = false, defaultValue = "0", value = "page") int page) {
-//        List<RecipeEntity> list = recipeService2.recipeSelectAll();
         model.addAttribute("cssPath", "/recipe/list");//css 패스 경로(바꾸지X)
         model.addAttribute("pageTitle", "레시피");//타이틀 제목
-//        model.addAttribute("recipeList", list);
         Page<RecipeEntity> list = recipeService2.recipeAllPaging(page);
 
         model.addAttribute("npage", page);
@@ -47,6 +48,7 @@ public class RecipeController2 {
         return "recipe/list";
     }
 
+    //레시피 등록 페이지로 이동
     @GetMapping(value = "/recipe/register")
     public String recipeRegister(Model model) {
         List<IngreEntity> list = recipeService2.findIngredientAll();
@@ -56,6 +58,7 @@ public class RecipeController2 {
         return "recipe/register";
     }
 
+    //레시피 수정 페이지로 이동
     @GetMapping(value = "/recipe/update")
     public String recipeUpdate(Model model) {
         model.addAttribute("cssPath", "/recipe/update");//css 패스 경로(바꾸지X)
@@ -63,6 +66,7 @@ public class RecipeController2 {
         return "recipe/update";
     }
 
+    //레시피 삭제 페이지로 이동
     @GetMapping(value = "/recipe/delete")
     public String recipeDelete(Model model) {
         model.addAttribute("cssPath", "/recipe/delete");//css 패스 경로(바꾸지X)
@@ -88,7 +92,7 @@ public class RecipeController2 {
         pp.print(categorydata);
     }
 
-    //레시피 등록
+    //레시피 찐 등록
     @PostMapping(value = "recipeRegister")
     public String recipeRegister(RecipeDTO dto, MultipartHttpServletRequest multi) throws IOException {
         //이미지
@@ -103,6 +107,7 @@ public class RecipeController2 {
         return "redirect:/recipe/list";
     }
 
+    //레시피 찐 수정
     @PostMapping(value = "/recipeUpdate")
     public String recipeUpdate(RecipeDTO dto,
                                @RequestParam("recipeseq") long recipeseq,
@@ -135,9 +140,8 @@ public class RecipeController2 {
         }
         return "redirect:/recipe/list";
     }
-
-
-    //크롤링
+    
+    //재료 추가(크롤링)
     @PostMapping(value = "ingreCrolling", produces = "application/json; charset=UTF-8")
     @ResponseBody
     public void ingreCrolling(@RequestBody Map<String, String> requestData, HttpServletResponse response) throws IOException {
@@ -185,7 +189,7 @@ public class RecipeController2 {
         pp.print(txt);
     }
 
-    //불러오기
+    //재료 찾기(오라클 테이블에서 불러오기)
     @PostMapping(value = "/ingreFind")
     public void ingreFind(@RequestParam("ingredient") String ingredient, HttpServletResponse response) throws IOException {
         List<IngreEntity> list = recipeService2.findIngredientLike(ingredient);
@@ -207,6 +211,7 @@ public class RecipeController2 {
         pp.print(ingredata);
     }
 
+    //레시피 찐 삭제
     @PostMapping(value = "/recipeDelete")
     public String recipeDelete(@RequestParam(value = "recipeseq") long recipeseq,
                                @RequestParam(value = "image") String image){
@@ -215,5 +220,39 @@ public class RecipeController2 {
         File origin = new File(imgPath + "\\" + image);
         origin.delete();
         return "redirect:/recipe/list";
+    }
+
+    //레시피 리스트 페이지에서 검색
+    @GetMapping(value = "/recipe/search")
+    public String recipeSearch(Model model,
+        RecipeDTO dto,
+        @RequestParam(value = "category1") String category1,
+        @RequestParam(value = "category2") String category2,
+        @RequestParam(value = "food") String food) {
+        if(category2.equals("none") && food.equals("none")) {//카테고리1만 누른 경우
+            List<RecipeEntity> list = recipeService2.recipeSearchOneCategory(category1);
+            model.addAttribute("recipeList", list);
+        }
+        else if(food.equals("none")) {//카테고리1, 2만 누른 경우
+            List<RecipeEntity> list = recipeService2.recipeSearchCategory(category1, category2);
+            model.addAttribute("recipeList", list);
+        }
+        else if(category1.equals("none") && category2.equals("none")) {//음식명만 입력한 경우
+            List<RecipeEntity> list = recipeService2.recipeSearchName(food);
+            model.addAttribute("recipeList", list);
+            model.addAttribute("food", food);
+        }
+        else{//모두 입력한 경
+            List<RecipeEntity> list = recipeService2.recipeSearchAll(category1, category2, food);
+            model.addAttribute("recipeList", list);
+            model.addAttribute("food", food);
+        }
+        List<CategoryEntity> categoryList = infoService.getSubCategoryList(dto.getCategory1()); //삭제/수정 시 소분류 불러오기
+        model.addAttribute("cssPath", "/recipe/search");//css 패스 경로(바꾸지X)
+        model.addAttribute("pageTitle", "레시피 검색");//타이틀 제목
+        model.addAttribute("categoryList", categoryList);
+        model.addAttribute("category1", category1);
+        model.addAttribute("category2", category2);
+        return "recipe/search";
     }
 }

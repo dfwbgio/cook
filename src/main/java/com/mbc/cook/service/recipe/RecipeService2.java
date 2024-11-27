@@ -23,4 +23,12 @@ public interface RecipeService2 {
     void recipeDelete(long recipeseq);
 
     Page<RecipeEntity> recipeAllPaging(int page);
+
+    List<RecipeEntity> recipeSearchName(String food);
+
+    List<RecipeEntity> recipeSearchCategory(String category1, String category2);
+
+    List<RecipeEntity> recipeSearchAll(String category1, String category2, String food);
+
+    List<RecipeEntity> recipeSearchOneCategory(String category1);
 }
