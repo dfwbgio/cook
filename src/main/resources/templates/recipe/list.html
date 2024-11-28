@@ -62,7 +62,7 @@
                         <div class="list_top display_flex flex_between flex_align_c">
                             <div class="display_flex flex_start flex_align_c">
                                 <img src="/image/icon/recipe/num-bk.png">
-                                <p th:text="${recipe.recipeseq}">시퀀스</p>
+                                <p th:text="${recipe.recipeseq}" th:value="${recipe.recipeseq}*${recipe.recipeseq}">시퀀스</p>
                             </div>
                             <div class="display_flex flex_end flex_align_c">
                                 <img src="/image/icon/recipe/eye-bk.png">
