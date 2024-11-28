@@ -1,1 +1,69 @@
 @charset "UTF-8";
+.header_section{
+    display: none;
+}
+.main_whole{
+    padding-top: 0;
+}
+.id-search{
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    margin: 0 auto;
+}
+.id-search select{
+    max-width: 140px;
+}
+.id-search h2{
+    font-size: 30px;
+    line-height: 40px;
+    font-weight: bold;
+    text-align: center;
+    margin: 40px auto;
+}
+.id-search div{
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+}
+.id-search div + div{
+    margin-top: 20px;
+}
+.id-search div label{
+    display: inline-block;
+    margin: 0 auto 5px 0;
+}
+.tel{
+    width: 100%;
+    height: auto;
+    display: flex;
+    align-items: center;
+}
+.tel input{
+    max-width: 118px;
+}
+.tel p{
+    min-width: 20px;
+    text-align: center;
+    margin: 0 10px;
+}
+.email{
+    width: 100%;
+    height: auto;
+    display: flex;
+    align-items: center;
+}
+.email input{
+    max-width: 118px;
+}
+.email p{
+    min-width: 20px;
+    text-align: center;
+    margin: 0 10px;
+}
+.email select{
+    margin-left: 40px;
+}
+.id-search .btn_flex{
+    margin-top: 40px;
+}

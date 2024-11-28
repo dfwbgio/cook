@@ -4,42 +4,49 @@
       layout:decorate="~{common/layout}"
       layout:fragment="content">
 <div class="id-search">
+    <h2>아이디 찾기</h2>
     <div>
         <label>이름</label>
         <input type="text" name="name" id="name" placeholder="이름을 입력하세요." onkeyup="click_btn()">
     </div>
     <div>
         <label>전화번호</label>
-        <select id="fir_tel">
-            <option value="010">010</option>
-            <option value="011">011</option>
-            <option value="016">016</option>
-            <option value="017">017</option>
-            <option value="019">019</option>
-        </select>
-        -
-        <input type="text" maxlength="4" id="mid_tel" size="5" onkeyup="click_btn()">
-        -
-        <input type="text" maxlength="4" id="end_tel" size="5" onkeyup="click_btn()">
-        <input type="hidden" id="tel" name="tel" value="">
+        <div class="tel">
+            <select id="fir_tel">
+                <option value="010">010</option>
+                <option value="011">011</option>
+                <option value="016">016</option>
+                <option value="017">017</option>
+                <option value="019">019</option>
+            </select>
+            <p>-</p>
+            <input type="text" maxlength="4" id="mid_tel" size="5" onkeyup="click_btn()" placeholder="직접 입력">
+            <p>-</p>
+            <input type="text" maxlength="4" id="end_tel" size="5" onkeyup="click_btn()" placeholder="직접 입력">
+            <input type="hidden" id="tel" name="tel" value="">
+        </div>
     </div>
     <div>
         <label>이메일</label>
-        <input type="text" name="email_id" id="email_id" placeholder="이메일" maxlength="18" onkeyup="email_concat()">
-        <p>@</p>
-        <input type="text" id="email_domain" class="email_domain" placeholder="직접 입력" maxlength="18" onkeyup="email_concat()">
-        <select class="select" id="domain_select" onchange="mailSelect()">
-            <option value="emailall" selected>-선택-</option>
-            <option value="naver.com">naver.com</option>
-            <option value="gmail.com">gmail.com</option>
-            <option value="hanmail.com">hanmail.com</option>
-            <option value="hotmail.com">hotmail.com</option>
-            <option value="korea.com">korea.com</option>
-            <option value="nate.com">nate.com</option>
-            <option value="yahoo.com">yahoo.com</option>
-        </select>
-        <input type="hidden" id="total_email" name="email">
+        <div class="email">
+            <input type="text" name="email_id" id="email_id" placeholder="이메일" maxlength="18" onkeyup="email_concat()">
+            <p>@</p>
+            <input type="text" id="email_domain" class="email_domain" placeholder="직접 입력" maxlength="18" onkeyup="email_concat()">
+            <select class="select" id="domain_select" onchange="mailSelect()">
+                <option value="emailall" selected>-선택-</option>
+                <option value="naver.com">naver.com</option>
+                <option value="gmail.com">gmail.com</option>
+                <option value="hanmail.com">hanmail.com</option>
+                <option value="hotmail.com">hotmail.com</option>
+                <option value="korea.com">korea.com</option>
+                <option value="nate.com">nate.com</option>
+                <option value="yahoo.com">yahoo.com</option>
+            </select>
+            <input type="hidden" id="total_email" name="email" placeholder="직접 입력">
+        </div>
     </div>
-    <button type="button" onclick="findID()" id="findid">아이디찾기</button>
+    <div class="btn_flex">
+        <button type="button" onclick="findID()" id="findid" class="btn_submit">아이디찾기</button>
+    </div>
 </div>
 </html>

@@ -12,6 +12,8 @@ $(document).ready(function(){
     || win_href.includes('/info/info')
     || win_href.includes('/category')
     || win_href.includes('/cart')
+    || win_href.includes('/idsearch')
+    || win_href.includes('/pwsearch')
     ){
         $('head').prepend('<link rel="stylesheet" href="/css/common/detail.css">');
     }
