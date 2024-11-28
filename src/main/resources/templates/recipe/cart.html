@@ -10,14 +10,92 @@
                     <img src="/image/icon/common/arrow-sm-prev.svg">
                 </button>
                 <h1>장바구니</h1>
-                <div>
-                    <table class="">
-                        <tr>
-                            <td></td>
-                        </tr>
-                    </table>
-                </div>
+            </div>
+            <div>
+                <input type="hidden" id="list" name="list" th:value="${cartList}">
+                <table class="cartlist">
+                    <tr>
+                        <th>No.</th>
+                        <th>상품명</th>
+                        <th>단가</th>
+                        <th>수량</th>
+                        <th>총금액</th>
+                    </tr>
+                    <!--
+                    <tr th:each="list,num : ${#numbers.sequence(0,cartList.size())}">
+                    -->
+                    <tr th:each="list : ${cartList}">
+                        <td th:text="${listStat.index+1}"></td>
+                        <td th:text="${list.name}"></td>
+                        <td>
+                            <input type="hidden" th:id="'id'+${list.ingre_seq}" name="id" th:value="${list.ingre_seq}">
+                            <input type="hidden" th:id="'eachprice'+${list.ingre_seq}" name="eachprice" th:value="${list.price}">
+                            <p th:text="${#numbers.formatInteger(list.price, 3, 'COMMA')}"></p>
+                        </td>
+                        <td>
+                            <input type="number" th:id="'num'+${list.ingre_seq}" name="num" min="1" th:value="${picksize[listStat.index]}" th:onchange="'tot('+${list.ingre_seq}+')'" th:onkeyup="'tot('+${list.ingre_seq}+')'">
+                        </td>
+                        <td>
+                            <p th:id="'totChange'+${list.ingre_seq}" th:text="${#numbers.formatInteger(list.price * picksize[listStat.index], 3, 'COMMA')}"></p>
+                            <input type="hidden" th:id="'price'+${list.ingre_seq}" name="price" th:value="${list.price} * ${picksize[listStat.index]}">
+                        </td>
+                    </tr>
+                </table>
+                <table class="summary">
+                    <tr>
+                        <th>구매 금액</th>
+                        <th>배 송 비</th>
+                        <th>총 금 액</th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p th:id="price"></p>
+                        </td>
+                        <td>
+                            <p th:id="delivery"></p>
+                        </td>
+                        <td>
+                            <p th:id="total"></p>
+                        </td>
+                    </tr>
+                </table>
+                <button>주문하기</button>
             </div>
         </div>
     </div>
+    <script>
+        $(document).ready(function(){
+            summary();
+        });
+        function summary(){
+            var sum=0;
+            var delivery;
+            $('input[name="price"]').each(function(index){
+                sum += parseInt($(this).val());
+            });
+            if(sum>50000){delivery=0;}
+            else{delivery=3000;}
+
+            var tot = sum + delivery;
+            $('#price').text(addCommas(sum));
+            $('#delivery').text(addCommas(delivery));
+            $('#total').text(addCommas(tot));
+        }
+        function tot(a){
+            var num = $('#num'+a).val();
+            var price = $('#eachprice'+a).val();
+            var tot = num * price;
+            $('#price'+a).val(tot);
+            $('#totChange'+a).text(addCommas(tot));
+            summary();
+        }
+        function addCommas(x) {
+    	    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	    }
+    </script>
+<style>
+    input::-webkit-inner-spin-button,
+    input::-webkit-outer-spin-button {
+    opacity: 1;
+}
 </html>
