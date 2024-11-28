@@ -43,28 +43,6 @@
     background-color: var(--lite-blue);
     border-color: var(--second-color);
 }
-.reset_btn{
-    display: block;
-    min-width: 40px;
-    width: 40px;
-    height: 40px;
-    padding: 5px;
-    margin: 0 5px 0 0;
-}
-.reset_btn span{
-    display: block;
-    width: 100%;
-    height: 100%;
-    background: url('/image/icon/recipe/reset-bu.png') no-repeat;
-    background-size: contain;
-}
-.reset_btn:hover span{
-    display: block;
-    width: 100%;
-    height: 100%;
-    background: url('/image/icon/recipe/reset-hover.png') no-repeat;
-    background-size: contain;
-}
 .search_btn{
     display: inline-block;
     min-width: 40px;
@@ -87,10 +65,36 @@
     background-size: contain;
 }
 .list_search{
+    position: relative;
     display: inline-block;
     width: 100%;
     height: auto;
     margin: 20px auto 5px auto;
+}
+.reset_btn{
+    position: absolute;
+    display: block;
+    min-width: 40px;
+    width: 40px;
+    height: 40px;
+    padding: 5px;
+    margin: 0;
+    top: -10px;
+    right: 0;
+}
+.reset_btn span{
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: url('/image/icon/recipe/reset-bu.png') no-repeat;
+    background-size: contain;
+}
+.reset_btn:hover span{
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: url('/image/icon/recipe/reset-hover.png') no-repeat;
+    background-size: contain;
 }
 /*각 섹션 제목*/
 p.register_subtitle{

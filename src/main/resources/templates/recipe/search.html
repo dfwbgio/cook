@@ -10,15 +10,15 @@
                     <h1>레시피</h1>
                     <div class="display_flex flex_end flex_align_c">
                         <button type="button" onclick="location.href='/recipe/register'" class="register_btn" sec:authorize="hasAuthority('ADMIN')">등록 +</button>
-                        <button type="button" onclick="recipeSearchReset()" class="reset_btn" title="검색 초기화">
-                            <span></span>
-                        </button>
                         <button type="button" onclick="searchToggle()" class="search_btn" title="검색하기">
                             <span></span>
                         </button>
                     </div>
                 </div>
                 <nav class="list_search">
+                    <button type="button" onclick="recipeSearchReset()" class="reset_btn" title="검색 초기화">
+                        <span></span>
+                    </button>
                     <div class="list_category w_display_flex flex_align_s">
                         <div class="register_row move_dw" id="recipe_div2">
                             <p class="register_subtitle">레시피 카테고리</p>
