@@ -9,13 +9,33 @@
             <h1><span>오</span><span>늘</span> <span>뭐</span><span>먹</span><span>지</span><span>?</span></h1>
         </div>
     </div>
+    <div class="random_dish">
+        <div>
+            <img src="/image/icon/random/dish-bg.png" alt="접시 모양" class="dish_img">
+            <img src="/image/icon/random/dish-bg1.png" alt="접시 모양" class="dish_bg dish_bg1">
+            <img src="/image/icon/random/dish-bg2.png" alt="접시 모양" class="dish_bg dish_bg2">
+            <img src="/image/icon/random/dish-bg3.png" alt="접시 모양" class="dish_bg dish_bg3">
+            <img src="/image/icon/random/dish-bg4.png" alt="접시 모양" class="dish_bg dish_bg4">
+            <img src="/image/icon/random/dish-bg5.png" alt="접시 모양" class="dish_bg dish_bg5">
+            <img src="/image/icon/random/dish-bg6.png" alt="접시 모양" class="dish_bg dish_bg6">
+            <img src="/image/icon/random/dish-bg7.png" alt="접시 모양" class="dish_bg dish_bg7">
+            <img src="/image/icon/random/dish-bg8.png" alt="접시 모양" class="dish_bg dish_bg8">
+        </div>
+        <img src="/image/icon/random/spoon.png" alt="숟가락 아이콘" class="dish_spoon">
+    </div>
     <div class="btn_flex">
-        <button type="button" class="btn_submit" onclick="randomClick()">버튼</button>
+        <button type="button" class="btn_submit" onclick="randomClick()">음식 뽑기</button>
     </div>
     <div class="random_pop">
         <div class="random_bg"></div>
         <div class="random_box">
-            <div id="random_place"></div>
+            <div class="random_in">
+                <div class="random_inner">
+                    <img src="/image/icon/random/result-tape.png" alt="테이프 모양" class="random_tape random_tape1">
+                    <img src="/image/icon/random/result-tape.png" alt="테이프 모양" class="random_tape random_tape2">
+                    <div id="random_place"></div>
+                </div>
+            </div>
             <div class="btn_flex">
                 <button type="button" class="btn_prev" onclick="location.href='/'">메인으로</button>
                 <button type="button" class="btn_submit" onclick="randomClick()">다시 뽑기</button>

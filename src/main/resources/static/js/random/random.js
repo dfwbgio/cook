@@ -2,6 +2,8 @@ function confirmOk(){
     alertShow('랜덤','랜덤 js');
 }
 function randomClick() {
+    randomPopHide();
+    $('.random_dish').addClass('random_on');
     $.ajax({
         url:"/randomResult",
         async:true,
@@ -15,9 +17,11 @@ function randomClick() {
             random_div+="   <img src='/image/upload/"+sublist.recipeRandom[ranrdom].image+"' alt='"+sublist.recipeRandom[ranrdom].food+" 이미지'>";
             random_div+="   <p>"+sublist.recipeRandom[ranrdom].food+"</p>";
             random_div+="</div>";
-            $('#random_place').html(random_div);
-            randomPopShow();
-            console.log(ranrdom);
+            setTimeout(function() {
+                $('#random_place').html(random_div);
+                $('.random_dish').removeClass('random_on');
+                randomPopShow();
+            }, 1600);
         },
          error: function (request, status, error) {
             console.log("message: " + request.responseText)

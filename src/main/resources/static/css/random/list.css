@@ -5,6 +5,9 @@
     font-weight: 700;
     font-style: normal;
 }
+.main_inner{
+    margin-top: 70px;
+}
 .random_whole{
     width: 100%;
     height: auto;
@@ -97,36 +100,160 @@
 .random_box{
     position: absolute;
     width: calc(100% - 100px);
-    max-width: 760px;
+    max-width: 700px;
     height: auto;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+.random_in{
     padding: 20px;
     border-radius: 5px;
     background-color: #f9f9f9;
 }
+.random_inner{
+    position: relative;
+    width: 100%;
+    height: auto;
+}
+img.random_tape{
+    position: absolute;
+    width: 100%;
+    max-width: 120px;
+    height: auto;
+    transform: rotate(135deg);
+}
+img.random_tape.random_tape1{
+    top: -40px;
+    left: -80px;
+}
+img.random_tape.random_tape2{
+    bottom: -40px;
+    right: -70px;
+}
 .random_info2{
-    display:flex;
-    text-align:center;
-    margin:0 auto 0 180px;
+    display: flex;
+    text-align: center;
+    margin: 0 auto 0 180px;
 }
 .random_info2 img{
-    width:70px;
-    height:60px;
+    width: 70px;
+    height: 60px;
 }
 .random_info2 h1{
-    margin-bottom:20px;
+    margin-bottom: 20px;
 }
 .random_div img{
     display:block;
-    width:560px;
-    margin:0 auto;
+    width: 100%;
+    height: auto;
+    max-height: calc(100vh - 300px);
+    margin: 0 auto;
+    overflow: hidden;
+    overflow-y: auto;
+    border-radius: 5px;
+}
+.random_div img::scrollbar{
+    width: 5px;
+    height: auto;
+    background-color: var(--lt-blue);
+}
+.random_div img::scrollbar-thumb{
+    width: 5px;
+    height: auto;
+    background-color: var(--md-blue);
 }
 .random_div p{
-    display:block;
+    display: block;
     font-family: 'HakgyoansimDunggeunmisoTTF-B';
-    font-size:30px;
-    margin: 25px auto;
+    font-size: 30px;
+    line-height: 50px;
+    margin: 25px auto 0 auto;
     text-align: center;
+}
+.random_dish{
+    position: relative;
+    width: 100%;
+    max-width: 550px;
+    height: auto;
+    margin: 20px auto 10px auto;
+}
+.random_dish img{
+    display: inline-block;
+    width: 100%;
+    height: auto;
+    background-size: contain;
+    margin: 0 auto;
+}
+img.dish_bg{
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0.5;
+    z-index: 1;
+}
+img.dish_bg:hover{
+    opacity: 1;
+}
+img.dish_spoon{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-size: contain;
+    top: 0;
+    left: 0;
+}
+.random_dish.random_on img.dish_bg{
+    animation: bling 0.4s;
+}
+.random_dish.random_on img.dish_bg.dish_bg2{
+    animation-delay: 0.1s;
+}
+.random_dish.random_on img.dish_bg.dish_bg3{
+    animation-delay: 0.2s;
+}
+.random_dish.random_on img.dish_bg.dish_bg4{
+    animation-delay: 0.3s;
+}
+.random_dish.random_on img.dish_bg.dish_bg5{
+    animation-delay: 0.5s;
+}
+.random_dish.random_on img.dish_bg.dish_bg6{
+    animation-delay: 0.7s;
+}
+.random_dish.random_on img.dish_bg.dish_bg7{
+    animation-delay: 0.9s;
+}
+.random_dish.random_on img.dish_bg.dish_bg8{
+    animation-delay: 1.1s;
+}
+@keyframes bling{
+	0%{
+		opacity : 0.5;
+	}
+	100%{
+		opacity : 1;
+	}
+}
+.random_dish.random_on img.dish_spoon{
+    animation: rotation 1.5s;
+}
+@keyframes rotation{
+	0%{
+		transform : rotate(0deg);
+	}
+	100%{
+		transform : rotate(360deg);
+	}
+}
+.random_pop .btn_flex{
+    margin-top: 40px;
+}
+.random_pop .btn_flex button.btn_prev:hover{
+    background-color: var(--lite-blue);
+}
+@media (min-width: 590px){
+    .random_dish{
+        min-height: 556px;
+    }
 }
