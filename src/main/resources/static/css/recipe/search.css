@@ -7,6 +7,12 @@
     height: auto;
     margin: 0 auto;
 }
+.list_in{
+    width: 100%;
+    max-width: 1200px;
+    height: auto;
+    margin: 0 auto;
+}
 .list_fixed{
     position: relative;
     width: calc(100vw - 40px);
@@ -37,19 +43,51 @@
     background-color: var(--lite-blue);
     border-color: var(--second-color);
 }
-.search_btn{
+.reset_btn{
     display: block;
     min-width: 40px;
     width: 40px;
     height: 40px;
     padding: 5px;
+    margin: 0 5px 0 0;
 }
-.search_btn img{
+.reset_btn span{
+    display: block;
     width: 100%;
-    height: auto;
+    height: 100%;
+    background: url('/image/icon/recipe/reset-bu.png') no-repeat;
+    background-size: contain;
+}
+.reset_btn:hover span{
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: url('/image/icon/recipe/reset-hover.png') no-repeat;
+    background-size: contain;
+}
+.search_btn{
+    display: inline-block;
+    min-width: 40px;
+    width: 40px;
+    height: 40px;
+    padding: 5px;
+}
+.search_btn span{
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    background: url('/image/icon/recipe/filter-bu.png') no-repeat;
+    background-size: contain;
+}
+.search_btn:hover span{
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    background: url('/image/icon/recipe/filter-hover.png') no-repeat;
     background-size: contain;
 }
 .list_search{
+    display: inline-block;
     width: 100%;
     height: auto;
     margin: 20px auto 5px auto;

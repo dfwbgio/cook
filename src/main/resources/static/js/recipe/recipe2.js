@@ -4,6 +4,7 @@
 function searchToggle(){
     $('.list_search').toggle();
 }
+//레시피 검색
 function recipeListSearch(){
     var category_val1 = $('input[name="category1"]:checked').val();
     var category_len1 = $('input[name="category1"]:checked').length;
@@ -28,6 +29,12 @@ function recipeListSearch(){
         console.log(food_val);
         location.href='/recipe/search?category1='+category_val1+'&category2='+category_val2+'&food='+food_val;
     }
+}
+//검색 초기화
+function recipeSearchReset(){
+    $('input[name="category1"]').prop('checked', false);
+    $('input[name="category2"]').prop('checked', false);
+    $('input[name="food"]').val('');
 }
 //등록
 //json 이용하여 세부 카테고리를 가져오기 위함
@@ -208,7 +215,8 @@ function recipeMethodMake(){
     recipe_new_div += "</div>";
     $('#register_make').append(recipe_new_div);
 }
-function recipeMathodDelete(ths){//레시피 등록 방법 삭제
+//레시피 등록 방법 삭제
+function recipeMathodDelete(ths){
     var recipe_len = $('.register_make').find('div').length;
     var recipe_num = ths.dataset.num;
     var recipe_div = ths.dataset.id;
