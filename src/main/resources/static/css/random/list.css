@@ -190,10 +190,6 @@ img.dish_bg{
     top: 0;
     left: 0;
     opacity: 0.5;
-    z-index: 1;
-}
-img.dish_bg:hover{
-    opacity: 1;
 }
 img.dish_spoon{
     position: absolute;
