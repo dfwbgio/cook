@@ -1,6 +1,7 @@
 @charset "UTF-8";
 :root {/*기본 색상 지정*/
   --opa-blue: #6FADCF10;
+  --opa-blue30: #c2e0f130;
   --point-color: #6FADCF;
   --second-color: #3d7797;
   --md-blue: #c2e0f1;
