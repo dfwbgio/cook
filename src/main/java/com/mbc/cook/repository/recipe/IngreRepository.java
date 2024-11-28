@@ -2,6 +2,7 @@ package com.mbc.cook.repository.recipe;
 
 import com.mbc.cook.entity.recipe.IngreEntity;
 import com.mbc.cook.entity.recipe.RecipeEntity;
+import com.mbc.cook.service.recipe.RecipeInterface;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -27,4 +28,5 @@ public interface IngreRepository extends JpaRepository<IngreEntity, Long> {
             "WHERE (name LIKE %:ingredient%) " +
             "OR (keyword LIKE %:ingredient%)", nativeQuery = true)
     List<IngreEntity> findIngredientLike(@Param(value = "ingredient") String ingredient);
+
 }

@@ -9,4 +9,5 @@ public interface RecipeInterface {
     public String getIngredient();
     public String getRecipe();
     public int getHits();
+
 }

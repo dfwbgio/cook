@@ -4,6 +4,7 @@ import com.mbc.cook.entity.info.CategoryEntity;
 import com.mbc.cook.entity.recipe.IngreEntity;
 import com.mbc.cook.entity.recipe.RecipeEntity;
 import com.mbc.cook.service.info.InfoService;
+import com.mbc.cook.service.recipe.RecipeInterface;
 import com.mbc.cook.service.recipe.RecipeService;
 import com.mbc.cook.service.recipe.RecipeService2;
 import lombok.extern.slf4j.Slf4j;
@@ -14,7 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.List;
+import java.util.*;
 
 //규리
 @Slf4j
@@ -32,7 +33,8 @@ public class RecipeController {
         RecipeEntity dto = recipeService.select(num);
         //재료 ID -> 정보 가져와서 저장
         String [] ing_arr = dto.getIngredient().split(",");
-        IngreEntity [] ingreList = parseIngredient(ing_arr);
+        ArrayList<IngreEntity> ingreList = new ArrayList<IngreEntity>();
+        ingreList = parseIngredient(ingreList, ing_arr);
 
         List<CategoryEntity> recipeList = infoService.getSubCategoryList(dto.getCategory1()); //삭제/수정 시 소분류 불러오기
         model.addAttribute("recipeList", recipeList);model.addAttribute("ingreList", ingreList);//저장된 재료들 숫자 → 이름 변환
@@ -60,11 +62,28 @@ public class RecipeController {
     @GetMapping(value = "/recipe/cart")
     public String recipeCart(@RequestParam("id") String id, Model model) {
         pathSet("장바구니","cart", model);
+        ArrayList<IngreEntity> list = new ArrayList<IngreEntity>();
         List<String> ingredientArray = recipeService.selectIngredient(id);
-        for (int i=0; i<ingredientArray.size(); i++){
-//            String [] ingreList = ingredientArray[i].split(",");
-
+        for (String s : ingredientArray) {
+            String[] ingredientNum = s.split(",");
+            list = parseIngredient(list, ingredientNum);
         }
+
+        Set<IngreEntity> set = new HashSet<IngreEntity>(list);
+        List<Integer> pickList = new ArrayList<>();
+        for (IngreEntity str : set) {
+            pickList.add(Collections.frequency(list, str));
+            System.out.println(str + " : " + Collections.frequency(list, str));
+        }
+        List<IngreEntity> ingreList = new ArrayList<>(set);
+
+        for (int i=0; i<ingreList.size();i++){
+            System.out.println(i+": "+ingreList.get(i).getName());
+        }
+
+        System.out.println("picksize: "+pickList);
+        model.addAttribute("cartList",ingreList);
+        model.addAttribute("picksize",pickList);
 
         return "recipe/cart";
     }
@@ -74,11 +93,10 @@ public class RecipeController {
         model.addAttribute("pageTitle", title);//타이틀 제목
     }
 
-    public IngreEntity[] parseIngredient(String [] ing_arr){
-        IngreEntity [] ingreList = new IngreEntity[ing_arr.length];
-        for(int i=0;i<ing_arr.length;i++){
-            ingreList[i] = recipeService.findIngredientByID(Long.parseLong(ing_arr[i]));
+    public ArrayList<IngreEntity> parseIngredient(ArrayList<IngreEntity> list, String [] ing_arr){
+        for (String s : ing_arr) {
+            list.add(recipeService.findIngredientByID(Long.parseLong(s)));
         }
-        return ingreList;
+        return list;
     }
 }
