@@ -5,50 +5,55 @@
       layout:fragment="content">
     <div class="list_whole">
         <div class="list_fixed">
-            <div class="list_title display_flex flex_between flex_align_c">
-                <h1>레시피</h1>
-                <div class="display_flex flex_end flex_align_c">
-                    <button type="button" onclick="location.href='/recipe/register'" class="register_btn" sec:authorize="hasAuthority('ADMIN')">등록 +</button>
-                    <button type="button" class="search_btn">
-                        <img src="/image/icon/recipe/filter-bu.png" alt="검색 아이콘" onclick="searchToggle()">
-                    </button>
+            <div class="list_in">
+                <div class="list_title display_flex flex_between flex_align_c">
+                    <h1>레시피</h1>
+                    <div class="display_flex flex_end flex_align_c">
+                        <button type="button" onclick="location.href='/recipe/register'" class="register_btn" sec:authorize="hasAuthority('ADMIN')">등록 +</button>
+                        <button type="button" onclick="recipeSearchReset()" class="reset_btn" title="검색 초기화">
+                            <span></span>
+                        </button>
+                        <button type="button" onclick="searchToggle()" class="search_btn" title="검색하기">
+                            <span></span>
+                        </button>
+                    </div>
                 </div>
+                <nav class="list_search">
+                    <div class="list_category w_display_flex flex_align_s">
+                        <div class="register_row move_dw" id="recipe_div2">
+                            <p class="register_subtitle">레시피 카테고리</p>
+                            <div class="register_category display_flex flex_align_c">
+                                <label for="recipe_category1">
+                                    <input type="radio" onclick="recipeCategoryClick()" id="recipe_category1" name="category1" value="한식" hidden>
+                                    <span>한식</span>
+                                </label>
+                                <label for="recipe_category2">
+                                    <input type="radio" onclick="recipeCategoryClick()" id="recipe_category2" name="category1" value="중식" hidden>
+                                    <span>중식</span>
+                                </label>
+                                <label for="recipe_category3">
+                                    <input type="radio" onclick="recipeCategoryClick()" id="recipe_category3" name="category1" value="일식" hidden>
+                                    <span>일식</span>
+                                </label>
+                                <label for="recipe_category4">
+                                    <input type="radio" onclick="recipeCategoryClick()" id="recipe_category4" name="category1" value="양식" hidden>
+                                    <span>양식</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="register_row" id="recipe_div3"></div><!--소분류 카테고리-->
+                    </div>
+                    <div class="register_row" id="recipe_div4">
+                        <p class="register_subtitle">음식명</p>
+                        <div class="display_flex flex_align_c">
+                            <input type="text" id="food_name" name="food" placeholder="음식명 입력">
+                            <div class="btn_flex">
+                                <button type="button" onclick="recipeListSearch()" class="btn_submit">검색</button>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
             </div>
-            <nav class="list_search">
-                <div class="list_category w_display_flex flex_align_s">
-                    <div class="register_row move_dw" id="recipe_div2">
-                        <p class="register_subtitle">레시피 카테고리</p>
-                        <div class="register_category display_flex flex_align_c">
-                            <label for="recipe_category1">
-                                <input type="radio" onclick="recipeCategoryClick()" id="recipe_category1" name="category1" value="한식" hidden>
-                                <span>한식</span>
-                            </label>
-                            <label for="recipe_category2">
-                                <input type="radio" onclick="recipeCategoryClick()" id="recipe_category2" name="category1" value="중식" hidden>
-                                <span>중식</span>
-                            </label>
-                            <label for="recipe_category3">
-                                <input type="radio" onclick="recipeCategoryClick()" id="recipe_category3" name="category1" value="일식" hidden>
-                                <span>일식</span>
-                            </label>
-                            <label for="recipe_category4">
-                                <input type="radio" onclick="recipeCategoryClick()" id="recipe_category4" name="category1" value="양식" hidden>
-                                <span>양식</span>
-                            </label>
-                        </div>
-                    </div>
-                    <div class="register_row" id="recipe_div3"></div><!--소분류 카테고리-->
-                </div>
-                <div class="register_row" id="recipe_div4">
-                    <p class="register_subtitle">음식명</p>
-                    <div class="display_flex flex_align_c">
-                        <input type="text" id="food_name" name="food" placeholder="음식명 입력">
-                        <div class="btn_flex">
-                            <button type="button" onclick="recipeListSearch()" class="btn_submit">검색</button>
-                        </div>
-                    </div>
-                </div>
-            </nav>
         </div>
         <div class="list_inner display_flex flex_start flex_align_str">
             <div class="list_row" th:each="recipe:${recipeList}">

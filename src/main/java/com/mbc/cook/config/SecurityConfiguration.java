@@ -60,8 +60,9 @@ public class SecurityConfiguration {
                 "/getid",
                 "/getpw",
                 "/pwupdate",
-                "/pwUpdate"
-
+                "/pwUpdate",
+                "/subCategoryGet",
+                "/recipe/search"
         };
         /* @formatter:off */
         http
