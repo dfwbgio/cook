@@ -288,3 +288,20 @@ img.dish_spoon{
         min-height: 556px;
     }
 }
+@media (max-width: 359px){
+    .random_box{
+        width: calc(100% - 40px);
+    }
+    .random_pop .btn_flex{
+        flex-wrap: wrap;
+        margin-top: 50px;
+    }
+    .random_pop .btn_flex button{
+        width: 100%;
+        max-width: none;
+        margin: 0 auto;
+    }
+    .random_pop .btn_flex button + button{
+        margin-top: 10px;
+    }
+}
