@@ -4,16 +4,19 @@ import com.mbc.cook.entity.info.CategoryEntity;
 import com.mbc.cook.entity.recipe.IngreEntity;
 import com.mbc.cook.entity.recipe.RecipeEntity;
 import com.mbc.cook.service.info.InfoService;
-import com.mbc.cook.service.recipe.RecipeInterface;
 import com.mbc.cook.service.recipe.RecipeService;
 import com.mbc.cook.service.recipe.RecipeService2;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.*;
 
@@ -52,46 +55,69 @@ public class RecipeController {
         }
         return (path.equals("detail")) ? "recipe/detail" : (path.equals("delete")) ? "recipe/delete" : "recipe/update";
     }
-
+    @ResponseBody
     @PostMapping(value="/recipe/cartsave")
-    public String cartSave(@RequestParam("id") String id, @RequestParam("ingredient") String ingredient){
-        recipeService.cartSave(id, ingredient);
-        return "redirect:/recipe/list";
+    public String cartSave(@RequestParam("id") String id, @RequestParam("ingredient") String ingredient) {
+        try {
+            long cart =recipeService.findCartByID(id);
+            System.out.println("cart: " + cart);
+            if (cart == -1) {
+                System.out.println("생성");
+                recipeService.cartSave(id, ingredient);
+            }else {
+                System.out.println("기존추가");
+                recipeService.cartUpdate(id, ingredient);
+            }
+            return "장바구니에 담겼습니다";
+        } catch (Exception e) {
+            return "장바구니 저장 중 오류가 발생했습니다";
+        }
     }
 
     @GetMapping(value = "/recipe/cart")
-    public String recipeCart(@RequestParam("id") String id, Model model) {
+    public String recipeCart(@RequestParam("id") String id,@RequestParam(value = "status",required = false,defaultValue = "orderprev") String status, Model model) {
         pathSet("장바구니","cart", model);
         ArrayList<IngreEntity> list = new ArrayList<IngreEntity>();
-        List<String> ingredientArray = recipeService.selectIngredient(id);
-        for (String s : ingredientArray) {
-            String[] ingredientNum = s.split(",");
-            list = parseIngredient(list, ingredientNum);
-        }
+        String ingredientArray = recipeService.selectIngredient(id,status);
+        String[] ingredientNum = ingredientArray.split(",");
+        list = parseIngredient(list, ingredientNum);
 
-        Set<IngreEntity> set = new HashSet<IngreEntity>(list);
+        Set<IngreEntity> set = new HashSet<IngreEntity>(list); //재료들 중복값 제거
         List<Integer> pickList = new ArrayList<>();
         for (IngreEntity str : set) {
             pickList.add(Collections.frequency(list, str));
-            System.out.println(str + " : " + Collections.frequency(list, str));
         }
-        List<IngreEntity> ingreList = new ArrayList<>(set);
+        List<IngreEntity> ingreList = new ArrayList<>(set); //리스트로 변환
 
-        for (int i=0; i<ingreList.size();i++){
-            System.out.println(i+": "+ingreList.get(i).getName());
-        }
-
-        System.out.println("picksize: "+pickList);
         model.addAttribute("cartList",ingreList);
         model.addAttribute("picksize",pickList);
 
         return "recipe/cart";
     }
 
+    @ResponseBody
+    @PostMapping("/cart/ingreDelete")
+    public String deleteIngredient(@RequestParam("ingredient") String ingredient, @RequestParam("id") String id){
+        String ingredientArray = recipeService.selectIngredient(id,"orderprev");
+        String [] ingreNum = ingredientArray.split(",");
+        String deleteIngreString = "";
+        for(int i=0; i<ingreNum.length; i++){
+            if(!ingreNum[i].equals(ingredient)){
+                deleteIngreString+=ingreNum[i];
+                if(i!=ingreNum.length-1){deleteIngreString+=",";}
+            }
+        }
+        System.out.println(deleteIngreString);
+        recipeService.ingredientDelete(deleteIngreString,id);
+        return "삭제되었습니다";
+    }
+
+
     public void pathSet(String title,String path, Model model){
         model.addAttribute("cssPath", "/recipe/"+path);//css 패스 경로(바꾸지X)
         model.addAttribute("pageTitle", title);//타이틀 제목
     }
+
 
     public ArrayList<IngreEntity> parseIngredient(ArrayList<IngreEntity> list, String [] ing_arr){
         for (String s : ing_arr) {
