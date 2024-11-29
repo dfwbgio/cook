@@ -16,10 +16,10 @@
     margin: 0 auto;
 }
 .login-main div + div{
-    margin-top: 20px;
+    margin-top: 15px;
 }
 .login-main div.btn_flex{
-    margin-top: 40px;
+    margin-top: 20px;
 }
 .login-main span{
     display: inline-block;
