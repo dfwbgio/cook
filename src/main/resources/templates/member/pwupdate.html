@@ -4,21 +4,24 @@
       layout:decorate="~{common/layout}"
       layout:fragment="content">
 <div class="pw-update">
-    <div class="pw">
+    <h2>비밀번호 재설정</h2>
+    <div>
         <input type="hidden" name="id" id="id" th:value="${id}">
         <label>비밀번호</label>
-        <input type="password" name="pw" id="pw" placeholder="새로운 비밀번호를 입력해주세요">
-        <i class="fa fa-eye-slash fa-lg"></i>
+        <div>
+            <input type="password" name="pw" id="pw" placeholder="새로운 비밀번호를 입력해주세요">
+            <i class="fa fa-eye-slash fa-lg"></i>
+        </div>
     </div>
-    <div class="pw">
+    <div>
         <label>비밀번호 확인</label>
         <div class="pw1">
             <input type="password" name="pwcheck" id="pwcheck" placeholder="비밀번호 확인">
             <i class="fa fa-eye-slash fa-lg"></i>
         </div>
     </div>
-    <div class="button">
-        <button type="button" value="비밀번호 수정" id="check" onclick="check()">
+    <div class="btn_flex">
+        <button type="button" value="비밀번호 수정" id="check" onclick="check()" class="btn_submit">
             비밀번호 수정
         </button>
     </div>
