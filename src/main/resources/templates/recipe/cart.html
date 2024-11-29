@@ -14,6 +14,13 @@
             <div>
                 <input type="hidden" id="list" name="list" th:value="${cartList}">
                 <table class="cartlist">
+                    <colgroup>
+                        <col width="5">
+                        <col width="40">
+                        <col width="10">
+                        <col width="10">
+                        <col width="20">
+                    </colgroup>
                     <tr>
                         <th>No.</th>
                         <th>상품명</th>
@@ -26,7 +33,7 @@
                     -->
                     <tr th:each="list : ${cartList}">
                         <td th:text="${listStat.index+1}"></td>
-                        <td th:text="${list.name}"></td>
+                        <td><div><p th:text="${list.name}"></p><button type="button" th:onclick="deleteIngredient([[${list.ingre_seq}]])"><span><img src="/image/icon/common/delete-gr.png"></span></button></div></td>
                         <td>
                             <input type="hidden" th:id="'id'+${list.ingre_seq}" name="id" th:value="${list.ingre_seq}">
                             <input type="hidden" th:id="'eachprice'+${list.ingre_seq}" name="eachprice" th:value="${list.price}">
@@ -37,65 +44,56 @@
                         </td>
                         <td>
                             <p th:id="'totChange'+${list.ingre_seq}" th:text="${#numbers.formatInteger(list.price * picksize[listStat.index], 3, 'COMMA')}"></p>
-                            <input type="hidden" th:id="'price'+${list.ingre_seq}" name="price" th:value="${list.price} * ${picksize[listStat.index]}">
+                            <input type="hidden" th:id="'total'+${list.ingre_seq}" name="total" th:value="${list.price} * ${picksize[listStat.index]}">
                         </td>
                     </tr>
                 </table>
-                <table class="summary">
-                    <tr>
-                        <th>구매 금액</th>
-                        <th>배 송 비</th>
-                        <th>총 금 액</th>
-                    </tr>
-                    <tr>
-                        <td>
-                            <p th:id="price"></p>
-                        </td>
-                        <td>
-                            <p th:id="delivery"></p>
-                        </td>
-                        <td>
-                            <p th:id="total"></p>
-                        </td>
-                    </tr>
-                </table>
-                <button>주문하기</button>
+                <form action="order" method="post">
+                    <input type="hidden" name="id" id="id" th:value="${#authentication.name}">
+                    <input type="hidden" name="order_item" id="order_item">
+                    <table class="summary">
+                        <tr>
+                            <th>구매 금액</th>
+                            <th>배 송 비<p>(5만원 이상 구매 시 베송비 무료)</p></th>
+                            <th>총 금 액</th>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p th:id="tot"></p>
+                            </td>
+                            <td>
+                                <p th:id="delivery"></p>
+                            </td>
+                            <td>
+                                <p th:id="total"></p>
+                                <input type="hidden" name="price" id="price">
+                            </td>
+                        </tr>
+                    </table>
+                    <button type="button">주문하기</button>
+                </form>
             </div>
         </div>
     </div>
     <script>
-        $(document).ready(function(){
-            summary();
-        });
-        function summary(){
-            var sum=0;
-            var delivery;
-            $('input[name="price"]').each(function(index){
-                sum += parseInt($(this).val());
-            });
-            if(sum>50000){delivery=0;}
-            else{delivery=3000;}
 
-            var tot = sum + delivery;
-            $('#price').text(addCommas(sum));
-            $('#delivery').text(addCommas(delivery));
-            $('#total').text(addCommas(tot));
-        }
-        function tot(a){
-            var num = $('#num'+a).val();
-            var price = $('#eachprice'+a).val();
-            var tot = num * price;
-            $('#price'+a).val(tot);
-            $('#totChange'+a).text(addCommas(tot));
-            summary();
-        }
-        function addCommas(x) {
-    	    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-	    }
     </script>
 <style>
+    .cartlist td:nth-child(2) div{
+        display:flex;
+    }
+    .cartlist td button{
+        margin: 0 10px;
+    }
+    button span{
+        display:inline-block;
+    }
+    table{
+    margin: 20px auto;
+    }
     input::-webkit-inner-spin-button,
     input::-webkit-outer-spin-button {
-    opacity: 1;
-}
+        opacity: 1;
+    }
+</style>
 </html>

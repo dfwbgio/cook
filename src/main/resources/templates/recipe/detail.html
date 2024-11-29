@@ -14,16 +14,15 @@
         </div>
         <div class="detail_content">
             <img class="recipe_img" th:src="@{/image/upload/}+${dto.image}">
-            <form th:action="@{/recipe/cartsave}" method="post" id="cartSave">
-                <input type="hidden" name="id" th:value="${#authentication.name}">
-                <div class="cart"><p>필요 재료</p><button type="submit">필요한 재료 담기</button></div><hr>
-                <div id="ingredientBox">
-                    <div class='ingredient' th:each="ingredient : ${ingreList}">
-                        <label><input type='checkbox' name='ingredient' th:value='${ingredient.ingre_seq}' checked>
-                            <span><span class='check'>✔</span><span th:text="${ingredient.name}"></span></span></label>
-                    </div>
+            <input type="hidden" name="id" id="id" th:value="${#authentication.name}">
+            <div class="cart"><p>필요 재료</p><button type="button" id="cartClick">필요한 재료 담기</button></div><hr>
+            <div id="ingredientBox">
+                <div class='ingredient' th:each="ingredient : ${ingreList}">
+                    <label><input type='checkbox' name='ingredient' th:value='${ingredient.ingre_seq}' checked>
+                        <span><span class='check'>✔</span><span th:text="${ingredient.name}"></span></span></label>
                 </div>
-            </form>
+            </div>
+        </div>
         <!-- 레시피 -->
         <p>요리 순서</p><hr>
         <input type="hidden" id="recipe" th:value="${dto.recipe}">
