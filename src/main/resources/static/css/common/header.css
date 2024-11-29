@@ -238,8 +238,14 @@ a.link_on{
 	cursor: url('../../image/icon/common/cursor-default.png'), default!important;
 }
 @media(min-width: 1024px){
+    .header_section .w_display_flex{
+        width: calc(100% - 40px);
+        max-width: 1200px;
+        margin: 0 auto;
+    }
     .header_top{
         width: max-content;
+        padding: 10px 0;
     }
     .header_hamburger{
         display: none;
@@ -252,7 +258,7 @@ a.link_on{
         flex-direction: row-reverse;
         max-width: none;
         min-height: auto;
-        padding: 0 20px 0 0;
+        padding: 0;
         background-color: var(--bg-none);
         top: auto;
         left: auto;
