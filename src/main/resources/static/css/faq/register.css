@@ -1,1 +1,28 @@
 @charset "UTF-8";
+.faq_main{
+    width: 100%;
+    height: auto;
+    margin: 30px auto;
+}
+.faq_main div{
+    display: flex;
+    margin: 10px auto;
+    text-align: center;
+    align-items: center;
+}
+.faq_main p{
+    width: 60px;
+    min-width: 60px;
+}
+.faq_main input {
+    width: 100%;
+    border: 1px solid var(--md-blue);
+}
+.faq_main textarea{
+    width: 100%;
+    max-width: 1138px;
+    height: 120px;
+    border: 1px solid var(--md-blue);
+    background-color: var(--all-white);
+    padding: 5px;
+}

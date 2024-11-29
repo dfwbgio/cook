@@ -1,1 +1,26 @@
 @charset "UTF-8";
+.faq-update{
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+}
+.faq_info1{
+    padding: 10px;
+}
+.faq_info1 input{
+    color: var(--bh-black);
+    border-radius: 10px;
+}
+
+.faq_upsub .btn_flex{
+    width: calc(100% - 20px);
+    margin: 10px auto;
+    border-top: 1px solid var(--md-blue);
+    padding-top: 10px;
+}
+.faq_upsub .btn_flex a{
+    display: inline-block;
+    width: 100%;
+    max-width: 150px;
+    height: auto;
+}
