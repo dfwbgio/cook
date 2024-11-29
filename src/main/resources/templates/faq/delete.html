@@ -13,21 +13,23 @@
             </div>
         </div>
         <form action="/faq/deletesave" method="post">
-            <div class="faq-update">
-                <div class="faqnum">
-                    <label>FAQ번호</label>
-                    <input type="text" name="faqnum" id="faqnum" th:value="${dto.faqnum}" readonly>
-                </div>
-                <div class="faq-question">
-                    <label>FAQ질문</label>
-                    <input type="text" name="question" id="question" th:value="${dto.question}" readonly>
-                </div>
-                <div class="faq-asked">
-                    <label>FAQ답변</label>
-                    <input type="text" name="asked" id="asked" th:value="${dto.asked}" readonly>
-                </div>
-                <div class="Delete">
-                    <button type="submit" value="수정완료">삭제하기</button>
+            <div class="faq_main">
+                <div class="faq_sub">
+                    <div class="faq_info">
+                        <p>FAQ번호</p>
+                        <input type="text" name="faqnum" id="faqnum" th:value="${dto.faqnum}" readonly>
+                    </div>
+                    <div class="faq_info">
+                        <p>FAQ질문</p>
+                        <input type="text" name="question" id="question" th:value="${dto.question}" readonly>
+                    </div>
+                    <div class="faq_info">
+                        <p>FAQ답변</p>
+                        <input type="text" name="asked" id="asked" th:value="${dto.asked}" readonly>
+                    </div>
+                    <div class="btn_flex">
+                        <a type="submit"><button class="btn_submit">삭제하기</button></a>
+                    </div>
                 </div>
             </div>
         </form>

@@ -14,18 +14,18 @@
         </div>
 
     <form action="/faq/faqsave" method="post">
-        <div class="faq-main">
-            <div class="question">
-                <label>질문</label>
-                <input type="text" name="question" id="question">
+        <div class="faq_main">
+            <div>
+                <p>질문 :</p>
+                <input type="text" name="question" id="question" placeholder="질문 입력">
             </div>
-            <div class="A">
-                <label>답변</label>
-                <textarea rows="5" cols="100" name="asked" id="asked"></textarea>
+            <div>
+                <p>답변 :</p>
+                <textarea rows="5" cols="100" name="asked" id="asked" placeholder="답변 입력"></textarea>
             </div>
         </div>
-        <div class="submit">
-            <button type="submit" value="등록">등록</button>
+        <div class="btn_flex">
+            <button type="submit" value="등록" class="btn_submit">등록</button>
         </div>
     </form>
     </div>
