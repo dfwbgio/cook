@@ -1,1 +1,43 @@
 @charset "UTF-8";
+.header_section,
+footer{
+    display: none;
+}
+.main_whole{
+    padding: 0;
+}
+.pw-update{
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    margin: 0 auto;
+}
+.pw-update select{
+    max-width: 140px;
+}
+.pw-update h2{
+    font-size: 30px;
+    line-height: 40px;
+    font-weight: bold;
+    text-align: center;
+    margin: 40px auto;
+}
+.pw-update div div{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+}
+.pw-update div div i{
+    display: inline-block;
+    margin-left: 10px;
+}
+.pw-update div label{
+    display: inline-block;
+    margin: 0 auto 5px 0;
+}
+.pw-update div + div{
+    margin-top: 20px;
+}
+
