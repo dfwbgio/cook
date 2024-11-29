@@ -14,7 +14,8 @@
 
     $(document).ready(function() {
         $('#name').focus();
-        $('.pw i').on('click',function(){
+
+        $('i').on('click',function(){
             $('input').toggleClass('active');
             if($('input').hasClass('active')){
                 $(this).attr('class',"fa fa-eye fa-lg")
@@ -25,6 +26,7 @@
             }
         });
     });
+
     function click_btn(){
         if(window.event.keyCode == 13){
             $('#findid').click();
