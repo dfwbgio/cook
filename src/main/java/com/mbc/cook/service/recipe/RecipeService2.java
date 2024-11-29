@@ -31,4 +31,6 @@ public interface RecipeService2 {
     List<RecipeEntity> recipeSearchAll(String category1, String category2, String food);
 
     List<RecipeEntity> recipeSearchOneCategory(String category1);
+
+    List<RecipeEntity> recipeFindAll();
 }

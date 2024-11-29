@@ -1,10 +1,4 @@
 @charset "UTF-8";
-@font-face{
-    font-family: 'HakgyoansimDunggeunmisoTTF-B';
-    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2408-5@1.0/HakgyoansimDunggeunmisoTTF-B.woff2') format('woff2');
-    font-weight: 700;
-    font-style: normal;
-}
 .main_inner{
     margin-top: 70px;
 }
@@ -13,7 +7,7 @@
     height: auto;
     margin: 0 auto;
 }
-.random_info
+.random_info,
 .random_info2{
     width: 100%;
     height: auto;

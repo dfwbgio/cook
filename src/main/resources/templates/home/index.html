@@ -5,5 +5,139 @@
       layout:fragment="content">
     <div class="update_whole">
         <h1>메인</h1>
+        <!--커뮤니티-->
+        <div class="commu_inner">
+            <div class="commu_box commu_box1">
+                <p th:if="${#authentication.name == 'anonymousUser'}" onclick="location.href='/login'" class="commu_header commu_subtitle">로그인 해주세요.</p>
+                <div th:if="${#authentication.name != 'anonymousUser'}">
+                    <p class="commu_subtitle" th:text="${#authentication.name}+'님, 환영합니다.'"></p>
+                    <div class="commu_in">
+                        <div class="display_flex flex_center flex_align_c">
+                            <div class="commu_row">
+                                <p>내가 쓴 글</p>
+                                <p>0</p>
+                            </div>
+                            <span></span>
+                            <div class="commu_row">
+                                <p>내가 쓴 댓글</p>
+                                <p>0</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="commu_box commu_box2">
+                <div class="commu_in">
+                    <div class="display_flex flex_center flex_align_c">
+                        <div class="commu_row2">
+                            <h2>공지사항</h2>
+                            <a href="" class="commu_row">
+                                <p>제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목</p>
+                                <p>0</p>
+                            </a>
+                            <a href="" class="commu_row">
+                                <p>제목</p>
+                                <p>0</p>
+                            </a>
+                            <a href="" class="commu_row">
+                                <p>제목</p>
+                                <p>0</p>
+                            </a>
+                            <a href="" class="commu_row">
+                                <p>제목</p>
+                                <p>0</p>
+                            </a>
+                            <a href="" class="commu_row">
+                                <p>제목</p>
+                                <p>0</p>
+                            </a>
+                        </div>
+                        <span></span>
+                        <div class="commu_row2">
+                            <h2>자유게시판</h2>
+                            <a href="" class="commu_row">
+                                <p>제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목</p>
+                                <p>0</p>
+                            </a>
+                            <a href="" class="commu_row">
+                                <p>제목</p>
+                                <p>0</p>
+                            </a>
+                            <a href="" class="commu_row">
+                                <p>제목</p>
+                                <p>0</p>
+                            </a>
+                            <a href="" class="commu_row">
+                                <p>제목</p>
+                                <p>0</p>
+                            </a>
+                            <a href="" class="commu_row">
+                                <p>제목</p>
+                                <p>0</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--레시피-->
+        <div class="list_inner">
+            <h2 th:if="${#authentication.name != 'anonymousUser'}" th:text="${#authentication.name}+'님, 이런 요리 어때요?'"></h2>
+            <div class="list_flex display_flex flex_start flex_align_c">
+                <div class="display_flex flex_start flex_align_str">
+                    <div class="list_row" th:each="recipe:${recipeList}">
+                        <a th:href="@{/recipe/select(num=${recipe.recipeseq},path='detail')}">
+                            <div class="list_box">
+                                <div class="list_top display_flex flex_between flex_align_c">
+                                    <div class="display_flex flex_start flex_align_c">
+                                        <img src="/image/icon/recipe/num-bk.png">
+                                        <p th:text="${recipe.recipeseq}" th:value="${recipe.recipeseq}*${recipe.recipeseq}">시퀀스</p>
+                                    </div>
+                                    <div class="display_flex flex_end flex_align_c">
+                                        <img src="/image/icon/recipe/eye-bk.png">
+                                        <p th:text="${recipe.hits}">0</p>
+                                    </div>
+                                </div>
+                                <div class="display_flex flex_wrap flex_start flex_align_c">
+                                    <img th:src="@{/image/upload/}+${recipe.image}" th:alt="${recipe.food}+' 이미지'" class="recipe_img">
+                                    <div class="list_txt">
+                                        <div class="display_flex flex_align_c">
+                                            <p th:text="${recipe.category1}">카테고리1</p>
+                                            <p th:text="'('+${recipe.category2}+')'">카테고리2</p>
+                                        </div>
+                                        <p class="food_title" th:text="${recipe.food}">음식명</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <div class="list_btn display_flex flex_center flex_align_c" sec:authorize="hasAuthority('ADMIN')">
+                            <a class="btn_delete" th:href="@{/recipe/select(num=${recipe.recipeseq},path='delete')}">삭제</a>
+                            <a class="btn_update" th:href="@{/recipe/select(num=${recipe.recipeseq},path='update')}">수정</a>
+                        </div>
+                    </div>
+                </div>
+                <div onclick="location.href='/random/list'" class="random_img">
+                    <div class="random_info">
+                        <p>어떤 음식을 먹어야할지 모르겠을 땐</p>
+                        <h2><span>오</span><span>늘</span> <span>뭐</span><span>먹</span><span>지</span><span>?</span></h2>
+                    </div>
+                    <div class="random_dish">
+                        <div>
+                            <img src="/image/icon/random/dish-bg.png" alt="접시 모양" class="dish_img">
+                            <img src="/image/icon/random/dish-bg1.png" alt="접시 모양" class="dish_bg dish_bg1">
+                            <img src="/image/icon/random/dish-bg2.png" alt="접시 모양" class="dish_bg dish_bg2">
+                            <img src="/image/icon/random/dish-bg3.png" alt="접시 모양" class="dish_bg dish_bg3">
+                            <img src="/image/icon/random/dish-bg4.png" alt="접시 모양" class="dish_bg dish_bg4">
+                            <img src="/image/icon/random/dish-bg5.png" alt="접시 모양" class="dish_bg dish_bg5">
+                            <img src="/image/icon/random/dish-bg6.png" alt="접시 모양" class="dish_bg dish_bg6">
+                            <img src="/image/icon/random/dish-bg7.png" alt="접시 모양" class="dish_bg dish_bg7">
+                            <img src="/image/icon/random/dish-bg8.png" alt="접시 모양" class="dish_bg dish_bg8">
+                        </div>
+                        <img src="/image/icon/random/spoon.png" alt="숟가락 아이콘" class="dish_spoon">
+                    </div>
+                </div>
+            </div>
+            <p th:if="${recipeList == null} or ${recipeList.size() == 0}" class="no_data_txt">등록된 레시피가 없습니다.</p>
+        </div>
     </div>
 </html>

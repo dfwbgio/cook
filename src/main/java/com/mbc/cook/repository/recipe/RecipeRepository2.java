@@ -58,4 +58,11 @@ public interface RecipeRepository2 extends JpaRepository<RecipeEntity, Long> {
             "and category2 LIKE %:category2% " +
             "and food LIKE %:food% ", nativeQuery = true)
     List<RecipeEntity> recipeSearchAll(@Param("category1") String category1, @Param("category2") String category2, @Param("food") String food);
+
+    @Transactional
+    @Query(value = "SELECT * FROM (" +
+            "SELECT * FROM recipe " +
+            "ORDER BY DBMS_RANDOM.VALUE) " +
+            "WHERE ROWNUM <= 10", nativeQuery = true)
+    List<RecipeEntity> recipeFindAll();
 }

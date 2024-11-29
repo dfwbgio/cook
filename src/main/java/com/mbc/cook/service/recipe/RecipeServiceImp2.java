@@ -73,4 +73,9 @@ public class RecipeServiceImp2 implements RecipeService2 {
     public List<RecipeEntity> recipeSearchAll(String category1, String category2, String food) {
         return recipeRepository2.recipeSearchAll(category1,category2,food);
     }
+
+    @Override
+    public List<RecipeEntity> recipeFindAll() {
+        return recipeRepository2.recipeFindAll();
+    }
 }
